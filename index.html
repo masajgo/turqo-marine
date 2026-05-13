@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Turqo Marine — Ship Recycling & Shipyard Advisory, Turkey</title>
+<meta name="description" content="Turqo Marine is a Turkey-based boutique maritime consulting firm specialising in ship recycling yard processes, HKC / EU SRR compliance, and shipyard operations for shipowners, cash buyers and brokers." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B2545;
+    --navy-2:#13315C;
+    --ink:#0F172A;
+    --steel:#475569;
+    --muted:#64748B;
+    --line:#E2E8F0;
+    --bg:#FFFFFF;
+    --bg-alt:#F8FAFC;
+    --accent:#C9A24A; /* subtle gold */
+    --teal:#1E5F74;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.6;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;color:var(--navy);letter-spacing:-.01em}
+  h1{font-size:clamp(2.2rem,4.5vw,3.6rem);line-height:1.1}
+  h2{font-size:clamp(1.7rem,3vw,2.4rem);line-height:1.2;margin-bottom:1rem}
+  h3{font-size:1.15rem;font-family:'Inter',sans-serif;font-weight:600;color:var(--navy);margin-bottom:.5rem}
+  p{color:var(--steel);font-size:1rem}
+  a{color:inherit;text-decoration:none}
+  .container{max-width:1180px;margin:0 auto;padding:0 1.5rem}
+  .eyebrow{
+    font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:.8rem;
+    display:inline-block;
+  }
+
+  /* ---- NAV ---- */
+  header.nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:saturate(140%) blur(10px);
+    border-bottom:1px solid var(--line);
+    transition:all .3s ease;
+  }
+  .nav-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    height:72px;
+  }
+  .logo{
+    display:flex;align-items:center;gap:.6rem;
+    font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;color:var(--navy);
+    letter-spacing:.02em;
+  }
+  .logo svg{width:28px;height:28px}
+  nav ul{display:flex;gap:2.2rem;list-style:none}
+  nav a{
+    font-size:.92rem;font-weight:500;color:var(--ink);
+    transition:color .2s;position:relative;
+  }
+  nav a:hover{color:var(--navy)}
+  nav a::after{
+    content:'';position:absolute;left:0;bottom:-6px;height:1px;width:0;
+    background:var(--accent);transition:width .25s;
+  }
+  nav a:hover::after{width:100%}
+  .nav-cta{
+    background:var(--navy);color:#fff !important;padding:.6rem 1.2rem;
+    border-radius:2px;font-size:.88rem;font-weight:500;
+    transition:background .2s;
+  }
+  .nav-cta:hover{background:var(--navy-2)}
+  .nav-cta::after{display:none}
+  .menu-btn{display:none;background:none;border:none;cursor:pointer;width:30px;height:30px}
+  .menu-btn span{display:block;width:22px;height:1.5px;background:var(--navy);margin:5px auto;transition:.3s}
+
+  /* ---- HERO ---- */
+  .hero{
+    padding:11rem 0 6rem;position:relative;overflow:hidden;
+    background:
+      linear-gradient(180deg,rgba(11,37,69,0) 0%, rgba(11,37,69,.04) 100%),
+      var(--bg);
+  }
+  .hero::before{
+    content:'';position:absolute;top:0;right:0;width:55%;height:100%;
+    background:linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+    clip-path:polygon(20% 0,100% 0,100% 100%,0 100%);
+    z-index:0;
+  }
+  .hero-grid{
+    position:relative;z-index:1;
+    display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:center;
+  }
+  .hero h1 span{color:var(--accent)}
+  .hero p.lead{
+    font-size:1.15rem;color:var(--steel);margin:1.5rem 0 2.2rem;max-width:520px;
+  }
+  .hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:.5rem;
+    padding:.95rem 1.8rem;font-weight:500;font-size:.95rem;
+    border-radius:2px;transition:all .25s;cursor:pointer;border:none;
+  }
+  .btn-primary{background:var(--navy);color:#fff}
+  .btn-primary:hover{background:var(--navy-2);transform:translateY(-1px)}
+  .btn-ghost{background:transparent;color:var(--navy);border:1px solid var(--navy)}
+  .btn-ghost:hover{background:var(--navy);color:#fff}
+  .btn-light{background:#fff;color:var(--navy)}
+  .btn-light:hover{background:var(--accent);color:var(--navy)}
+
+  .hero-visual{
+    position:relative;height:420px;
+    color:#fff;
+  }
+  .hero-card{
+    background:rgba(255,255,255,.08);backdrop-filter:blur(8px);
+    border:1px solid rgba(255,255,255,.18);
+    padding:1.8rem;border-radius:4px;
+  }
+  .hero-card .label{font-size:.7rem;text-transform:uppercase;letter-spacing:.15em;color:rgba(255,255,255,.7);margin-bottom:.4rem}
+  .hero-card .value{font-size:2rem;font-family:'Playfair Display',serif;font-weight:600;color:#fff;line-height:1.1}
+  .hero-card .desc{font-size:.85rem;color:rgba(255,255,255,.75);margin-top:.5rem}
+  .stack{position:absolute;width:240px}
+  .stack-1{top:0;right:0}
+  .stack-2{top:170px;right:120px}
+  .stack-3{top:280px;right:0}
+
+  /* ---- SECTIONS ---- */
+  section{padding:6rem 0}
+  .section-head{max-width:760px;margin-bottom:3rem}
+
+  /* ---- ABOUT ---- */
+  .about{background:var(--bg-alt)}
+  .about-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;align-items:start}
+  .about-pillars{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem}
+  .pillar h4{font-family:'Inter',sans-serif;font-size:.95rem;font-weight:600;color:var(--navy);margin-bottom:.4rem;display:flex;align-items:center;gap:.5rem}
+  .pillar h4::before{content:'';width:24px;height:1px;background:var(--accent)}
+  .pillar p{font-size:.92rem}
+
+  /* ---- SERVICES ---- */
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+  .service{
+    background:#fff;border:1px solid var(--line);padding:2rem 1.8rem;
+    transition:all .3s;cursor:default;position:relative;overflow:hidden;
+  }
+  .service::before{
+    content:'';position:absolute;top:0;left:0;width:100%;height:2px;
+    background:var(--accent);transform:scaleX(0);transform-origin:left;
+    transition:transform .3s;
+  }
+  .service:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(11,37,69,.08)}
+  .service:hover::before{transform:scaleX(1)}
+  .service-icon{
+    width:48px;height:48px;display:flex;align-items:center;justify-content:center;
+    background:var(--bg-alt);margin-bottom:1.3rem;border-radius:2px;
+  }
+  .service-icon svg{width:24px;height:24px;stroke:var(--navy);stroke-width:1.5;fill:none}
+  .service p{font-size:.93rem;color:var(--steel)}
+  .service ul{list-style:none;margin-top:.8rem;padding:0}
+  .service li{font-size:.85rem;color:var(--muted);padding-left:1rem;position:relative;margin-bottom:.3rem}
+  .service li::before{content:'—';position:absolute;left:0;color:var(--accent)}
+
+  /* ---- SECTOR ---- */
+  .sector{background:var(--navy);color:#fff;padding:6rem 0}
+  .sector h2{color:#fff}
+  .sector .eyebrow{color:var(--accent)}
+  .sector p{color:rgba(255,255,255,.78)}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:3rem}
+  .stat{padding:1.6rem 0;border-top:1px solid rgba(255,255,255,.18)}
+  .stat .num{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:600;color:#fff;line-height:1}
+  .stat .label{font-size:.82rem;color:rgba(255,255,255,.7);margin-top:.6rem;letter-spacing:.05em}
+
+  /* ---- APPROACH ---- */
+  .approach-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2.5rem;margin-top:3rem}
+  .step{position:relative}
+  .step .num{
+    font-family:'Playfair Display',serif;font-size:3rem;font-weight:600;
+    color:var(--accent);opacity:.5;line-height:1;margin-bottom:1rem;
+  }
+  .step h3{font-family:'Inter',sans-serif;font-size:1.05rem;font-weight:600;color:var(--navy);margin-bottom:.6rem}
+  .step p{font-size:.9rem}
+
+  /* ---- CONTACT ---- */
+  .contact{background:var(--bg-alt)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+  .contact-info-block{margin-bottom:2rem}
+  .contact-info-block .label{
+    font-size:.7rem;text-transform:uppercase;letter-spacing:.15em;
+    color:var(--muted);margin-bottom:.4rem;font-weight:600;
+  }
+  .contact-info-block .value{font-size:1.05rem;color:var(--navy);font-weight:500}
+  form{background:#fff;padding:2.5rem;border:1px solid var(--line)}
+  .form-row{margin-bottom:1.2rem}
+  .form-row label{display:block;font-size:.82rem;font-weight:500;color:var(--navy);margin-bottom:.4rem;letter-spacing:.02em}
+  .form-row input,
+  .form-row select,
+  .form-row textarea{
+    width:100%;padding:.8rem .9rem;border:1px solid var(--line);
+    font-family:inherit;font-size:.95rem;color:var(--ink);background:#fff;
+    transition:border-color .2s;
+  }
+  .form-row input:focus,.form-row select:focus,.form-row textarea:focus{
+    outline:none;border-color:var(--navy);
+  }
+  .form-row textarea{resize:vertical;min-height:110px}
+
+  /* ---- FOOTER ---- */
+  footer{background:#06182D;color:rgba(255,255,255,.7);padding:3rem 0 2rem;font-size:.88rem}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:3rem;margin-bottom:2.5rem}
+  footer h5{font-family:'Inter',sans-serif;color:#fff;font-size:.82rem;text-transform:uppercase;letter-spacing:.12em;margin-bottom:1rem;font-weight:600}
+  footer ul{list-style:none}
+  footer li{margin-bottom:.6rem}
+  footer a:hover{color:var(--accent)}
+  .footer-bottom{
+    border-top:1px solid rgba(255,255,255,.1);padding-top:1.5rem;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.8rem;
+  }
+
+  /* ---- RESPONSIVE ---- */
+  @media(max-width:900px){
+    .hero{padding:9rem 0 4rem}
+    .hero::before{display:none}
+    .hero-grid{grid-template-columns:1fr;gap:2rem}
+    .hero-visual{height:auto;display:grid;grid-template-columns:1fr;gap:1rem;background:var(--navy);padding:1.5rem;margin-top:1rem}
+    .stack{position:relative;width:100%;top:auto;right:auto}
+    .about-grid,.contact-grid{grid-template-columns:1fr;gap:2.5rem}
+    .services-grid{grid-template-columns:1fr 1fr}
+    .stats{grid-template-columns:1fr 1fr;gap:1.5rem}
+    .approach-grid{grid-template-columns:1fr 1fr;gap:2rem}
+    .footer-grid{grid-template-columns:1fr 1fr}
+    nav ul{display:none}
+    .menu-btn{display:block}
+    nav.open ul{
+      display:flex;flex-direction:column;position:absolute;top:72px;left:0;right:0;
+      background:#fff;padding:1.5rem;gap:1.2rem;border-bottom:1px solid var(--line);
+    }
+  }
+  @media(max-width:560px){
+    .services-grid{grid-template-columns:1fr}
+    .stats{grid-template-columns:1fr 1fr}
+    .approach-grid{grid-template-columns:1fr}
+    .footer-grid{grid-template-columns:1fr}
+    .about-pillars{grid-template-columns:1fr}
+  }
+
+  /* fade in */
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease, transform .7s ease}
+  .reveal.in{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="logo" href="#top">
+      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M16 4 L16 22 M8 14 Q16 8 24 14 M5 22 Q16 30 27 22" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Turqo<em style="font-style:normal;color:var(--accent)">.</em>Marine</span>
+    </a>
+    <nav id="primaryNav">
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#sector">Sector</a></li>
+        <li><a href="#approach">Approach</a></li>
+        <li><a class="nav-cta" href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="menu-btn" onclick="document.getElementById('primaryNav').classList.toggle('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="container hero-grid">
+    <div class="reveal">
+      <span class="eyebrow">Turkey-Based Maritime Advisory</span>
+      <h1>Ship recycling, done <span>compliantly</span>.</h1>
+      <p class="lead">Turqo Marine is a boutique consulting firm based in İzmir, Turkey, advising shipowners, cash buyers and brokers across the full ship recycling lifecycle — from yard selection to final survey — under the Hong Kong Convention and EU Ship Recycling Regulation.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#services">Explore services <span>→</span></a>
+        <a class="btn btn-ghost" href="#contact">Talk to us</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card stack stack-1 reveal">
+        <div class="label">EU-Approved Cluster</div>
+        <div class="value">Aliağa</div>
+        <div class="desc">The preferred jurisdiction for EU-flagged tonnage.</div>
+      </div>
+      <div class="hero-card stack stack-2 reveal">
+        <div class="label">Annual Capacity</div>
+        <div class="value">1M+ LDT</div>
+        <div class="desc">Concentrated in a single industrial cluster.</div>
+      </div>
+      <div class="hero-card stack stack-3 reveal">
+        <div class="label">Regulatory Anchor</div>
+        <div class="value">HKC · EU SRR</div>
+        <div class="desc">In force since June 2025. ICIHM mandatory by 2030.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal">
+        <span class="eyebrow">About Turqo Marine</span>
+        <h2>An independent bridge between the yard floor and the boardroom.</h2>
+      </div>
+      <div class="reveal">
+        <p>Today, ship recycling is no longer a price decision — it is a compliance, traceability and reputation decision. Classification societies certify, law firms litigate, cash buyers transact. Few firms speak all three languages on the ground in Turkey.</p>
+        <p style="margin-top:1rem">Turqo Marine fills that gap. We sit between the yard, the shipowner and the regulator — translating operational reality into commercial certainty for clients who cannot afford a misstep.</p>
+        <div class="about-pillars">
+          <div class="pillar">
+            <h4>Operational depth</h4>
+            <p>Senior consultants with on-the-floor yard experience in Aliağa and Tuzla.</p>
+          </div>
+          <div class="pillar">
+            <h4>Regulatory fluency</h4>
+            <p>HKC, EU SRR, Basel Convention — applied to live contracts, not theory.</p>
+          </div>
+          <div class="pillar">
+            <h4>International orientation</h4>
+            <p>We work in English. Reporting and contracting follow IMO / BIMCO standards.</p>
+          </div>
+          <div class="pillar">
+            <h4>Independent stance</h4>
+            <p>No yard ownership, no broker affiliation. Your interest is the only brief.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Service Lines</span>
+      <h2>Six advisory tracks across the recycling lifecycle.</h2>
+      <p>From the first letter of intent to the Statement of Completion of Ship Recycling, our practice covers commercial, regulatory and operational decisions in equal measure.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 12h18M12 3v18M6 6l12 12M18 6L6 18"/></svg>
+        </div>
+        <h3>Recycling Project Advisory</h3>
+        <p>End-to-end project management on the shipowner / cash buyer side.</p>
+        <ul>
+          <li>Yard selection & due diligence</li>
+          <li>MoA drafting & negotiation</li>
+          <li>Final voyage coordination</li>
+          <li>Final Survey support</li>
+        </ul>
+      </div>
+
+      <div class="service reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>
+        </div>
+        <h3>HKC / EU SRR Compliance</h3>
+        <p>Certification pathways without theatre. Audit-ready outputs.</p>
+        <ul>
+          <li>IHM Parts I, II & III</li>
+          <li>ICIHM certification</li>
+          <li>SRFP / SRP preparation</li>
+          <li>Class coordination</li>
+        </ul>
+      </div>
+
+      <div class="service reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 21l4-4M7 17l4-4M11 13l4-4M15 9l4-4M14 4h5v5"/></svg>
+        </div>
+        <h3>Shipyard Operations Design</h3>
+        <p>Re-engineering yard processes for compliance and throughput.</p>
+        <ul>
+          <li>As-Is process mapping</li>
+          <li>To-Be HKC-compliant flow</li>
+          <li>Tracking & KPI systems</li>
+          <li>Continuous improvement</li>
+        </ul>
+      </div>
+
+      <div class="service reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M6 4h9l3 3v13H6z M15 4v3h3M9 12h6M9 16h4"/></svg>
+        </div>
+        <h3>Commercial & Legal Advisory</h3>
+        <p>Contract drafting and dispute readiness for recycling transactions.</p>
+        <ul>
+          <li>BIMCO RECYCLECON / DEMOLISHCON</li>
+          <li>Basel Convention strategy</li>
+          <li>Customs & export</li>
+          <li>Arbitration support</li>
+        </ul>
+      </div>
+
+      <div class="service reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><circle cx="9" cy="9" r="5"/><path d="M13 13l7 7M14 4l2-2 4 4-2 2"/></svg>
+        </div>
+        <h3>Cash Buyer & Broker Support</h3>
+        <p>Boots-on-the-ground in Turkey for firms transacting from abroad.</p>
+        <ul>
+          <li>Yard audit & ratings</li>
+          <li>Local due diligence</li>
+          <li>Bilingual reporting</li>
+          <li>MoA representation</li>
+        </ul>
+      </div>
+
+      <div class="service reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 3l9 4-9 4-9-4 9-4z M5 11v4l7 3 7-3v-4"/></svg>
+        </div>
+        <h3>Training & Certification</h3>
+        <p>Awareness and operational training in corporate and open formats.</p>
+        <ul>
+          <li>HKC awareness</li>
+          <li>OHS & asbestos handling</li>
+          <li>ICIHM management workshops</li>
+          <li>Certificate of participation</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTOR -->
+<section class="sector" id="sector">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Sector Context</span>
+      <h2>Turkey is no longer optional in green ship recycling.</h2>
+      <p>The Hong Kong Convention entered into force on 26 June 2025. Combined with the EU Ship Recycling Regulation, the global pool of viable yards has narrowed sharply. Turkey — and specifically Aliağa — holds one of the largest concentrations of EU-approved facilities outside the EU itself.</p>
+    </div>
+    <div class="stats">
+      <div class="stat reveal">
+        <div class="num">1M+</div>
+        <div class="label">LDT — Aliağa annual recycling capacity</div>
+      </div>
+      <div class="stat reveal">
+        <div class="num">$2.24B</div>
+        <div class="label">Turkey ship & yacht exports (2025)</div>
+      </div>
+      <div class="stat reveal">
+        <div class="num">2030</div>
+        <div class="label">Deadline for ICIHM on all ships above 500 GT</div>
+      </div>
+      <div class="stat reveal">
+        <div class="num">15 / 13</div>
+        <div class="label">Hazardous materials listed under EU SRR / HKC</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section id="approach">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">How We Work</span>
+      <h2>Four stages, one accountable team.</h2>
+      <p>Every engagement runs through the same disciplined sequence — adapted to your vessel, your flag, and your buyer.</p>
+    </div>
+    <div class="approach-grid">
+      <div class="step reveal">
+        <div class="num">01</div>
+        <h3>Scope</h3>
+        <p>A 45-minute call to align on vessel, flag, target jurisdiction and timeline. We confirm whether we can add value before we propose.</p>
+      </div>
+      <div class="step reveal">
+        <div class="num">02</div>
+        <h3>Diagnose</h3>
+        <p>Yard shortlist with HKC / EU SRR status, capacity and OHS record. Side-by-side commercial comparison and risk markers.</p>
+      </div>
+      <div class="step reveal">
+        <div class="num">03</div>
+        <h3>Execute</h3>
+        <p>MoA negotiation, final voyage planning, IHM coordination, class liaison. Single accountable lead, weekly reporting.</p>
+      </div>
+      <div class="step reveal">
+        <div class="num">04</div>
+        <h3>Close</h3>
+        <p>Final Survey, Statement of Completion, document archive, post-project lessons-learned report.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="reveal">
+        <span class="eyebrow">Get in Touch</span>
+        <h2>Have a vessel, a yard or a question?</h2>
+        <p style="margin-bottom:2.2rem">We respond to qualified enquiries within one business day. The first scoping call is always complimentary.</p>
+
+        <div class="contact-info-block">
+          <div class="label">Email</div>
+          <div class="value">info@turqomarine.com</div>
+        </div>
+        <div class="contact-info-block">
+          <div class="label">Headquarters</div>
+          <div class="value">İzmir, Turkey</div>
+        </div>
+        <div class="contact-info-block">
+          <div class="label">Representation</div>
+          <div class="value">Istanbul · Aliağa</div>
+        </div>
+        <div class="contact-info-block">
+          <div class="label">Working Languages</div>
+          <div class="value">English · Türkçe</div>
+        </div>
+      </div>
+
+      <form class="reveal" onsubmit="event.preventDefault();this.querySelector('button').innerText='Message sent — we\\'ll be in touch.';this.querySelector('button').disabled=true;">
+        <div class="form-row">
+          <label for="name">Name</label>
+          <input id="name" type="text" required placeholder="Full name" />
+        </div>
+        <div class="form-row">
+          <label for="company">Company</label>
+          <input id="company" type="text" placeholder="Organisation" />
+        </div>
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input id="email" type="email" required placeholder="you@company.com" />
+        </div>
+        <div class="form-row">
+          <label for="enquiry">Type of enquiry</label>
+          <select id="enquiry">
+            <option>Recycling project advisory</option>
+            <option>HKC / EU SRR compliance</option>
+            <option>Shipyard operations</option>
+            <option>Cash buyer / broker support</option>
+            <option>Training & certification</option>
+            <option>General enquiry</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Tell us briefly about the vessel, yard or question."></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">Send message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="color:#fff;margin-bottom:1rem">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" style="width:24px;height:24px">
+            <path d="M16 4 L16 22 M8 14 Q16 8 24 14 M5 22 Q16 30 27 22" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span style="color:#fff">Turqo<em style="font-style:normal;color:var(--accent)">.</em>Marine</span>
+        </div>
+        <p style="color:rgba(255,255,255,.6);font-size:.88rem;max-width:340px">Independent maritime consulting on ship recycling, HKC / EU SRR compliance and shipyard operations. Based in Turkey, working globally.</p>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#services">Recycling advisory</a></li>
+          <li><a href="#services">HKC / EU SRR</a></li>
+          <li><a href="#services">Operations design</a></li>
+          <li><a href="#services">Cash buyer support</a></li>
+          <li><a href="#services">Training</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul>
+          <li>info@turqomarine.com</li>
+          <li>İzmir · Istanbul · Aliağa</li>
+          <li><a href="#contact">Send a message →</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Turqo Marine. All rights reserved.</div>
+      <div>Built for shipowners, cash buyers and yards.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Close mobile nav on link click
+  document.querySelectorAll('#primaryNav a').forEach(a=>a.addEventListener('click',()=>{
+    document.getElementById('primaryNav').classList.remove('open');
+  }));
+
+  // Nav shadow on scroll
+  window.addEventListener('scroll',()=>{
+    const nav = document.querySelector('header.nav');
+    nav.style.boxShadow = window.scrollY > 30 ? '0 4px 16px rgba(11,37,69,.06)' : 'none';
+  });
+</script>
+</body>
+</html>

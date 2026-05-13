@@ -1,0 +1,30 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node / build artifacts
+node_modules/
+dist/
+build/
+.cache/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Local secrets
+.env
+.env.local
+
+# Internal build scripts (kept out of the deployed repo)
+build_plan.js
+build_plan_en.js
+check.py
+preview*.jpg
+preview_en*.jpg
