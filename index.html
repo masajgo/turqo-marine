@@ -19,325 +19,339 @@
     --bg:#FFFFFF;
     --bg-alt:#F8FAFC;
     --accent:#C9A24A;
-    --teal:#1E5F74;
+    --topbar-h:34px;
+    --nav-h:70px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{
     font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-    color:var(--ink);
-    background:var(--bg);
-    line-height:1.6;
-    font-weight:400;
+    color:var(--ink);background:var(--bg);
+    line-height:1.6;font-weight:400;
     -webkit-font-smoothing:antialiased;
+    padding-top:calc(var(--topbar-h) + var(--nav-h));
   }
   h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;color:var(--navy);letter-spacing:-.01em}
-  h1{font-size:clamp(2.4rem,4.5vw,3.8rem);line-height:1.08}
-  h2{font-size:clamp(1.7rem,3vw,2.4rem);line-height:1.2;margin-bottom:1rem}
-  h3{font-size:1.15rem;font-family:'Inter',sans-serif;font-weight:600;color:var(--navy);margin-bottom:.5rem}
+  h1{font-size:clamp(2.2rem,4vw,3.6rem);line-height:1.1}
+  h2{font-size:clamp(1.6rem,2.8vw,2.3rem);line-height:1.2;margin-bottom:1rem}
+  h3{font-size:1.1rem;font-family:'Inter',sans-serif;font-weight:600;color:var(--navy);margin-bottom:.5rem}
   p{color:var(--steel);font-size:1rem}
   a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
   .container{max-width:1180px;margin:0 auto;padding:0 1.5rem}
   .eyebrow{
-    font-family:'Inter',sans-serif;font-size:.75rem;letter-spacing:.2em;
+    font-family:'Inter',sans-serif;font-size:.73rem;letter-spacing:.2em;
     text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:.8rem;
     display:inline-block;
   }
+  section{padding:6rem 0}
+  .section-head{max-width:700px;margin-bottom:3.5rem}
 
-  /* ---- TOP BAR ---- */
+  /* ---- TOP BAR (fixed) ---- */
   .topbar{
-    background:var(--navy);color:rgba(255,255,255,.75);
-    font-size:.78rem;letter-spacing:.04em;
-    text-align:center;padding:.55rem 1.5rem;
+    position:fixed;top:0;left:0;right:0;z-index:110;
+    height:var(--topbar-h);
+    background:var(--navy);color:rgba(255,255,255,.68);
+    font-size:.74rem;letter-spacing:.05em;
+    display:flex;align-items:center;justify-content:center;gap:0;
   }
-  .topbar span{color:var(--accent);margin:0 .6rem}
+  .topbar span{color:var(--accent);margin:0 .8rem}
 
   /* ---- NAV ---- */
   header.nav{
-    position:fixed;top:0;left:0;right:0;z-index:100;
-    background:rgba(255,255,255,.95);
-    backdrop-filter:saturate(140%) blur(12px);
+    position:fixed;top:var(--topbar-h);left:0;right:0;z-index:100;
+    height:var(--nav-h);
+    background:rgba(255,255,255,.96);
+    backdrop-filter:saturate(160%) blur(16px);
     border-bottom:1px solid var(--line);
-    transition:all .3s ease;
+    transition:box-shadow .3s;
   }
-  .topbar-spacer{height:34px}
-  .nav-inner{
-    display:flex;align-items:center;justify-content:space-between;
-    height:70px;
-  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:100%}
+
+  /* ---- LOGO ---- */
   .logo{
-    display:flex;align-items:center;gap:.6rem;
-    font-family:'Playfair Display',serif;font-size:1.32rem;font-weight:700;color:var(--navy);
-    letter-spacing:.02em;
+    display:flex;align-items:center;gap:.7rem;
+    font-family:'Playfair Display',serif;font-size:1.28rem;font-weight:700;
+    color:var(--navy);letter-spacing:.015em;
   }
-  .logo svg{width:26px;height:26px}
-  nav ul{display:flex;gap:2.2rem;list-style:none}
-  nav a{
-    font-size:.9rem;font-weight:500;color:var(--ink);
-    transition:color .2s;position:relative;
+  .logo-mark{
+    width:36px;height:36px;flex-shrink:0;
+    background:var(--navy);border-radius:3px;
+    display:flex;align-items:center;justify-content:center;
   }
+  .logo-mark svg{width:21px;height:21px;fill:none;stroke:#fff;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}
+  .logo-text em{font-style:normal;color:var(--accent)}
+
+  nav ul{display:flex;gap:2rem;list-style:none}
+  nav a{font-size:.88rem;font-weight:500;color:var(--ink);transition:color .2s;position:relative}
   nav a:hover{color:var(--navy)}
-  nav a::after{
-    content:'';position:absolute;left:0;bottom:-6px;height:1px;width:0;
-    background:var(--accent);transition:width .25s;
-  }
+  nav a::after{content:'';position:absolute;left:0;bottom:-4px;height:1px;width:0;background:var(--accent);transition:width .25s}
   nav a:hover::after{width:100%}
   .nav-cta{
-    background:var(--navy);color:#fff !important;padding:.55rem 1.2rem;
-    border-radius:2px;font-size:.86rem;font-weight:500;
-    transition:background .2s;
+    background:var(--navy);color:#fff !important;padding:.5rem 1.1rem;
+    border-radius:2px;font-size:.84rem;font-weight:500;transition:background .2s;
   }
   .nav-cta:hover{background:var(--navy-2)}
-  .nav-cta::after{display:none}
-  .menu-btn{display:none;background:none;border:none;cursor:pointer;width:30px;height:30px}
-  .menu-btn span{display:block;width:22px;height:1.5px;background:var(--navy);margin:5px auto;transition:.3s}
+  .nav-cta::after{display:none !important}
+  .menu-btn{
+    display:none;background:none;border:none;cursor:pointer;
+    width:32px;height:32px;flex-direction:column;
+    justify-content:center;align-items:center;gap:5px;
+  }
+  .menu-btn span{display:block;width:22px;height:1.5px;background:var(--navy)}
 
   /* ---- HERO ---- */
-  .hero{
-    padding:10rem 0 7rem;position:relative;overflow:hidden;
-    background:var(--bg);
-  }
-  .hero::before{
-    content:'';position:absolute;top:0;right:0;width:52%;height:100%;
-    background:linear-gradient(140deg, var(--navy) 0%, var(--navy-2) 100%);
-    clip-path:polygon(18% 0,100% 0,100% 100%,0 100%);
-    z-index:0;
-  }
+  .hero{padding:4.5rem 0 5rem;background:var(--bg)}
   .hero-grid{
-    position:relative;z-index:1;
-    display:grid;grid-template-columns:1.15fr 1fr;gap:4rem;align-items:center;
+    display:grid;grid-template-columns:1.15fr 1fr;gap:3.5rem;align-items:center;
   }
-  .hero h1{margin-bottom:1.4rem}
+  .hero h1{margin-bottom:1.3rem}
   .hero h1 span{color:var(--accent)}
-  .hero p.lead{
-    font-size:1.1rem;color:var(--steel);margin-bottom:2.2rem;max-width:500px;line-height:1.75;
-  }
-  .hero-trust{
-    display:flex;gap:1.8rem;margin-bottom:2.4rem;flex-wrap:wrap;
-  }
+  .hero p.lead{font-size:1.05rem;color:var(--steel);margin-bottom:2rem;line-height:1.78}
+  .hero-trust{display:flex;gap:1.4rem;margin-bottom:2.2rem;flex-wrap:wrap}
   .hero-trust-item{
-    display:flex;align-items:center;gap:.4rem;
-    font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+    display:flex;align-items:center;gap:.38rem;
+    font-size:.74rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);
   }
-  .hero-trust-item::before{
-    content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;
-  }
+  .hero-trust-item::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0}
   .hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+
   .btn{
-    display:inline-flex;align-items:center;gap:.5rem;
-    padding:.9rem 1.7rem;font-weight:500;font-size:.92rem;
-    border-radius:2px;transition:all .25s;cursor:pointer;border:none;
+    display:inline-flex;align-items:center;gap:.4rem;
+    padding:.88rem 1.65rem;font-weight:500;font-size:.9rem;
+    border-radius:2px;transition:all .22s;cursor:pointer;border:none;
   }
   .btn-primary{background:var(--navy);color:#fff}
-  .btn-primary:hover{background:var(--navy-2);transform:translateY(-1px);box-shadow:0 8px 24px rgba(11,37,69,.2)}
+  .btn-primary:hover{background:var(--navy-2);transform:translateY(-1px);box-shadow:0 8px 20px rgba(11,37,69,.22)}
   .btn-ghost{background:transparent;color:var(--navy);border:1.5px solid var(--navy)}
   .btn-ghost:hover{background:var(--navy);color:#fff}
-  .btn-light{background:#fff;color:var(--navy)}
-  .btn-light:hover{background:var(--accent);color:var(--navy)}
 
+  /* hero visual — photo panel with stacked cards (NO absolute positioning) */
   .hero-visual{
-    position:relative;height:400px;
-    color:#fff;
+    position:relative;border-radius:4px;overflow:hidden;
+    min-height:440px;display:flex;align-items:flex-end;padding:2rem;
   }
+  .hero-visual-img{
+    position:absolute;inset:0;
+    background:url('https://images.unsplash.com/photo-1724597500306-a4cbb7d1324e?fm=jpg&q=70&w=1400&auto=format&fit=crop') center/cover no-repeat;
+  }
+  .hero-visual-overlay{
+    position:absolute;inset:0;
+    background:linear-gradient(155deg,rgba(11,37,69,.92) 0%,rgba(11,37,69,.75) 100%);
+  }
+  .hero-cards{position:relative;z-index:1;width:100%;display:flex;flex-direction:column;gap:.9rem}
   .hero-card{
-    background:rgba(255,255,255,.07);backdrop-filter:blur(10px);
-    border:1px solid rgba(255,255,255,.15);
-    padding:1.6rem 1.8rem;border-radius:3px;
+    background:rgba(255,255,255,.09);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,.18);
+    padding:1.3rem 1.5rem;border-radius:3px;color:#fff;
   }
-  .hero-card .label{font-size:.68rem;text-transform:uppercase;letter-spacing:.16em;color:rgba(255,255,255,.6);margin-bottom:.4rem}
-  .hero-card .value{font-size:1.9rem;font-family:'Playfair Display',serif;font-weight:600;color:#fff;line-height:1.1}
-  .hero-card .desc{font-size:.84rem;color:rgba(255,255,255,.7);margin-top:.5rem}
-  .stack{position:absolute;width:240px}
-  .stack-1{top:0;right:0}
-  .stack-2{top:165px;right:115px}
-  .stack-3{top:275px;right:0}
+  .hero-card .label{font-size:.65rem;text-transform:uppercase;letter-spacing:.17em;color:rgba(255,255,255,.58);margin-bottom:.3rem}
+  .hero-card .value{font-size:1.65rem;font-family:'Playfair Display',serif;font-weight:600;color:#fff;line-height:1.15}
+  .hero-card .desc{font-size:.8rem;color:rgba(255,255,255,.66);margin-top:.3rem;line-height:1.4}
 
   /* ---- TRUST STRIP ---- */
-  .trust-strip{
-    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-    background:var(--bg-alt);padding:2.2rem 0;
-  }
-  .trust-items{
-    display:grid;grid-template-columns:repeat(4,1fr);
-    gap:2rem;
-  }
+  .trust-strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg-alt);padding:2rem 0}
+  .trust-items{display:grid;grid-template-columns:repeat(4,1fr)}
   .trust-item{
-    display:flex;flex-direction:column;align-items:center;text-align:center;gap:.5rem;
-    padding:0 1rem;
+    display:flex;flex-direction:column;align-items:center;text-align:center;
+    gap:.4rem;padding:0 1.2rem;
   }
-  .trust-item+.trust-item{border-left:1px solid var(--line)}
+  .trust-item:not(:first-child){border-left:1px solid var(--line)}
   .trust-icon{
-    width:40px;height:40px;display:flex;align-items:center;justify-content:center;
-    background:var(--navy);border-radius:2px;margin-bottom:.3rem;
+    width:38px;height:38px;display:flex;align-items:center;justify-content:center;
+    background:var(--navy);border-radius:2px;margin-bottom:.35rem;flex-shrink:0;
   }
-  .trust-icon svg{width:20px;height:20px;stroke:#fff;stroke-width:1.6;fill:none}
-  .trust-item strong{font-size:.88rem;font-weight:600;color:var(--navy);font-family:'Inter',sans-serif}
-  .trust-item span{font-size:.78rem;color:var(--muted);line-height:1.4}
-
-  /* ---- SECTIONS ---- */
-  section{padding:6.5rem 0}
-  .section-head{max-width:720px;margin-bottom:3.5rem}
+  .trust-icon svg{width:18px;height:18px;stroke:#fff;stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .trust-item strong{font-size:.84rem;font-weight:600;color:var(--navy)}
+  .trust-item p{font-size:.75rem;color:var(--muted);line-height:1.45;margin:0}
 
   /* ---- ABOUT ---- */
-  .about{background:var(--bg)}
-  .about-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:6rem;align-items:start}
-  .about-left{}
+  .about-grid{display:grid;grid-template-columns:1fr 1.35fr;gap:4.5rem;align-items:start}
+  .about-photo{position:relative}
+  .about-photo img{width:100%;height:480px;object-fit:cover;border-radius:3px}
+  .about-photo-caption{
+    position:absolute;bottom:1.2rem;left:1.2rem;right:1.2rem;
+    background:rgba(11,37,69,.82);backdrop-filter:blur(8px);
+    padding:.9rem 1.1rem;border-radius:2px;
+    font-size:.75rem;color:rgba(255,255,255,.8);letter-spacing:.03em;
+    border-left:2px solid var(--accent);
+  }
   .about-quote{
-    margin-top:2.5rem;padding:1.8rem 2rem;
+    margin-top:2.2rem;padding:1.6rem 1.8rem;
     border-left:3px solid var(--accent);background:var(--bg-alt);
   }
-  .about-quote p{
-    font-family:'Playfair Display',serif;font-size:1.15rem;font-style:italic;
-    color:var(--navy);line-height:1.6;
+  .about-quote blockquote{
+    font-family:'Playfair Display',serif;font-size:1.08rem;font-style:italic;
+    color:var(--navy);line-height:1.65;
   }
   .about-quote cite{
-    display:block;margin-top:.8rem;font-size:.8rem;font-style:normal;
-    font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+    display:block;margin-top:.65rem;font-size:.74rem;font-style:normal;
+    font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
   }
-  .about-pillars{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2.5rem}
-  .pillar h4{font-family:'Inter',sans-serif;font-size:.92rem;font-weight:600;color:var(--navy);margin-bottom:.4rem;display:flex;align-items:center;gap:.5rem}
-  .pillar h4::before{content:'';width:20px;height:1px;background:var(--accent);flex-shrink:0}
-  .pillar p{font-size:.9rem;color:var(--steel)}
+  .about-pillars{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;margin-top:2.2rem}
+  .pillar h4{
+    font-family:'Inter',sans-serif;font-size:.88rem;font-weight:600;
+    color:var(--navy);margin-bottom:.3rem;
+    display:flex;align-items:center;gap:.45rem;
+  }
+  .pillar h4::before{content:'';width:16px;height:1px;background:var(--accent);flex-shrink:0}
+  .pillar p{font-size:.86rem;color:var(--steel)}
 
   /* ---- SERVICES ---- */
   .services{background:var(--bg-alt)}
   .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
   .service{
-    background:#fff;border:1px solid var(--line);padding:2.2rem 2rem;
-    transition:all .3s;cursor:default;position:relative;overflow:hidden;
+    background:#fff;border:1px solid var(--line);padding:2rem 1.8rem;
+    transition:transform .28s,box-shadow .28s;cursor:default;
+    position:relative;overflow:hidden;
   }
-  .service::before{
-    content:'';position:absolute;top:0;left:0;width:100%;height:2px;
-    background:var(--accent);transform:scaleX(0);transform-origin:left;
-    transition:transform .3s;
+  .service::after{
+    content:'';position:absolute;top:0;left:0;right:0;height:2px;
+    background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .28s;
   }
-  .service:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(11,37,69,.07)}
-  .service:hover::before{transform:scaleX(1)}
+  .service:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(11,37,69,.07)}
+  .service:hover::after{transform:scaleX(1)}
   .service-icon{
-    width:46px;height:46px;display:flex;align-items:center;justify-content:center;
-    background:var(--bg-alt);margin-bottom:1.4rem;border-radius:2px;
+    width:42px;height:42px;display:flex;align-items:center;justify-content:center;
+    background:var(--bg-alt);margin-bottom:1.2rem;border-radius:2px;
   }
-  .service-icon svg{width:22px;height:22px;stroke:var(--navy);stroke-width:1.5;fill:none}
-  .service p{font-size:.92rem;color:var(--steel);line-height:1.65}
-  .service ul{list-style:none;margin-top:.9rem;padding:0}
-  .service li{font-size:.84rem;color:var(--muted);padding-left:1.1rem;position:relative;margin-bottom:.35rem}
+  .service-icon svg{width:20px;height:20px;stroke:var(--navy);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .service p{font-size:.89rem;color:var(--steel);line-height:1.65}
+  .service ul{list-style:none;margin-top:.8rem;padding:0}
+  .service li{font-size:.82rem;color:var(--muted);padding:.18rem 0 .18rem 1rem;position:relative}
   .service li::before{content:'—';position:absolute;left:0;color:var(--accent)}
 
   /* ---- SECTOR ---- */
-  .sector{background:var(--navy);color:#fff;padding:6.5rem 0}
+  .sector{position:relative;color:#fff;padding:6rem 0;overflow:hidden}
+  .sector-img{position:absolute;inset:0;background:url('https://plus.unsplash.com/premium_photo-1661963146546-c9dc4a6121c7?fm=jpg&q=70&w=1800&auto=format&fit=crop') center/cover no-repeat}
+  .sector-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(6,24,45,.97) 50%,rgba(6,24,45,.88) 100%)}
+  .sector-content{position:relative;z-index:1}
   .sector h2{color:#fff}
   .sector .eyebrow{color:var(--accent)}
-  .sector .section-head p{color:rgba(255,255,255,.72)}
+  .sector .section-head p{color:rgba(255,255,255,.68)}
   .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:3rem}
-  .stat{padding:1.8rem 0;border-top:1px solid rgba(255,255,255,.15)}
-  .stat .num{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:600;color:#fff;line-height:1}
-  .stat .label{font-size:.8rem;color:rgba(255,255,255,.65);margin-top:.6rem;letter-spacing:.04em;line-height:1.4}
+  .stat{padding:1.8rem 0;border-top:1px solid rgba(255,255,255,.14)}
+  .stat .num{font-family:'Playfair Display',serif;font-size:2.7rem;font-weight:600;color:#fff;line-height:1}
+  .stat .label{font-size:.77rem;color:rgba(255,255,255,.6);margin-top:.5rem;line-height:1.45}
 
   /* ---- APPROACH ---- */
   .approach-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2.5rem;margin-top:3rem}
-  .step{position:relative;padding-top:1rem}
   .step .num{
-    font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:600;
-    color:var(--accent);opacity:.35;line-height:1;margin-bottom:1rem;
+    font-family:'Playfair Display',serif;font-size:3rem;font-weight:600;
+    color:var(--accent);opacity:.28;line-height:1;margin-bottom:.9rem;
   }
-  .step h3{font-family:'Inter',sans-serif;font-size:1.05rem;font-weight:600;color:var(--navy);margin-bottom:.6rem}
-  .step p{font-size:.9rem;color:var(--steel);line-height:1.65}
+  .step h3{font-family:'Inter',sans-serif;font-size:.98rem;font-weight:600;color:var(--navy);margin-bottom:.5rem}
+  .step p{font-size:.87rem;color:var(--steel);line-height:1.65}
 
   /* ---- CONTACT ---- */
   .contact{background:var(--bg-alt)}
-  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
-  .contact-intro{font-size:1.05rem;color:var(--steel);margin-bottom:2.5rem;line-height:1.75}
-  .contact-info-block{margin-bottom:1.8rem}
-  .contact-info-block .label{
-    font-size:.7rem;text-transform:uppercase;letter-spacing:.16em;
-    color:var(--muted);margin-bottom:.35rem;font-weight:600;
-  }
-  .contact-info-block .value{font-size:1rem;color:var(--navy);font-weight:500}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+  .contact-intro{font-size:1rem;color:var(--steel);margin-bottom:2.3rem;line-height:1.75}
+  .contact-info-block{margin-bottom:1.6rem}
+  .contact-info-block .label{font-size:.67rem;text-transform:uppercase;letter-spacing:.17em;color:var(--muted);margin-bottom:.28rem;font-weight:600}
+  .contact-info-block .value{font-size:.98rem;color:var(--navy);font-weight:500}
   .contact-note{
-    margin-top:2.5rem;padding:1.4rem 1.6rem;background:#fff;
+    margin-top:2rem;padding:1.2rem 1.4rem;
     border:1px solid var(--line);border-left:3px solid var(--accent);
-    font-size:.88rem;color:var(--steel);line-height:1.6;
+    font-size:.84rem;color:var(--steel);line-height:1.6;background:#fff;
   }
-  form{background:#fff;padding:2.8rem;border:1px solid var(--line)}
-  .form-row{margin-bottom:1.3rem}
-  .form-row label{display:block;font-size:.8rem;font-weight:600;color:var(--navy);margin-bottom:.45rem;letter-spacing:.03em}
-  .form-row input,
-  .form-row select,
-  .form-row textarea{
-    width:100%;padding:.8rem .95rem;border:1px solid var(--line);
-    font-family:inherit;font-size:.95rem;color:var(--ink);background:#fff;
-    transition:border-color .2s;border-radius:1px;
+  form{background:#fff;padding:2.4rem;border:1px solid var(--line)}
+  .form-row{margin-bottom:1.1rem}
+  .form-row label{display:block;font-size:.77rem;font-weight:600;color:var(--navy);margin-bottom:.38rem}
+  .form-row input,.form-row select,.form-row textarea{
+    width:100%;padding:.76rem .9rem;border:1px solid var(--line);
+    font-family:inherit;font-size:.93rem;color:var(--ink);background:#fff;
+    transition:border-color .18s,box-shadow .18s;
   }
   .form-row input:focus,.form-row select:focus,.form-row textarea:focus{
-    outline:none;border-color:var(--navy);box-shadow:0 0 0 3px rgba(11,37,69,.06);
+    outline:none;border-color:var(--navy);box-shadow:0 0 0 3px rgba(11,37,69,.07);
   }
-  .form-row textarea{resize:vertical;min-height:110px}
+  .form-row textarea{resize:vertical;min-height:106px}
 
   /* ---- FOOTER ---- */
-  footer{background:#06182D;color:rgba(255,255,255,.65);padding:3.5rem 0 2rem;font-size:.88rem}
-  .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
-  footer h5{font-family:'Inter',sans-serif;color:#fff;font-size:.78rem;text-transform:uppercase;letter-spacing:.14em;margin-bottom:1.1rem;font-weight:600}
+  footer{background:#06182D;color:rgba(255,255,255,.6);padding:3.5rem 0 2rem;font-size:.85rem}
+  .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;margin-bottom:2.8rem}
+  .footer-logo{display:flex;align-items:center;gap:.7rem;margin-bottom:.9rem}
+  .footer-logo .logo-mark{background:rgba(255,255,255,.1)}
+  .footer-logo span{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#fff}
+  .footer-logo em{font-style:normal;color:var(--accent)}
+  .footer-tagline{color:rgba(255,255,255,.46);font-size:.82rem;max-width:300px;line-height:1.65}
+  footer h5{font-family:'Inter',sans-serif;color:#fff;font-size:.76rem;text-transform:uppercase;letter-spacing:.14em;margin-bottom:1rem;font-weight:600}
   footer ul{list-style:none}
-  footer li{margin-bottom:.65rem}
-  footer a:hover{color:var(--accent)}
-  .footer-tagline{color:rgba(255,255,255,.55);font-size:.86rem;max-width:320px;line-height:1.65;margin-top:.8rem}
+  footer li{margin-bottom:.58rem}
+  footer a:hover{color:var(--accent);transition:color .18s}
   .footer-bottom{
-    border-top:1px solid rgba(255,255,255,.08);padding-top:1.5rem;
-    display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.78rem;
-    color:rgba(255,255,255,.4);
+    border-top:1px solid rgba(255,255,255,.08);padding-top:1.3rem;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:.8rem;
+    font-size:.76rem;color:rgba(255,255,255,.32);
   }
 
   /* ---- RESPONSIVE ---- */
-  @media(max-width:900px){
-    .topbar-spacer{height:34px}
-    .hero{padding:9rem 0 4rem}
-    .hero::before{display:none}
+  @media(max-width:960px){
+    .hero{padding:3rem 0 4rem}
     .hero-grid{grid-template-columns:1fr;gap:2rem}
-    .hero-visual{height:auto;display:grid;grid-template-columns:1fr;gap:1rem;background:var(--navy);padding:1.5rem;margin-top:1rem}
-    .stack{position:relative;width:100%;top:auto;right:auto}
-    .trust-items{grid-template-columns:1fr 1fr;gap:1.5rem}
-    .trust-item+.trust-item{border-left:none}
-    .about-grid,.contact-grid{grid-template-columns:1fr;gap:3rem}
+    .hero-visual{min-height:300px;padding:1.5rem}
+    .about-grid,.contact-grid{grid-template-columns:1fr;gap:2.5rem}
+    .about-photo img{height:300px}
     .services-grid{grid-template-columns:1fr 1fr}
     .stats{grid-template-columns:1fr 1fr;gap:1.5rem}
     .approach-grid{grid-template-columns:1fr 1fr;gap:2rem}
     .footer-grid{grid-template-columns:1fr 1fr}
     nav ul{display:none}
-    .menu-btn{display:block}
+    .menu-btn{display:flex}
     nav.open ul{
-      display:flex;flex-direction:column;position:absolute;top:70px;left:0;right:0;
-      background:#fff;padding:1.5rem;gap:1.2rem;border-bottom:1px solid var(--line);
+      display:flex;flex-direction:column;
+      position:fixed;
+      top:calc(var(--topbar-h) + var(--nav-h));
+      left:0;right:0;
+      background:#fff;padding:1.5rem;gap:1.1rem;
+      border-bottom:1px solid var(--line);
+      box-shadow:0 8px 24px rgba(11,37,69,.1);
+      z-index:99;
     }
   }
-  @media(max-width:560px){
+  @media(max-width:640px){
+    .trust-items{grid-template-columns:1fr 1fr;gap:1.2rem}
+    .trust-item:not(:first-child){border-left:none}
+    .trust-item:nth-child(even){border-left:1px solid var(--line)}
     .services-grid{grid-template-columns:1fr}
-    .stats{grid-template-columns:1fr 1fr}
     .approach-grid{grid-template-columns:1fr}
     .footer-grid{grid-template-columns:1fr}
     .about-pillars{grid-template-columns:1fr}
-    .trust-items{grid-template-columns:1fr 1fr}
-    form{padding:1.8rem}
+    form{padding:1.6rem}
+  }
+  @media(max-width:420px){
+    .trust-items{grid-template-columns:1fr}
+    .trust-item:nth-child(even){border-left:none}
   }
 
-  /* fade in */
-  .reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease, transform .65s ease}
-  .reveal.in{opacity:1;transform:translateY(0)}
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
 </style>
 </head>
 <body>
 
 <!-- TOP BAR -->
 <div class="topbar">
-  Independent maritime advisory &nbsp;<span>·</span>&nbsp; HKC &amp; EU SRR specialists &nbsp;<span>·</span>&nbsp; Based in İzmir, Turkey &nbsp;<span>·</span>&nbsp; Working globally
+  Independent advisory <span>·</span> HKC &amp; EU SRR specialists <span>·</span> İzmir, Turkey <span>·</span> Working globally
 </div>
 
-<header class="nav">
+<!-- NAV -->
+<header class="nav" id="siteNav">
   <div class="container nav-inner">
     <a class="logo" href="#top">
-      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8">
-        <path d="M16 4 L16 22 M8 14 Q16 8 24 14 M5 22 Q16 30 27 22" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <span>Turqo<em style="font-style:normal;color:var(--accent)">.</em>Marine</span>
+      <div class="logo-mark">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="5.5" r="2.5"/>
+          <line x1="12" y1="8" x2="12" y2="20"/>
+          <line x1="7" y1="11.5" x2="17" y2="11.5"/>
+          <path d="M7 20C4 18.5 4 15.5 7 15"/>
+          <path d="M17 20C20 18.5 20 15.5 17 15"/>
+          <line x1="8.5" y1="5.5" x2="15.5" y2="5.5"/>
+        </svg>
+      </div>
+      <span class="logo-text">Turqo<em>.</em>Marine</span>
     </a>
     <nav id="primaryNav">
       <ul>
@@ -348,15 +362,16 @@
         <li><a class="nav-cta" href="#contact">Contact</a></li>
       </ul>
     </nav>
-    <button class="menu-btn" onclick="document.getElementById('primaryNav').classList.toggle('open')" aria-label="Menu">
+    <button class="menu-btn" id="menuBtn" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
 
 <!-- HERO -->
-<section class="hero" id="top" style="padding-top:11rem">
+<section class="hero" id="top">
   <div class="container hero-grid">
+
     <div class="reveal">
       <span class="eyebrow">Turkey-Based Maritime Advisory</span>
       <h1>Your ship's last voyage,<br><span>handled right</span>.</h1>
@@ -364,31 +379,38 @@
       <div class="hero-trust">
         <div class="hero-trust-item">Independent</div>
         <div class="hero-trust-item">HKC &amp; EU SRR</div>
-        <div class="hero-trust-item">IMO / BIMCO standards</div>
-        <div class="hero-trust-item">Aliağa on the ground</div>
+        <div class="hero-trust-item">IMO / BIMCO</div>
+        <div class="hero-trust-item">On the ground</div>
       </div>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#services">Explore services &nbsp;→</a>
         <a class="btn btn-ghost" href="#contact">Talk to us</a>
       </div>
     </div>
-    <div class="hero-visual">
-      <div class="hero-card stack stack-1 reveal">
-        <div class="label">EU-Approved Cluster</div>
-        <div class="value">Aliağa</div>
-        <div class="desc">The preferred jurisdiction for EU-flagged tonnage.</div>
-      </div>
-      <div class="hero-card stack stack-2 reveal">
-        <div class="label">Annual Capacity</div>
-        <div class="value">1M+ LDT</div>
-        <div class="desc">Concentrated in a single industrial cluster.</div>
-      </div>
-      <div class="hero-card stack stack-3 reveal">
-        <div class="label">Regulatory Anchor</div>
-        <div class="value">HKC · EU SRR</div>
-        <div class="desc">In force since June 2025. ICIHM mandatory by 2030.</div>
+
+    <!-- Photo panel — no absolute positioning on cards -->
+    <div class="hero-visual reveal">
+      <div class="hero-visual-img"></div>
+      <div class="hero-visual-overlay"></div>
+      <div class="hero-cards">
+        <div class="hero-card">
+          <div class="label">EU-Approved Cluster</div>
+          <div class="value">Aliağa</div>
+          <div class="desc">The preferred jurisdiction for EU-flagged tonnage.</div>
+        </div>
+        <div class="hero-card">
+          <div class="label">Annual Capacity</div>
+          <div class="value">1M+ LDT</div>
+          <div class="desc">Concentrated in a single industrial cluster.</div>
+        </div>
+        <div class="hero-card">
+          <div class="label">Regulatory Anchor</div>
+          <div class="value">HKC · EU SRR</div>
+          <div class="desc">In force since June 2025. ICIHM mandatory by 2030.</div>
+        </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -401,48 +423,61 @@
           <svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .5-5 5 1.5 7L12 18l-6.5 3L7 14 2 9l7-.5z"/></svg>
         </div>
         <strong>No yard ownership</strong>
-        <span>We hold no equity in any yard. Your interest is the only brief.</span>
+        <p>We hold no equity in any yard. Your interest is the only brief.</p>
       </div>
       <div class="trust-item reveal">
         <div class="trust-icon">
           <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 12l2 2 4-4"/></svg>
         </div>
         <strong>HKC &amp; EU SRR fluent</strong>
-        <span>Applied to live contracts, not theory — since before the regulations entered force.</span>
+        <p>Applied to live contracts — since before the regulations entered force.</p>
       </div>
       <div class="trust-item reveal">
         <div class="trust-icon">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
         </div>
-        <strong>One business day response</strong>
-        <span>Qualified enquiries answered fast. First scoping call always complimentary.</span>
+        <strong>One business day</strong>
+        <p>Qualified enquiries answered fast. First scoping call is always complimentary.</p>
       </div>
       <div class="trust-item reveal">
         <div class="trust-icon">
-          <svg viewBox="0 0 24 24"><path d="M3 21l4-4m0 0l10-10a2.83 2.83 0 00-4-4L3 13m4 4l4-4"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2C8 2 5 5 5 9c0 5.5 7 13 7 13s7-7.5 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
         </div>
-        <strong>On-the-ground in Turkey</strong>
-        <span>Senior consultants with yard-floor experience in Aliağa and Tuzla.</span>
+        <strong>Aliağa on the ground</strong>
+        <p>Senior consultants with yard-floor experience in Aliağa and Tuzla.</p>
       </div>
     </div>
   </div>
 </div>
 
 <!-- ABOUT -->
-<section class="about" id="about">
+<section id="about">
   <div class="container">
     <div class="about-grid">
+
+      <!-- Photo left -->
+      <div class="about-photo reveal">
+        <img
+          src="https://images.unsplash.com/photo-1711924488572-86a21393c435?fm=jpg&q=75&w=900&auto=format&fit=crop"
+          alt="Industrial port — Turqo Marine advisory"
+          width="900" height="480"
+          loading="lazy"
+        />
+        <div class="about-photo-caption">
+          Aliağa, Turkey — one of the world's leading ship recycling clusters
+        </div>
+      </div>
+
+      <!-- Content right -->
       <div class="reveal">
         <span class="eyebrow">About Turqo Marine</span>
         <h2>An independent bridge between the yard floor and the boardroom.</h2>
+        <p>Classification societies certify, law firms litigate, cash buyers transact. Few firms speak all three languages on the ground in Turkey. Turqo Marine fills that gap.</p>
+        <p style="margin-top:1rem">We sit between the yard, the shipowner and the regulator — translating operational reality into commercial certainty for clients who cannot afford a misstep.</p>
         <div class="about-quote">
-          <p>"Ship recycling is no longer a price decision — it is a compliance, traceability and reputation decision."</p>
+          <blockquote>"Ship recycling is no longer a price decision — it is a compliance, traceability and reputation decision."</blockquote>
           <cite>Turqo Marine · İzmir, Turkey</cite>
         </div>
-      </div>
-      <div class="reveal">
-        <p>Classification societies certify, law firms litigate, cash buyers transact. Few firms speak all three languages on the ground in Turkey. Turqo Marine fills that gap.</p>
-        <p style="margin-top:1.1rem">We sit between the yard, the shipowner and the regulator — translating operational reality into commercial certainty for clients who cannot afford a misstep.</p>
         <div class="about-pillars">
           <div class="pillar">
             <h4>Operational depth</h4>
@@ -454,7 +489,7 @@
           </div>
           <div class="pillar">
             <h4>International orientation</h4>
-            <p>We work in English. Reporting and contracting follow IMO / BIMCO standards.</p>
+            <p>We work in English. Reporting follows IMO / BIMCO standards.</p>
           </div>
           <div class="pillar">
             <h4>Independent stance</h4>
@@ -462,6 +497,7 @@
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -478,7 +514,7 @@
 
       <div class="service reveal">
         <div class="service-icon">
-          <svg viewBox="0 0 24 24"><path d="M3 12h18M12 3v18M6 6l12 12M18 6L6 18"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M3 12h18M12 3v18"/><path d="M6 6l12 12M18 6L6 18"/></svg>
         </div>
         <h3>Recycling Project Advisory</h3>
         <p>End-to-end project management on the shipowner / cash buyer side.</p>
@@ -520,7 +556,7 @@
 
       <div class="service reveal">
         <div class="service-icon">
-          <svg viewBox="0 0 24 24"><path d="M6 4h9l3 3v13H6z M15 4v3h3M9 12h6M9 16h4"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M6 4h9l3 3v13H6z"/><path d="M15 4v3h3M9 12h6M9 16h4"/></svg>
         </div>
         <h3>Commercial &amp; Legal Advisory</h3>
         <p>Contract drafting and dispute readiness for recycling transactions.</p>
@@ -534,7 +570,7 @@
 
       <div class="service reveal">
         <div class="service-icon">
-          <svg viewBox="0 0 24 24"><circle cx="9" cy="9" r="5"/><path d="M13 13l7 7M14 4l2-2 4 4-2 2"/></svg>
+          <svg viewBox="0 0 24 24"><circle cx="9" cy="9" r="5"/><path d="M13 13l7 7"/></svg>
         </div>
         <h3>Cash Buyer &amp; Broker Support</h3>
         <p>Boots-on-the-ground in Turkey for firms transacting from abroad.</p>
@@ -548,7 +584,7 @@
 
       <div class="service reveal">
         <div class="service-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 3l9 4-9 4-9-4 9-4z M5 11v4l7 3 7-3v-4"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 3l9 4-9 4-9-4 9-4z"/><path d="M5 11v4l7 3 7-3v-4"/></svg>
         </div>
         <h3>Training &amp; Certification</h3>
         <p>Awareness and operational training in corporate and open formats.</p>
@@ -564,9 +600,11 @@
   </div>
 </section>
 
-<!-- SECTOR -->
+<!-- SECTOR — photo background -->
 <section class="sector" id="sector">
-  <div class="container">
+  <div class="sector-img"></div>
+  <div class="sector-overlay"></div>
+  <div class="container sector-content">
     <div class="section-head reveal">
       <span class="eyebrow">Sector Context</span>
       <h2>Turkey is no longer optional in green ship recycling.</h2>
@@ -634,7 +672,6 @@
         <span class="eyebrow">Get in Touch</span>
         <h2>Have a vessel, a yard or a question?</h2>
         <p class="contact-intro">We respond to qualified enquiries within one business day. The first scoping call is always complimentary — no commitment required.</p>
-
         <div class="contact-info-block">
           <div class="label">Email</div>
           <div class="value">info@turqomarine.com</div>
@@ -655,8 +692,7 @@
           All enquiries are handled confidentially. We do not share client information with yards, brokers or third parties.
         </div>
       </div>
-
-      <form class="reveal" onsubmit="event.preventDefault();this.querySelector('button').innerText='Message sent — we\'ll be in touch.';this.querySelector('button').disabled=true;">
+      <form class="reveal" onsubmit="handleSubmit(event)">
         <div class="form-row">
           <label for="name">Name</label>
           <input id="name" type="text" required placeholder="Full name" />
@@ -684,7 +720,9 @@
           <label for="message">Message</label>
           <textarea id="message" placeholder="Tell us briefly about the vessel, yard or question."></textarea>
         </div>
-        <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">Send message &nbsp;→</button>
+        <button class="btn btn-primary" id="submitBtn" type="submit" style="width:100%;justify-content:center">
+          Send message &nbsp;→
+        </button>
       </form>
     </div>
   </div>
@@ -695,11 +733,18 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="logo" style="color:#fff;margin-bottom:1rem">
-          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" style="width:24px;height:24px">
-            <path d="M16 4 L16 22 M8 14 Q16 8 24 14 M5 22 Q16 30 27 22" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <span style="color:#fff">Turqo<em style="font-style:normal;color:var(--accent)">.</em>Marine</span>
+        <div class="footer-logo">
+          <div class="logo-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="5.5" r="2.5"/>
+              <line x1="12" y1="8" x2="12" y2="20"/>
+              <line x1="7" y1="11.5" x2="17" y2="11.5"/>
+              <path d="M7 20C4 18.5 4 15.5 7 15"/>
+              <path d="M17 20C20 18.5 20 15.5 17 15"/>
+              <line x1="8.5" y1="5.5" x2="15.5" y2="5.5"/>
+            </svg>
+          </div>
+          <span>Turqo<em>.</em>Marine</span>
         </div>
         <p class="footer-tagline">Independent maritime consulting on ship recycling, HKC / EU SRR compliance and shipyard operations. Based in Turkey, working globally.</p>
       </div>
@@ -718,31 +763,40 @@
         <ul>
           <li>info@turqomarine.com</li>
           <li>İzmir · Istanbul · Aliağa</li>
-          <li style="margin-top:.8rem"><a href="#contact" style="color:var(--accent)">Send a message →</a></li>
+          <li style="margin-top:.9rem"><a href="#contact" style="color:var(--accent)">Send a message →</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <div>© 2026 Turqo Marine. All rights reserved.</div>
-      <div>Independent · Compliant · On the ground.</div>
+      <span>© 2026 Turqo Marine. All rights reserved.</span>
+      <span>Independent · Compliant · On the ground.</span>
     </div>
   </div>
 </footer>
 
 <script>
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
-  },{threshold:.1});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  document.querySelectorAll('#primaryNav a').forEach(a=>a.addEventListener('click',()=>{
-    document.getElementById('primaryNav').classList.remove('open');
-  }));
+  const menuBtn = document.getElementById('menuBtn');
+  const primaryNav = document.getElementById('primaryNav');
+  menuBtn.addEventListener('click', () => primaryNav.classList.toggle('open'));
+  primaryNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => primaryNav.classList.remove('open')));
 
-  window.addEventListener('scroll',()=>{
-    const nav = document.querySelector('header.nav');
-    nav.style.boxShadow = window.scrollY > 30 ? '0 4px 20px rgba(11,37,69,.08)' : 'none';
-  });
+  window.addEventListener('scroll', () => {
+    document.getElementById('siteNav').style.boxShadow =
+      window.scrollY > 10 ? '0 4px 18px rgba(11,37,69,.09)' : 'none';
+  }, { passive: true });
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    btn.textContent = "Message sent — we'll be in touch.";
+    btn.disabled = true;
+    btn.style.background = '#1a6b4a';
+  }
 </script>
 </body>
 </html>
