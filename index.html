@@ -7,406 +7,604 @@
 <meta name="description" content="Turqo Marine is a Turkey-based boutique maritime consulting firm specialising in ship recycling yard processes, HKC / EU SRR compliance, and shipyard operations for shipowners, cash buyers and brokers." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --navy:#0B2545;
-    --navy-2:#13315C;
-    --ink:#0F172A;
-    --steel:#475569;
-    --muted:#64748B;
-    --line:#E2E8F0;
-    --bg:#FFFFFF;
-    --bg-alt:#F8FAFC;
-    --accent:#C9A24A;
-    --topbar-h:34px;
-    --nav-h:70px;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{
-    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-    color:var(--ink);background:var(--bg);
-    line-height:1.6;font-weight:400;
-    -webkit-font-smoothing:antialiased;
-    padding-top:calc(var(--topbar-h) + var(--nav-h));
-  }
-  h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;color:var(--navy);letter-spacing:-.01em}
-  h1{font-size:clamp(2.2rem,4vw,3.6rem);line-height:1.1}
-  h2{font-size:clamp(1.6rem,2.8vw,2.3rem);line-height:1.2;margin-bottom:1rem}
-  h3{font-size:1.1rem;font-family:'Inter',sans-serif;font-weight:600;color:var(--navy);margin-bottom:.5rem}
-  p{color:var(--steel);font-size:1rem}
-  a{color:inherit;text-decoration:none}
-  img{display:block;max-width:100%}
-  .container{max-width:1180px;margin:0 auto;padding:0 1.5rem}
-  .eyebrow{
-    font-family:'Inter',sans-serif;font-size:.73rem;letter-spacing:.2em;
-    text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:.8rem;
-    display:inline-block;
-  }
-  section{padding:6rem 0}
-  .section-head{max-width:700px;margin-bottom:3.5rem}
+/* ============================================================
+   VARIABLES & RESET
+   ============================================================ */
+:root {
+  --navy:      #0B2545;
+  --navy-dark: #071A36;
+  --navy-mid:  #13315C;
+  --ink:       #0F172A;
+  --steel:     #475569;
+  --muted:     #64748B;
+  --line:      #E2E8F0;
+  --bg:        #FFFFFF;
+  --bg-alt:    #F8FAFC;
+  --accent:    #C9A24A;
+  --accent-dk: #A8832E;
+  --topbar-h:  36px;
+  --nav-h:     72px;
+  --safe-top:  calc(var(--topbar-h) + var(--nav-h));
+  --radius:    3px;
+  --section:   6.5rem;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  padding-top: var(--safe-top);
+}
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
 
-  /* ---- TOP BAR (fixed) ---- */
-  .topbar{
-    position:fixed;top:0;left:0;right:0;z-index:110;
-    height:var(--topbar-h);
-    background:var(--navy);color:rgba(255,255,255,.68);
-    font-size:.74rem;letter-spacing:.05em;
-    display:flex;align-items:center;justify-content:center;gap:0;
-  }
-  .topbar span{color:var(--accent);margin:0 .8rem}
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 600; color: var(--navy); letter-spacing: -.015em; }
+h1 { font-size: clamp(2.4rem, 4.2vw, 3.8rem); line-height: 1.08; }
+h2 { font-size: clamp(1.75rem, 2.8vw, 2.5rem); line-height: 1.18; margin-bottom: 1rem; }
+h3 { font-size: 1.08rem; font-family: 'Inter', sans-serif; font-weight: 600; margin-bottom: .5rem; }
+p  { color: var(--steel); font-size: .975rem; line-height: 1.72; }
 
-  /* ---- NAV ---- */
-  header.nav{
-    position:fixed;top:var(--topbar-h);left:0;right:0;z-index:100;
-    height:var(--nav-h);
-    background:rgba(255,255,255,.96);
-    backdrop-filter:saturate(160%) blur(16px);
-    border-bottom:1px solid var(--line);
-    transition:box-shadow .3s;
-  }
-  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:100%}
+.eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: .7rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--accent); font-weight: 700;
+  display: inline-block; margin-bottom: .9rem;
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 0 1.75rem; }
+.section-head { max-width: 680px; margin-bottom: 3.5rem; }
 
-  /* ---- LOGO ---- */
-  .logo{
-    display:flex;align-items:center;gap:.7rem;
-    font-family:'Playfair Display',serif;font-size:1.28rem;font-weight:700;
-    color:var(--navy);letter-spacing:.015em;
-  }
-  .logo-mark{
-    width:36px;height:36px;flex-shrink:0;
-    background:var(--navy);border-radius:3px;
-    display:flex;align-items:center;justify-content:center;
-  }
-  .logo-mark svg{width:21px;height:21px;fill:none;stroke:#fff;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}
-  .logo-text em{font-style:normal;color:var(--accent)}
+/* ============================================================
+   TOPBAR
+   ============================================================ */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 120;
+  height: var(--topbar-h);
+  background: var(--navy-dark);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .72rem; letter-spacing: .07em; color: rgba(255,255,255,.62);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.topbar b { color: var(--accent); font-weight: 600; margin: 0 .6rem; }
 
-  nav ul{display:flex;gap:2rem;list-style:none}
-  nav a{font-size:.88rem;font-weight:500;color:var(--ink);transition:color .2s;position:relative}
-  nav a:hover{color:var(--navy)}
-  nav a::after{content:'';position:absolute;left:0;bottom:-4px;height:1px;width:0;background:var(--accent);transition:width .25s}
-  nav a:hover::after{width:100%}
-  .nav-cta{
-    background:var(--navy);color:#fff !important;padding:.5rem 1.1rem;
-    border-radius:2px;font-size:.84rem;font-weight:500;transition:background .2s;
-  }
-  .nav-cta:hover{background:var(--navy-2)}
-  .nav-cta::after{display:none !important}
-  .menu-btn{
-    display:none;background:none;border:none;cursor:pointer;
-    width:32px;height:32px;flex-direction:column;
-    justify-content:center;align-items:center;gap:5px;
-  }
-  .menu-btn span{display:block;width:22px;height:1.5px;background:var(--navy)}
+/* ============================================================
+   NAV
+   ============================================================ */
+.site-nav {
+  position: fixed; top: var(--topbar-h); left: 0; right: 0; z-index: 110;
+  height: var(--nav-h);
+  background: rgba(255,255,255,.97);
+  backdrop-filter: saturate(200%) blur(20px);
+  -webkit-backdrop-filter: saturate(200%) blur(20px);
+  border-bottom: 1px solid var(--line);
+  transition: box-shadow .3s;
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 100%; }
 
-  /* ---- HERO ---- */
-  .hero{padding:4.5rem 0 5rem;background:var(--bg)}
-  .hero-grid{
-    display:grid;grid-template-columns:1.15fr 1fr;gap:3.5rem;align-items:center;
-  }
-  .hero h1{margin-bottom:1.3rem}
-  .hero h1 span{color:var(--accent)}
-  .hero p.lead{font-size:1.05rem;color:var(--steel);margin-bottom:2rem;line-height:1.78}
-  .hero-trust{display:flex;gap:1.4rem;margin-bottom:2.2rem;flex-wrap:wrap}
-  .hero-trust-item{
-    display:flex;align-items:center;gap:.38rem;
-    font-size:.74rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);
-  }
-  .hero-trust-item::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0}
-  .hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+/* logo */
+.logo { display: flex; align-items: center; gap: .75rem; }
+.logo-icon {
+  width: 38px; height: 38px; border-radius: var(--radius);
+  background: var(--navy); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.logo-icon svg { width: 22px; height: 22px; fill: none; stroke: #fff; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.logo-name {
+  font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700;
+  color: var(--navy); letter-spacing: .01em;
+}
+.logo-name em { font-style: normal; color: var(--accent); }
 
-  .btn{
-    display:inline-flex;align-items:center;gap:.4rem;
-    padding:.88rem 1.65rem;font-weight:500;font-size:.9rem;
-    border-radius:2px;transition:all .22s;cursor:pointer;border:none;
-  }
-  .btn-primary{background:var(--navy);color:#fff}
-  .btn-primary:hover{background:var(--navy-2);transform:translateY(-1px);box-shadow:0 8px 20px rgba(11,37,69,.22)}
-  .btn-ghost{background:transparent;color:var(--navy);border:1.5px solid var(--navy)}
-  .btn-ghost:hover{background:var(--navy);color:#fff}
+/* nav links */
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-size: .875rem; font-weight: 500; color: var(--ink);
+  transition: color .2s; position: relative; padding-bottom: .1rem;
+}
+.nav-links a::after {
+  content: ''; position: absolute; left: 0; bottom: -3px;
+  height: 1px; width: 0; background: var(--accent); transition: width .25s;
+}
+.nav-links a:hover { color: var(--navy); }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+  background: var(--navy); color: #fff !important; padding: .54rem 1.25rem;
+  border-radius: var(--radius); font-size: .84rem; font-weight: 500;
+  transition: background .2s, box-shadow .2s;
+}
+.nav-cta:hover { background: var(--navy-mid); box-shadow: 0 4px 14px rgba(11,37,69,.25); }
+.nav-cta::after { display: none !important; }
 
-  /* hero visual — photo panel with stacked cards (NO absolute positioning) */
-  .hero-visual{
-    position:relative;border-radius:4px;overflow:hidden;
-    min-height:440px;display:flex;align-items:flex-end;padding:2rem;
-  }
-  .hero-visual-img{
-    position:absolute;inset:0;
-    background:url('https://images.unsplash.com/photo-1724597500306-a4cbb7d1324e?fm=jpg&q=70&w=1400&auto=format&fit=crop') center/cover no-repeat;
-  }
-  .hero-visual-overlay{
-    position:absolute;inset:0;
-    background:linear-gradient(155deg,rgba(11,37,69,.92) 0%,rgba(11,37,69,.75) 100%);
-  }
-  .hero-cards{position:relative;z-index:1;width:100%;display:flex;flex-direction:column;gap:.9rem}
-  .hero-card{
-    background:rgba(255,255,255,.09);
-    backdrop-filter:blur(12px);
-    border:1px solid rgba(255,255,255,.18);
-    padding:1.3rem 1.5rem;border-radius:3px;color:#fff;
-  }
-  .hero-card .label{font-size:.65rem;text-transform:uppercase;letter-spacing:.17em;color:rgba(255,255,255,.58);margin-bottom:.3rem}
-  .hero-card .value{font-size:1.65rem;font-family:'Playfair Display',serif;font-weight:600;color:#fff;line-height:1.15}
-  .hero-card .desc{font-size:.8rem;color:rgba(255,255,255,.66);margin-top:.3rem;line-height:1.4}
+/* hamburger */
+.menu-btn {
+  display: none; background: none; border: none; cursor: pointer;
+  width: 34px; height: 34px; flex-direction: column;
+  justify-content: center; align-items: center; gap: 5px;
+}
+.menu-btn span { display: block; width: 22px; height: 1.5px; background: var(--navy); transition: .25s; }
 
-  /* ---- TRUST STRIP ---- */
-  .trust-strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg-alt);padding:2rem 0}
-  .trust-items{display:grid;grid-template-columns:repeat(4,1fr)}
-  .trust-item{
-    display:flex;flex-direction:column;align-items:center;text-align:center;
-    gap:.4rem;padding:0 1.2rem;
-  }
-  .trust-item:not(:first-child){border-left:1px solid var(--line)}
-  .trust-icon{
-    width:38px;height:38px;display:flex;align-items:center;justify-content:center;
-    background:var(--navy);border-radius:2px;margin-bottom:.35rem;flex-shrink:0;
-  }
-  .trust-icon svg{width:18px;height:18px;stroke:#fff;stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round}
-  .trust-item strong{font-size:.84rem;font-weight:600;color:var(--navy)}
-  .trust-item p{font-size:.75rem;color:var(--muted);line-height:1.45;margin:0}
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+  display: inline-flex; align-items: center; gap: .45rem;
+  padding: .92rem 1.75rem; font-weight: 500; font-size: .9rem;
+  border-radius: var(--radius); transition: all .22s; cursor: pointer; border: none;
+  letter-spacing: .01em;
+}
+.btn-primary { background: var(--navy); color: #fff; }
+.btn-primary:hover { background: var(--navy-mid); transform: translateY(-1px); box-shadow: 0 8px 22px rgba(11,37,69,.24); }
+.btn-outline { background: transparent; color: var(--navy); border: 1.5px solid var(--navy); }
+.btn-outline:hover { background: var(--navy); color: #fff; }
 
-  /* ---- ABOUT ---- */
-  .about-grid{display:grid;grid-template-columns:1fr 1.35fr;gap:4.5rem;align-items:start}
-  .about-photo{position:relative}
-  .about-photo img{width:100%;height:480px;object-fit:cover;border-radius:3px}
-  .about-photo-caption{
-    position:absolute;bottom:1.2rem;left:1.2rem;right:1.2rem;
-    background:rgba(11,37,69,.82);backdrop-filter:blur(8px);
-    padding:.9rem 1.1rem;border-radius:2px;
-    font-size:.75rem;color:rgba(255,255,255,.8);letter-spacing:.03em;
-    border-left:2px solid var(--accent);
-  }
-  .about-quote{
-    margin-top:2.2rem;padding:1.6rem 1.8rem;
-    border-left:3px solid var(--accent);background:var(--bg-alt);
-  }
-  .about-quote blockquote{
-    font-family:'Playfair Display',serif;font-size:1.08rem;font-style:italic;
-    color:var(--navy);line-height:1.65;
-  }
-  .about-quote cite{
-    display:block;margin-top:.65rem;font-size:.74rem;font-style:normal;
-    font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
-  }
-  .about-pillars{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;margin-top:2.2rem}
-  .pillar h4{
-    font-family:'Inter',sans-serif;font-size:.88rem;font-weight:600;
-    color:var(--navy);margin-bottom:.3rem;
-    display:flex;align-items:center;gap:.45rem;
-  }
-  .pillar h4::before{content:'';width:16px;height:1px;background:var(--accent);flex-shrink:0}
-  .pillar p{font-size:.86rem;color:var(--steel)}
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  padding: 5rem 0 5.5rem;
+  background: radial-gradient(ellipse at 0% 100%, rgba(11,37,69,.035) 0%, transparent 55%), var(--bg);
+}
+.hero-grid {
+  display: grid; grid-template-columns: 1.15fr 1fr; gap: 3.5rem; align-items: center;
+}
 
-  /* ---- SERVICES ---- */
-  .services{background:var(--bg-alt)}
-  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-  .service{
-    background:#fff;border:1px solid var(--line);padding:2rem 1.8rem;
-    transition:transform .28s,box-shadow .28s;cursor:default;
-    position:relative;overflow:hidden;
-  }
-  .service::after{
-    content:'';position:absolute;top:0;left:0;right:0;height:2px;
-    background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .28s;
-  }
-  .service:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(11,37,69,.07)}
-  .service:hover::after{transform:scaleX(1)}
-  .service-icon{
-    width:42px;height:42px;display:flex;align-items:center;justify-content:center;
-    background:var(--bg-alt);margin-bottom:1.2rem;border-radius:2px;
-  }
-  .service-icon svg{width:20px;height:20px;stroke:var(--navy);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
-  .service p{font-size:.89rem;color:var(--steel);line-height:1.65}
-  .service ul{list-style:none;margin-top:.8rem;padding:0}
-  .service li{font-size:.82rem;color:var(--muted);padding:.18rem 0 .18rem 1rem;position:relative}
-  .service li::before{content:'—';position:absolute;left:0;color:var(--accent)}
+/* left */
+.hero-content h1 { margin-bottom: 1.4rem; }
+.hero-content h1 span { color: var(--accent); }
+.hero-lead {
+  font-size: 1.05rem; color: var(--steel); line-height: 1.78;
+  max-width: 480px; margin-bottom: 2rem;
+}
+.hero-badges { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-bottom: 2.4rem; }
+.hero-badge {
+  display: flex; align-items: center; gap: .38rem;
+  font-size: .72rem; font-weight: 700; letter-spacing: .09em;
+  text-transform: uppercase; color: var(--muted);
+}
+.hero-badge::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent); flex-shrink: 0;
+}
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-  /* ---- SECTOR ---- */
-  .sector{position:relative;color:#fff;padding:6rem 0;overflow:hidden}
-  .sector-img{position:absolute;inset:0;background:url('https://plus.unsplash.com/premium_photo-1661963146546-c9dc4a6121c7?fm=jpg&q=70&w=1800&auto=format&fit=crop') center/cover no-repeat}
-  .sector-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(6,24,45,.97) 50%,rgba(6,24,45,.88) 100%)}
-  .sector-content{position:relative;z-index:1}
-  .sector h2{color:#fff}
-  .sector .eyebrow{color:var(--accent)}
-  .sector .section-head p{color:rgba(255,255,255,.68)}
-  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:3rem}
-  .stat{padding:1.8rem 0;border-top:1px solid rgba(255,255,255,.14)}
-  .stat .num{font-family:'Playfair Display',serif;font-size:2.7rem;font-weight:600;color:#fff;line-height:1}
-  .stat .label{font-size:.77rem;color:rgba(255,255,255,.6);margin-top:.5rem;line-height:1.45}
+/* right — photo panel */
+.hero-panel {
+  position: relative; border-radius: 4px; overflow: hidden;
+  min-height: 460px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 2rem;
+}
+.hero-panel-photo {
+  position: absolute; inset: 0;
+  background:
+    url('https://images.unsplash.com/photo-1724597500306-a4cbb7d1324e?fm=jpg&q=72&w=1400&auto=format&fit=crop')
+    center / cover no-repeat;
+}
+.hero-panel-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(165deg, rgba(7,26,54,.9) 0%, rgba(11,37,69,.72) 100%);
+}
+.hero-panel-cards { position: relative; z-index: 1; display: flex; flex-direction: column; gap: .85rem; }
+.hcard {
+  background: rgba(255,255,255,.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,.16);
+  padding: 1.2rem 1.45rem; border-radius: var(--radius); color: #fff;
+}
+.hcard-label { font-size: .62rem; text-transform: uppercase; letter-spacing: .18em; color: rgba(255,255,255,.54); margin-bottom: .28rem; }
+.hcard-value { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 600; color: #fff; line-height: 1.15; }
+.hcard-desc  { font-size: .78rem; color: rgba(255,255,255,.62); margin-top: .28rem; line-height: 1.4; }
 
-  /* ---- APPROACH ---- */
-  .approach-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2.5rem;margin-top:3rem}
-  .step .num{
-    font-family:'Playfair Display',serif;font-size:3rem;font-weight:600;
-    color:var(--accent);opacity:.28;line-height:1;margin-bottom:.9rem;
-  }
-  .step h3{font-family:'Inter',sans-serif;font-size:.98rem;font-weight:600;color:var(--navy);margin-bottom:.5rem}
-  .step p{font-size:.87rem;color:var(--steel);line-height:1.65}
+/* ============================================================
+   TRUST STRIP
+   ============================================================ */
+.trust-strip {
+  background: var(--bg-alt);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 2.2rem 0;
+}
+.trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+.trust-item {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; padding: 0 1.5rem; gap: .4rem;
+}
+.trust-item + .trust-item { border-left: 1px solid var(--line); }
+.trust-icon-box {
+  width: 40px; height: 40px; border-radius: var(--radius);
+  background: var(--navy); display: flex; align-items: center; justify-content: center;
+  margin-bottom: .45rem; flex-shrink: 0;
+}
+.trust-icon-box svg { width: 19px; height: 19px; fill: none; stroke: #fff; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.trust-item strong { font-size: .84rem; font-weight: 600; color: var(--navy); }
+.trust-item p { font-size: .74rem; color: var(--muted); line-height: 1.45; margin: 0; }
 
-  /* ---- CONTACT ---- */
-  .contact{background:var(--bg-alt)}
-  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
-  .contact-intro{font-size:1rem;color:var(--steel);margin-bottom:2.3rem;line-height:1.75}
-  .contact-info-block{margin-bottom:1.6rem}
-  .contact-info-block .label{font-size:.67rem;text-transform:uppercase;letter-spacing:.17em;color:var(--muted);margin-bottom:.28rem;font-weight:600}
-  .contact-info-block .value{font-size:.98rem;color:var(--navy);font-weight:500}
-  .contact-note{
-    margin-top:2rem;padding:1.2rem 1.4rem;
-    border:1px solid var(--line);border-left:3px solid var(--accent);
-    font-size:.84rem;color:var(--steel);line-height:1.6;background:#fff;
-  }
-  form{background:#fff;padding:2.4rem;border:1px solid var(--line)}
-  .form-row{margin-bottom:1.1rem}
-  .form-row label{display:block;font-size:.77rem;font-weight:600;color:var(--navy);margin-bottom:.38rem}
-  .form-row input,.form-row select,.form-row textarea{
-    width:100%;padding:.76rem .9rem;border:1px solid var(--line);
-    font-family:inherit;font-size:.93rem;color:var(--ink);background:#fff;
-    transition:border-color .18s,box-shadow .18s;
-  }
-  .form-row input:focus,.form-row select:focus,.form-row textarea:focus{
-    outline:none;border-color:var(--navy);box-shadow:0 0 0 3px rgba(11,37,69,.07);
-  }
-  .form-row textarea{resize:vertical;min-height:106px}
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about { padding: var(--section) 0; }
+.about-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: start; }
 
-  /* ---- FOOTER ---- */
-  footer{background:#06182D;color:rgba(255,255,255,.6);padding:3.5rem 0 2rem;font-size:.85rem}
-  .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;margin-bottom:2.8rem}
-  .footer-logo{display:flex;align-items:center;gap:.7rem;margin-bottom:.9rem}
-  .footer-logo .logo-mark{background:rgba(255,255,255,.1)}
-  .footer-logo span{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#fff}
-  .footer-logo em{font-style:normal;color:var(--accent)}
-  .footer-tagline{color:rgba(255,255,255,.46);font-size:.82rem;max-width:300px;line-height:1.65}
-  footer h5{font-family:'Inter',sans-serif;color:#fff;font-size:.76rem;text-transform:uppercase;letter-spacing:.14em;margin-bottom:1rem;font-weight:600}
-  footer ul{list-style:none}
-  footer li{margin-bottom:.58rem}
-  footer a:hover{color:var(--accent);transition:color .18s}
-  .footer-bottom{
-    border-top:1px solid rgba(255,255,255,.08);padding-top:1.3rem;
-    display:flex;justify-content:space-between;flex-wrap:wrap;gap:.8rem;
-    font-size:.76rem;color:rgba(255,255,255,.32);
-  }
+.about-photo-wrap { position: relative; }
+.about-photo-wrap img {
+  width: 100%; height: 520px; object-fit: cover; border-radius: 4px;
+  display: block;
+}
+.about-photo-tag {
+  position: absolute; bottom: 1.5rem; left: 1.5rem; right: 1.5rem;
+  background: rgba(7,26,54,.88); backdrop-filter: blur(10px);
+  border-left: 3px solid var(--accent);
+  padding: .85rem 1.1rem; border-radius: 0 var(--radius) var(--radius) 0;
+}
+.about-photo-tag span { font-size: .74rem; color: rgba(255,255,255,.75); line-height: 1.45; letter-spacing: .02em; }
 
-  /* ---- RESPONSIVE ---- */
-  @media(max-width:960px){
-    .hero{padding:3rem 0 4rem}
-    .hero-grid{grid-template-columns:1fr;gap:2rem}
-    .hero-visual{min-height:300px;padding:1.5rem}
-    .about-grid,.contact-grid{grid-template-columns:1fr;gap:2.5rem}
-    .about-photo img{height:300px}
-    .services-grid{grid-template-columns:1fr 1fr}
-    .stats{grid-template-columns:1fr 1fr;gap:1.5rem}
-    .approach-grid{grid-template-columns:1fr 1fr;gap:2rem}
-    .footer-grid{grid-template-columns:1fr 1fr}
-    nav ul{display:none}
-    .menu-btn{display:flex}
-    nav.open ul{
-      display:flex;flex-direction:column;
-      position:fixed;
-      top:calc(var(--topbar-h) + var(--nav-h));
-      left:0;right:0;
-      background:#fff;padding:1.5rem;gap:1.1rem;
-      border-bottom:1px solid var(--line);
-      box-shadow:0 8px 24px rgba(11,37,69,.1);
-      z-index:99;
-    }
-  }
-  @media(max-width:640px){
-    .trust-items{grid-template-columns:1fr 1fr;gap:1.2rem}
-    .trust-item:not(:first-child){border-left:none}
-    .trust-item:nth-child(even){border-left:1px solid var(--line)}
-    .services-grid{grid-template-columns:1fr}
-    .approach-grid{grid-template-columns:1fr}
-    .footer-grid{grid-template-columns:1fr}
-    .about-pillars{grid-template-columns:1fr}
-    form{padding:1.6rem}
-  }
-  @media(max-width:420px){
-    .trust-items{grid-template-columns:1fr}
-    .trust-item:nth-child(even){border-left:none}
-  }
+.about-copy p + p { margin-top: 1rem; }
+.about-blockquote {
+  margin-top: 2.2rem; padding: 1.7rem 1.9rem;
+  border-left: 3px solid var(--accent); background: var(--bg-alt);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.about-blockquote blockquote {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 1.1rem; color: var(--navy); line-height: 1.65;
+}
+.about-blockquote cite {
+  display: block; margin-top: .7rem;
+  font-size: .72rem; font-style: normal;
+  font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+}
+.pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; margin-top: 2.4rem; }
+.pillar h4 {
+  font-family: 'Inter', sans-serif; font-size: .88rem; font-weight: 600;
+  color: var(--navy); margin-bottom: .3rem;
+  display: flex; align-items: center; gap: .48rem;
+}
+.pillar h4::before { content: ''; width: 16px; height: 1.5px; background: var(--accent); flex-shrink: 0; }
+.pillar p { font-size: .85rem; }
 
-  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
-  .reveal.in{opacity:1;transform:none}
+/* ============================================================
+   SERVICES
+   ============================================================ */
+.services { padding: var(--section) 0; background: var(--bg-alt); }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.service-card {
+  background: #fff; border: 1px solid var(--line);
+  padding: 2.2rem 1.9rem; border-radius: var(--radius);
+  position: relative; overflow: hidden;
+  transition: transform .28s, box-shadow .28s;
+}
+.service-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 2px; background: var(--accent);
+  transform: scaleX(0); transform-origin: left; transition: transform .28s;
+}
+.service-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(11,37,69,.08); }
+.service-card:hover::before { transform: scaleX(1); }
+.service-num {
+  font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 600;
+  color: var(--line); line-height: 1; margin-bottom: 1rem; user-select: none;
+}
+.service-icon-wrap {
+  width: 44px; height: 44px; border-radius: var(--radius);
+  background: var(--bg-alt); margin-bottom: 1.3rem;
+  display: flex; align-items: center; justify-content: center;
+}
+.service-icon-wrap svg { width: 21px; height: 21px; stroke: var(--navy); stroke-width: 1.55; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.service-card h3 { color: var(--navy); margin-bottom: .55rem; }
+.service-card p { font-size: .88rem; line-height: 1.65; }
+.service-card ul { list-style: none; margin-top: .9rem; }
+.service-card li {
+  font-size: .82rem; color: var(--muted);
+  padding: .2rem 0 .2rem 1.05rem; position: relative;
+}
+.service-card li::before { content: '—'; position: absolute; left: 0; color: var(--accent); }
+
+/* ============================================================
+   QUOTE BREAK (full-bleed photo + quote)
+   ============================================================ */
+.quote-break { position: relative; overflow: hidden; height: 240px; }
+.quote-break-photo {
+  position: absolute; inset: 0;
+  background:
+    url('https://images.pexels.com/photos/1554646/pexels-photo-1554646.jpeg?auto=compress&cs=tinysrgb&w=1800')
+    center 60% / cover no-repeat;
+}
+.quote-break-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(7,26,54,.92) 40%, rgba(7,26,54,.75) 100%);
+}
+.quote-break-inner {
+  position: relative; z-index: 1; height: 100%;
+  display: flex; align-items: center;
+}
+.quote-break-text { max-width: 640px; }
+.quote-break-text p {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  color: #fff; line-height: 1.55;
+}
+.quote-break-text cite {
+  display: block; margin-top: 1rem; font-size: .72rem; font-style: normal;
+  font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* ============================================================
+   SECTOR
+   ============================================================ */
+.sector { position: relative; overflow: hidden; padding: var(--section) 0; color: #fff; }
+.sector-photo {
+  position: absolute; inset: 0;
+  background:
+    url('https://plus.unsplash.com/premium_photo-1661963146546-c9dc4a6121c7?fm=jpg&q=72&w=1800&auto=format&fit=crop')
+    center / cover no-repeat;
+}
+.sector-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(6,24,45,.97) 45%, rgba(6,24,45,.88) 100%);
+}
+.sector-inner { position: relative; z-index: 1; }
+.sector h2 { color: #fff; }
+.sector .section-head p { color: rgba(255,255,255,.68); }
+.sector .eyebrow { color: var(--accent); }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 3rem; }
+.stat-item { padding: 2rem 2rem 2rem 0; border-top: 1px solid rgba(255,255,255,.14); }
+.stat-item:not(:first-child) { padding-left: 2rem; border-left: 1px solid rgba(255,255,255,.1); }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 600; color: #fff; line-height: 1; }
+.stat-label { font-size: .76rem; color: rgba(255,255,255,.58); margin-top: .6rem; line-height: 1.45; }
+
+/* ============================================================
+   APPROACH
+   ============================================================ */
+.approach { padding: var(--section) 0; }
+.steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem; margin-top: 3rem; }
+.step { position: relative; padding-top: .5rem; }
+.step-num {
+  font-family: 'Playfair Display', serif; font-size: 3.2rem; font-weight: 600;
+  color: var(--accent); opacity: .25; line-height: 1; margin-bottom: .9rem;
+}
+.step h3 { margin-bottom: .55rem; }
+.step p { font-size: .87rem; line-height: 1.68; }
+/* connecting line */
+.step:not(:last-child)::after {
+  content: ''; position: absolute;
+  top: 2.2rem; right: -1.25rem;
+  width: 2.5rem; height: 1px;
+  background: linear-gradient(to right, var(--line), transparent);
+}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact { padding: var(--section) 0; background: var(--bg-alt); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5.5rem; align-items: start; }
+.contact-intro { font-size: 1rem; line-height: 1.76; margin-bottom: 2.5rem; }
+.info-block { margin-bottom: 1.6rem; }
+.info-label { font-size: .67rem; text-transform: uppercase; letter-spacing: .18em; color: var(--muted); margin-bottom: .3rem; font-weight: 700; }
+.info-value { font-size: .98rem; color: var(--navy); font-weight: 500; }
+.contact-note {
+  margin-top: 2.2rem; padding: 1.15rem 1.4rem;
+  background: #fff; border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  font-size: .82rem; color: var(--steel); line-height: 1.6;
+}
+
+.contact-form { background: #fff; padding: 2.6rem; border: 1px solid var(--line); border-radius: var(--radius); }
+.form-row { margin-bottom: 1.15rem; }
+.form-row label { display: block; font-size: .76rem; font-weight: 600; color: var(--navy); margin-bottom: .4rem; letter-spacing: .02em; }
+.form-row input,
+.form-row select,
+.form-row textarea {
+  width: 100%; padding: .78rem .95rem;
+  border: 1.5px solid var(--line); border-radius: 1px;
+  font-family: inherit; font-size: .93rem; color: var(--ink); background: #fff;
+  transition: border-color .18s, box-shadow .18s;
+  -webkit-appearance: none; appearance: none;
+}
+.form-row select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right .9rem center;
+  padding-right: 2.5rem;
+}
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+  outline: none; border-color: var(--navy);
+  box-shadow: 0 0 0 3px rgba(11,37,69,.07);
+}
+.form-row textarea { resize: vertical; min-height: 110px; }
+.form-submit { width: 100%; justify-content: center; margin-top: .4rem; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  background: var(--navy-dark); color: rgba(255,255,255,.55);
+  padding: 4rem 0 2.2rem; font-size: .85rem;
+}
+.footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 3.5rem; margin-bottom: 3rem; }
+.footer-brand { display: flex; align-items: center; gap: .7rem; margin-bottom: 1rem; }
+.footer-brand .logo-icon { background: rgba(255,255,255,.09); }
+.footer-brand .logo-name { font-size: 1.22rem; color: #fff; }
+.footer-tagline { color: rgba(255,255,255,.42); font-size: .82rem; max-width: 290px; line-height: 1.65; }
+footer h5 {
+  font-family: 'Inter', sans-serif; color: rgba(255,255,255,.85);
+  font-size: .73rem; text-transform: uppercase; letter-spacing: .16em;
+  margin-bottom: 1.1rem; font-weight: 700;
+}
+footer ul { list-style: none; }
+footer li { margin-bottom: .62rem; }
+footer a { transition: color .18s; }
+footer a:hover { color: var(--accent); }
+.footer-cta-link { color: var(--accent) !important; font-weight: 500; }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.07); padding-top: 1.4rem;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: .8rem;
+  font-size: .74rem; color: rgba(255,255,255,.28);
+}
+
+/* ============================================================
+   REVEAL ANIMATION
+   ============================================================ */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  :root { --section: 5rem; }
+  .hero-grid { gap: 2.5rem; }
+  .about-grid { grid-template-columns: 1fr 1.2fr; gap: 3.5rem; }
+}
+
+@media (max-width: 900px) {
+  :root { --section: 4rem; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-panel { min-height: 300px; padding: 1.5rem; }
+  .hero-panel-photo { background-position: center 40%; }
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .about-photo-wrap img { height: 280px; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .stats-grid { grid-template-columns: 1fr 1fr; gap: 0; }
+  .stat-item:nth-child(n+3) { border-top: 1px solid rgba(255,255,255,.14); }
+  .stat-item:nth-child(2n) { padding-left: 2rem; border-left: 1px solid rgba(255,255,255,.1); }
+  .stat-item:nth-child(2n+1) { padding-left: 0; border-left: none; }
+  .steps-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .step::after { display: none; }
+  .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+  .menu-btn { display: flex; }
+  .nav-links.open {
+    display: flex; flex-direction: column;
+    position: fixed;
+    top: var(--safe-top); left: 0; right: 0;
+    background: #fff; padding: 1.6rem 1.75rem; gap: 1.1rem;
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 8px 24px rgba(11,37,69,.1);
+    z-index: 109;
+  }
+  .nav-cta { align-self: flex-start; }
+}
+
+@media (max-width: 640px) {
+  h1 { font-size: 2.2rem; }
+  .trust-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem 0; }
+  .trust-item + .trust-item { border-left: none; }
+  .trust-item:nth-child(even) { border-left: 1px solid var(--line); }
+  .services-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .pillars { grid-template-columns: 1fr; }
+  .contact-form { padding: 1.8rem; }
+  .quote-break { height: 200px; }
+  .quote-break-text p { font-size: 1rem; }
+}
 </style>
 </head>
 <body>
 
-<!-- TOP BAR -->
+<!-- ============================================================
+     TOPBAR
+     ============================================================ -->
 <div class="topbar">
-  Independent advisory <span>·</span> HKC &amp; EU SRR specialists <span>·</span> İzmir, Turkey <span>·</span> Working globally
+  Independent Maritime Advisory
+  <b>·</b>
+  HKC &amp; EU SRR Specialists
+  <b>·</b>
+  İzmir, Turkey
+  <b>·</b>
+  Working Globally
 </div>
 
-<!-- NAV -->
-<header class="nav" id="siteNav">
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<header class="site-nav" id="siteNav">
   <div class="container nav-inner">
-    <a class="logo" href="#top">
-      <div class="logo-mark">
+
+    <a class="logo" href="#top" aria-label="Turqo Marine Home">
+      <div class="logo-icon">
+        <!-- Anchor mark -->
         <svg viewBox="0 0 24 24">
           <circle cx="12" cy="5.5" r="2.5"/>
+          <line x1="8.5" y1="5.5" x2="15.5" y2="5.5"/>
           <line x1="12" y1="8" x2="12" y2="20"/>
           <line x1="7" y1="11.5" x2="17" y2="11.5"/>
-          <path d="M7 20C4 18.5 4 15.5 7 15"/>
-          <path d="M17 20C20 18.5 20 15.5 17 15"/>
-          <line x1="8.5" y1="5.5" x2="15.5" y2="5.5"/>
+          <path d="M7 20C4.5 18.5 4.5 15.5 7 15"/>
+          <path d="M17 20C19.5 18.5 19.5 15.5 17 15"/>
         </svg>
       </div>
-      <span class="logo-text">Turqo<em>.</em>Marine</span>
+      <span class="logo-name">Turqo<em>.</em>Marine</span>
     </a>
-    <nav id="primaryNav">
-      <ul>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#sector">Sector</a></li>
-        <li><a href="#approach">Approach</a></li>
-        <li><a class="nav-cta" href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-    <button class="menu-btn" id="menuBtn" aria-label="Menu">
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#sector">Sector</a></li>
+      <li><a href="#approach">Approach</a></li>
+      <li><a class="nav-cta" href="#contact">Contact Us</a></li>
+    </ul>
+
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
+
   </div>
 </header>
 
-<!-- HERO -->
+<!-- ============================================================
+     HERO
+     ============================================================ -->
 <section class="hero" id="top">
   <div class="container hero-grid">
 
-    <div class="reveal">
-      <span class="eyebrow">Turkey-Based Maritime Advisory</span>
-      <h1>Your ship's last voyage,<br><span>handled right</span>.</h1>
-      <p class="lead">Turqo Marine is a boutique consulting firm based in İzmir, Turkey — advising shipowners, cash buyers and brokers across the full recycling lifecycle under the Hong Kong Convention and EU Ship Recycling Regulation.</p>
-      <div class="hero-trust">
-        <div class="hero-trust-item">Independent</div>
-        <div class="hero-trust-item">HKC &amp; EU SRR</div>
-        <div class="hero-trust-item">IMO / BIMCO</div>
-        <div class="hero-trust-item">On the ground</div>
+    <!-- Left: copy -->
+    <div class="hero-content reveal">
+      <span class="eyebrow">Turkey-Based Ship Recycling Advisory</span>
+      <h1>Your ship's last<br>voyage, <span>handled right</span>.</h1>
+      <p class="hero-lead">Turqo Marine is a boutique consulting firm based in İzmir — advising shipowners, cash buyers and brokers across the full recycling lifecycle under the Hong Kong Convention and EU Ship Recycling Regulation.</p>
+      <div class="hero-badges">
+        <span class="hero-badge">No yard ownership</span>
+        <span class="hero-badge">HKC &amp; EU SRR</span>
+        <span class="hero-badge">IMO / BIMCO standards</span>
+        <span class="hero-badge">Aliağa on the ground</span>
       </div>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#services">Explore services &nbsp;→</a>
-        <a class="btn btn-ghost" href="#contact">Talk to us</a>
+        <a class="btn btn-outline" href="#contact">Talk to us</a>
       </div>
     </div>
 
-    <!-- Photo panel — no absolute positioning on cards -->
-    <div class="hero-visual reveal">
-      <div class="hero-visual-img"></div>
-      <div class="hero-visual-overlay"></div>
-      <div class="hero-cards">
-        <div class="hero-card">
-          <div class="label">EU-Approved Cluster</div>
-          <div class="value">Aliağa</div>
-          <div class="desc">The preferred jurisdiction for EU-flagged tonnage.</div>
+    <!-- Right: photo panel with stacked info cards (flex — no overlap) -->
+    <div class="hero-panel reveal">
+      <div class="hero-panel-photo"></div>
+      <div class="hero-panel-overlay"></div>
+      <div class="hero-panel-cards">
+        <div class="hcard">
+          <div class="hcard-label">EU-Approved Cluster</div>
+          <div class="hcard-value">Aliağa</div>
+          <div class="hcard-desc">The preferred jurisdiction for EU-flagged tonnage recycling.</div>
         </div>
-        <div class="hero-card">
-          <div class="label">Annual Capacity</div>
-          <div class="value">1M+ LDT</div>
-          <div class="desc">Concentrated in a single industrial cluster.</div>
+        <div class="hcard">
+          <div class="hcard-label">Annual Capacity</div>
+          <div class="hcard-value">1M+ LDT</div>
+          <div class="hcard-desc">Concentrated in a single world-class industrial cluster.</div>
         </div>
-        <div class="hero-card">
-          <div class="label">Regulatory Anchor</div>
-          <div class="value">HKC · EU SRR</div>
-          <div class="desc">In force since June 2025. ICIHM mandatory by 2030.</div>
+        <div class="hcard">
+          <div class="hcard-label">Regulatory Anchor</div>
+          <div class="hcard-value">HKC · EU SRR</div>
+          <div class="hcard-desc">In force since June 2025. ICIHM mandatory by 2030.</div>
         </div>
       </div>
     </div>
@@ -414,74 +612,83 @@
   </div>
 </section>
 
-<!-- TRUST STRIP -->
+<!-- ============================================================
+     TRUST STRIP
+     ============================================================ -->
 <div class="trust-strip">
   <div class="container">
-    <div class="trust-items">
+    <div class="trust-grid">
+
       <div class="trust-item reveal">
-        <div class="trust-icon">
+        <div class="trust-icon-box">
           <svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .5-5 5 1.5 7L12 18l-6.5 3L7 14 2 9l7-.5z"/></svg>
         </div>
         <strong>No yard ownership</strong>
-        <p>We hold no equity in any yard. Your interest is the only brief.</p>
+        <p>We hold no equity in any yard. Your interest is the only brief we follow.</p>
       </div>
+
       <div class="trust-item reveal">
-        <div class="trust-icon">
+        <div class="trust-icon-box">
           <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 12l2 2 4-4"/></svg>
         </div>
         <strong>HKC &amp; EU SRR fluent</strong>
-        <p>Applied to live contracts — since before the regulations entered force.</p>
+        <p>Applied to live contracts and negotiations — not theory or templates.</p>
       </div>
+
       <div class="trust-item reveal">
-        <div class="trust-icon">
+        <div class="trust-icon-box">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
         </div>
-        <strong>One business day</strong>
-        <p>Qualified enquiries answered fast. First scoping call is always complimentary.</p>
+        <strong>1 business day response</strong>
+        <p>Fast answers. First scoping call always complimentary, no commitment required.</p>
       </div>
+
       <div class="trust-item reveal">
-        <div class="trust-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 2C8 2 5 5 5 9c0 5.5 7 13 7 13s7-7.5 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        <div class="trust-icon-box">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
         </div>
-        <strong>Aliağa on the ground</strong>
-        <p>Senior consultants with yard-floor experience in Aliağa and Tuzla.</p>
+        <strong>On the ground, Aliağa</strong>
+        <p>Senior consultants with yard-floor experience across Turkish recycling clusters.</p>
       </div>
+
     </div>
   </div>
 </div>
 
-<!-- ABOUT -->
-<section id="about">
+<!-- ============================================================
+     ABOUT
+     ============================================================ -->
+<section class="about" id="about">
   <div class="container">
     <div class="about-grid">
 
       <!-- Photo left -->
-      <div class="about-photo reveal">
+      <div class="about-photo-wrap reveal">
         <img
-          src="https://images.unsplash.com/photo-1711924488572-86a21393c435?fm=jpg&q=75&w=900&auto=format&fit=crop"
-          alt="Industrial port — Turqo Marine advisory"
-          width="900" height="480"
+          src="https://images.unsplash.com/photo-1711924488572-86a21393c435?fm=jpg&q=78&w=900&auto=format&fit=crop"
+          alt="Industrial port — Turqo Marine operates across Turkey's major ship recycling clusters"
+          width="900" height="520"
           loading="lazy"
         />
-        <div class="about-photo-caption">
-          Aliağa, Turkey — one of the world's leading ship recycling clusters
+        <div class="about-photo-tag">
+          <span>Aliağa, Turkey — one of the world's largest concentrations of EU-approved ship recycling facilities</span>
         </div>
       </div>
 
-      <!-- Content right -->
-      <div class="reveal">
+      <!-- Text right -->
+      <div class="about-copy reveal">
         <span class="eyebrow">About Turqo Marine</span>
         <h2>An independent bridge between the yard floor and the boardroom.</h2>
         <p>Classification societies certify, law firms litigate, cash buyers transact. Few firms speak all three languages on the ground in Turkey. Turqo Marine fills that gap.</p>
-        <p style="margin-top:1rem">We sit between the yard, the shipowner and the regulator — translating operational reality into commercial certainty for clients who cannot afford a misstep.</p>
-        <div class="about-quote">
+        <p>We sit between the yard, the shipowner and the regulator — translating operational reality into commercial certainty for clients who cannot afford a misstep under the world's toughest new recycling rules.</p>
+        <div class="about-blockquote">
           <blockquote>"Ship recycling is no longer a price decision — it is a compliance, traceability and reputation decision."</blockquote>
           <cite>Turqo Marine · İzmir, Turkey</cite>
         </div>
-        <div class="about-pillars">
+        <div class="pillars">
           <div class="pillar">
             <h4>Operational depth</h4>
-            <p>Senior consultants with on-the-floor yard experience in Aliağa and Tuzla.</p>
+            <p>On-the-floor yard experience across Aliağa and Tuzla recycling clusters.</p>
           </div>
           <div class="pillar">
             <h4>Regulatory fluency</h4>
@@ -489,11 +696,11 @@
           </div>
           <div class="pillar">
             <h4>International orientation</h4>
-            <p>We work in English. Reporting follows IMO / BIMCO standards.</p>
+            <p>Working in English. Reporting follows IMO and BIMCO standards.</p>
           </div>
           <div class="pillar">
             <h4>Independent stance</h4>
-            <p>No yard ownership, no broker affiliation. Your interest is the only brief.</p>
+            <p>No yard ownership, no broker affiliation. One brief: your interest.</p>
           </div>
         </div>
       </div>
@@ -502,7 +709,9 @@
   </div>
 </section>
 
-<!-- SERVICES -->
+<!-- ============================================================
+     SERVICES
+     ============================================================ -->
 <section class="services" id="services">
   <div class="container">
     <div class="section-head reveal">
@@ -512,12 +721,13 @@
     </div>
     <div class="services-grid">
 
-      <div class="service reveal">
-        <div class="service-icon">
+      <div class="service-card reveal">
+        <div class="service-num">01</div>
+        <div class="service-icon-wrap">
           <svg viewBox="0 0 24 24"><path d="M3 12h18M12 3v18"/><path d="M6 6l12 12M18 6L6 18"/></svg>
         </div>
         <h3>Recycling Project Advisory</h3>
-        <p>End-to-end project management on the shipowner / cash buyer side.</p>
+        <p>End-to-end project management on the shipowner and cash buyer side.</p>
         <ul>
           <li>Yard selection &amp; due diligence</li>
           <li>MoA drafting &amp; negotiation</li>
@@ -526,12 +736,13 @@
         </ul>
       </div>
 
-      <div class="service reveal">
-        <div class="service-icon">
+      <div class="service-card reveal">
+        <div class="service-num">02</div>
+        <div class="service-icon-wrap">
           <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>
         </div>
         <h3>HKC / EU SRR Compliance</h3>
-        <p>Certification pathways without theatre. Audit-ready outputs.</p>
+        <p>Certification pathways without theatre. Audit-ready outputs every time.</p>
         <ul>
           <li>IHM Parts I, II &amp; III</li>
           <li>ICIHM certification</li>
@@ -540,8 +751,9 @@
         </ul>
       </div>
 
-      <div class="service reveal">
-        <div class="service-icon">
+      <div class="service-card reveal">
+        <div class="service-num">03</div>
+        <div class="service-icon-wrap">
           <svg viewBox="0 0 24 24"><path d="M3 21l4-4M7 17l4-4M11 13l4-4M15 9l4-4M14 4h5v5"/></svg>
         </div>
         <h3>Shipyard Operations Design</h3>
@@ -554,8 +766,9 @@
         </ul>
       </div>
 
-      <div class="service reveal">
-        <div class="service-icon">
+      <div class="service-card reveal">
+        <div class="service-num">04</div>
+        <div class="service-icon-wrap">
           <svg viewBox="0 0 24 24"><path d="M6 4h9l3 3v13H6z"/><path d="M15 4v3h3M9 12h6M9 16h4"/></svg>
         </div>
         <h3>Commercial &amp; Legal Advisory</h3>
@@ -568,8 +781,9 @@
         </ul>
       </div>
 
-      <div class="service reveal">
-        <div class="service-icon">
+      <div class="service-card reveal">
+        <div class="service-num">05</div>
+        <div class="service-icon-wrap">
           <svg viewBox="0 0 24 24"><circle cx="9" cy="9" r="5"/><path d="M13 13l7 7"/></svg>
         </div>
         <h3>Cash Buyer &amp; Broker Support</h3>
@@ -582,16 +796,17 @@
         </ul>
       </div>
 
-      <div class="service reveal">
-        <div class="service-icon">
+      <div class="service-card reveal">
+        <div class="service-num">06</div>
+        <div class="service-icon-wrap">
           <svg viewBox="0 0 24 24"><path d="M12 3l9 4-9 4-9-4 9-4z"/><path d="M5 11v4l7 3 7-3v-4"/></svg>
         </div>
         <h3>Training &amp; Certification</h3>
         <p>Awareness and operational training in corporate and open formats.</p>
         <ul>
-          <li>HKC awareness</li>
+          <li>HKC awareness workshops</li>
           <li>OHS &amp; asbestos handling</li>
-          <li>ICIHM management workshops</li>
+          <li>ICIHM management training</li>
           <li>Certificate of participation</li>
         </ul>
       </div>
@@ -600,172 +815,206 @@
   </div>
 </section>
 
-<!-- SECTOR — photo background -->
+<!-- ============================================================
+     QUOTE BREAK — full-bleed photo + regulatory milestone
+     ============================================================ -->
+<div class="quote-break">
+  <div class="quote-break-photo"></div>
+  <div class="quote-break-overlay"></div>
+  <div class="container quote-break-inner">
+    <div class="quote-break-text reveal">
+      <p>"26 June 2025 — the Hong Kong Convention entered into force. For every shipowner and cash buyer, the compliance clock is now running."</p>
+      <cite>Turqo Marine · HKC in Force Since June 2025</cite>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SECTOR
+     ============================================================ -->
 <section class="sector" id="sector">
-  <div class="sector-img"></div>
+  <div class="sector-photo"></div>
   <div class="sector-overlay"></div>
-  <div class="container sector-content">
+  <div class="container sector-inner">
     <div class="section-head reveal">
       <span class="eyebrow">Sector Context</span>
       <h2>Turkey is no longer optional in green ship recycling.</h2>
-      <p>The Hong Kong Convention entered into force on 26 June 2025. Combined with the EU Ship Recycling Regulation, the global pool of viable yards has narrowed sharply. Turkey — and specifically Aliağa — holds one of the largest concentrations of EU-approved facilities outside the EU itself.</p>
+      <p>The Hong Kong Convention and the EU Ship Recycling Regulation have dramatically narrowed the global pool of viable yards. Turkey — and specifically Aliağa — holds one of the world's largest concentrations of EU-approved facilities, making it the destination of choice for compliant recycling.</p>
     </div>
-    <div class="stats">
-      <div class="stat reveal">
-        <div class="num">1M+</div>
-        <div class="label">LDT — Aliağa annual recycling capacity</div>
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="stat-num">1M+</div>
+        <div class="stat-label">LDT — Aliağa annual ship recycling capacity</div>
       </div>
-      <div class="stat reveal">
-        <div class="num">$2.24B</div>
-        <div class="label">Turkey ship &amp; yacht exports (2025)</div>
+      <div class="stat-item reveal">
+        <div class="stat-num">$2.24B</div>
+        <div class="stat-label">Turkey ship &amp; yacht exports in 2025</div>
       </div>
-      <div class="stat reveal">
-        <div class="num">2030</div>
-        <div class="label">Deadline for ICIHM on all ships above 500 GT</div>
+      <div class="stat-item reveal">
+        <div class="stat-num">2030</div>
+        <div class="stat-label">Mandatory ICIHM deadline for all vessels above 500 GT</div>
       </div>
-      <div class="stat reveal">
-        <div class="num">15 / 13</div>
-        <div class="label">Hazardous materials listed under EU SRR / HKC</div>
+      <div class="stat-item reveal">
+        <div class="stat-num">15 / 13</div>
+        <div class="stat-label">Hazardous materials listed under EU SRR and HKC respectively</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- APPROACH -->
-<section id="approach">
+<!-- ============================================================
+     APPROACH
+     ============================================================ -->
+<section class="approach" id="approach">
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">How We Work</span>
       <h2>Four stages, one accountable team.</h2>
-      <p>Every engagement runs through the same disciplined sequence — adapted to your vessel, your flag, and your buyer.</p>
+      <p>Every engagement runs through the same disciplined sequence — adapted to your vessel, your flag state, and your target buyer.</p>
     </div>
-    <div class="approach-grid">
+    <div class="steps-grid">
       <div class="step reveal">
-        <div class="num">01</div>
+        <div class="step-num">01</div>
         <h3>Scope</h3>
-        <p>A 45-minute call to align on vessel, flag, target jurisdiction and timeline. We confirm whether we can add value before we propose.</p>
+        <p>A 45-minute call to align on vessel, flag, target jurisdiction and timeline. We confirm whether we can add value before we propose a fee.</p>
       </div>
       <div class="step reveal">
-        <div class="num">02</div>
+        <div class="step-num">02</div>
         <h3>Diagnose</h3>
-        <p>Yard shortlist with HKC / EU SRR status, capacity and OHS record. Side-by-side commercial comparison and risk markers.</p>
+        <p>Yard shortlist with HKC and EU SRR status, capacity and OHS record. Side-by-side commercial comparison with risk markers.</p>
       </div>
       <div class="step reveal">
-        <div class="num">03</div>
+        <div class="step-num">03</div>
         <h3>Execute</h3>
-        <p>MoA negotiation, final voyage planning, IHM coordination, class liaison. Single accountable lead, weekly reporting.</p>
+        <p>MoA negotiation, final voyage planning, IHM coordination, class liaison. One accountable lead. Weekly written reporting.</p>
       </div>
       <div class="step reveal">
-        <div class="num">04</div>
+        <div class="step-num">04</div>
         <h3>Close</h3>
-        <p>Final Survey, Statement of Completion, document archive, post-project lessons-learned report.</p>
+        <p>Final Survey, Statement of Completion, document archive and a post-project lessons-learned report for future reference.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- ============================================================
+     CONTACT
+     ============================================================ -->
 <section class="contact" id="contact">
   <div class="container">
     <div class="contact-grid">
+
+      <!-- Left: info -->
       <div class="reveal">
         <span class="eyebrow">Get in Touch</span>
         <h2>Have a vessel, a yard or a question?</h2>
         <p class="contact-intro">We respond to qualified enquiries within one business day. The first scoping call is always complimentary — no commitment required.</p>
-        <div class="contact-info-block">
-          <div class="label">Email</div>
-          <div class="value">info@turqomarine.com</div>
+
+        <div class="info-block">
+          <div class="info-label">Email</div>
+          <div class="info-value">info@turqomarine.com</div>
         </div>
-        <div class="contact-info-block">
-          <div class="label">Headquarters</div>
-          <div class="value">İzmir, Turkey</div>
+        <div class="info-block">
+          <div class="info-label">Headquarters</div>
+          <div class="info-value">İzmir, Turkey</div>
         </div>
-        <div class="contact-info-block">
-          <div class="label">Representation</div>
-          <div class="value">Istanbul · Aliağa</div>
+        <div class="info-block">
+          <div class="info-label">Regional Presence</div>
+          <div class="info-value">Istanbul · Aliağa</div>
         </div>
-        <div class="contact-info-block">
-          <div class="label">Working Languages</div>
-          <div class="value">English · Türkçe</div>
+        <div class="info-block">
+          <div class="info-label">Working Languages</div>
+          <div class="info-value">English · Türkçe</div>
         </div>
+
         <div class="contact-note">
-          All enquiries are handled confidentially. We do not share client information with yards, brokers or third parties.
+          All enquiries are handled in strict confidence. We do not share client information with yards, brokers or any third parties.
         </div>
       </div>
-      <form class="reveal" onsubmit="handleSubmit(event)">
+
+      <!-- Right: form -->
+      <form class="contact-form reveal" id="contactForm" novalidate>
         <div class="form-row">
-          <label for="name">Name</label>
-          <input id="name" type="text" required placeholder="Full name" />
+          <label for="f-name">Full name *</label>
+          <input id="f-name" name="name" type="text" required placeholder="Your full name" autocomplete="name" />
         </div>
         <div class="form-row">
-          <label for="company">Company</label>
-          <input id="company" type="text" placeholder="Organisation" />
+          <label for="f-company">Company</label>
+          <input id="f-company" name="company" type="text" placeholder="Organisation (optional)" autocomplete="organization" />
         </div>
         <div class="form-row">
-          <label for="email">Email</label>
-          <input id="email" type="email" required placeholder="you@company.com" />
+          <label for="f-email">Email address *</label>
+          <input id="f-email" name="email" type="email" required placeholder="you@company.com" autocomplete="email" />
         </div>
         <div class="form-row">
-          <label for="enquiry">Type of enquiry</label>
-          <select id="enquiry">
+          <label for="f-enquiry">Type of enquiry</label>
+          <select id="f-enquiry" name="enquiry">
+            <option value="">Select a service area…</option>
             <option>Recycling project advisory</option>
             <option>HKC / EU SRR compliance</option>
-            <option>Shipyard operations</option>
+            <option>Shipyard operations design</option>
             <option>Cash buyer / broker support</option>
             <option>Training &amp; certification</option>
             <option>General enquiry</option>
           </select>
         </div>
         <div class="form-row">
-          <label for="message">Message</label>
-          <textarea id="message" placeholder="Tell us briefly about the vessel, yard or question."></textarea>
+          <label for="f-message">Message *</label>
+          <textarea id="f-message" name="message" required placeholder="Tell us briefly about the vessel, yard or question."></textarea>
         </div>
-        <button class="btn btn-primary" id="submitBtn" type="submit" style="width:100%;justify-content:center">
+        <button class="btn btn-primary form-submit" id="submitBtn" type="submit">
           Send message &nbsp;→
         </button>
       </form>
+
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
 <footer>
   <div class="container">
     <div class="footer-grid">
+
       <div>
-        <div class="footer-logo">
-          <div class="logo-mark">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">
+        <div class="footer-brand">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="5.5" r="2.5"/>
+              <line x1="8.5" y1="5.5" x2="15.5" y2="5.5"/>
               <line x1="12" y1="8" x2="12" y2="20"/>
               <line x1="7" y1="11.5" x2="17" y2="11.5"/>
-              <path d="M7 20C4 18.5 4 15.5 7 15"/>
-              <path d="M17 20C20 18.5 20 15.5 17 15"/>
-              <line x1="8.5" y1="5.5" x2="15.5" y2="5.5"/>
+              <path d="M7 20C4.5 18.5 4.5 15.5 7 15"/>
+              <path d="M17 20C19.5 18.5 19.5 15.5 17 15"/>
             </svg>
           </div>
-          <span>Turqo<em>.</em>Marine</span>
+          <span class="logo-name">Turqo<em>.</em>Marine</span>
         </div>
         <p class="footer-tagline">Independent maritime consulting on ship recycling, HKC / EU SRR compliance and shipyard operations. Based in Turkey, working globally.</p>
       </div>
+
       <div>
         <h5>Services</h5>
         <ul>
-          <li><a href="#services">Recycling advisory</a></li>
-          <li><a href="#services">HKC / EU SRR</a></li>
-          <li><a href="#services">Operations design</a></li>
+          <li><a href="#services">Recycling project advisory</a></li>
+          <li><a href="#services">HKC / EU SRR compliance</a></li>
+          <li><a href="#services">Shipyard operations</a></li>
           <li><a href="#services">Cash buyer support</a></li>
-          <li><a href="#services">Training</a></li>
+          <li><a href="#services">Training &amp; certification</a></li>
         </ul>
       </div>
+
       <div>
         <h5>Contact</h5>
         <ul>
           <li>info@turqomarine.com</li>
-          <li>İzmir · Istanbul · Aliağa</li>
-          <li style="margin-top:.9rem"><a href="#contact" style="color:var(--accent)">Send a message →</a></li>
+          <li style="margin-top:.3rem">İzmir · Istanbul · Aliağa</li>
+          <li style="margin-top:.9rem"><a class="footer-cta-link" href="#contact">Send a message →</a></li>
         </ul>
       </div>
+
     </div>
     <div class="footer-bottom">
       <span>© 2026 Turqo Marine. All rights reserved.</span>
@@ -774,29 +1023,58 @@
   </div>
 </footer>
 
+<!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
 <script>
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  /* Intersection observer — reveal on scroll */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  const menuBtn = document.getElementById('menuBtn');
-  const primaryNav = document.getElementById('primaryNav');
-  menuBtn.addEventListener('click', () => primaryNav.classList.toggle('open'));
-  primaryNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => primaryNav.classList.remove('open')));
+  /* Mobile nav */
+  const menuBtn   = document.getElementById('menuBtn');
+  const navLinks  = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }));
 
+  /* Nav scroll shadow */
   window.addEventListener('scroll', () => {
     document.getElementById('siteNav').style.boxShadow =
-      window.scrollY > 10 ? '0 4px 18px rgba(11,37,69,.09)' : 'none';
+      window.scrollY > 8 ? '0 2px 20px rgba(11,37,69,.1)' : 'none';
   }, { passive: true });
 
-  function handleSubmit(e) {
+  /* Contact form */
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
     const btn = document.getElementById('submitBtn');
-    btn.textContent = "Message sent — we'll be in touch.";
+    /* basic validation */
+    const name  = this.querySelector('#f-name').value.trim();
+    const email = this.querySelector('#f-email').value.trim();
+    const msg   = this.querySelector('#f-message').value.trim();
+    if (!name || !email || !msg) {
+      btn.style.background = '#C0392B';
+      btn.textContent = 'Please fill in all required fields.';
+      setTimeout(() => {
+        btn.style.background = '';
+        btn.textContent = 'Send message →';
+      }, 2500);
+      return;
+    }
+    btn.textContent = 'Message sent — we\'ll be in touch within one business day.';
     btn.disabled = true;
     btn.style.background = '#1a6b4a';
-  }
+    btn.style.cursor = 'default';
+  });
 </script>
 </body>
 </html>
