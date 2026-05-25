@@ -1,0 +1,25 @@
+<svg width="220" height="48" viewBox="0 0 220 48" xmlns="http://www.w3.org/2000/svg">
+  <!-- Logo mark — navy square -->
+  <rect width="48" height="48" rx="4" fill="#0B2545"/>
+  <!-- Anchor icon -->
+  <g fill="none" stroke="#ffffff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Ring -->
+    <circle cx="24" cy="12" r="4"/>
+    <!-- Stock (horizontal bar through ring) -->
+    <line x1="17" y1="12" x2="31" y2="12"/>
+    <!-- Shaft -->
+    <line x1="24" y1="16" x2="24" y2="38"/>
+    <!-- Crossbar -->
+    <line x1="16" y1="25" x2="32" y2="25"/>
+    <!-- Left fluke -->
+    <path d="M16 38 C12 36 12 31.5 16 30"/>
+    <!-- Right fluke -->
+    <path d="M32 38 C36 36 36 31.5 32 30"/>
+  </g>
+  <!-- Wordmark — Turqo -->
+  <text x="60" y="32" font-family="Georgia,'Times New Roman',serif" font-size="22" font-weight="700" fill="#0B2545" letter-spacing="-0.3">Turqo</text>
+  <!-- Gold dot -->
+  <text x="125" y="32" font-family="Georgia,'Times New Roman',serif" font-size="22" font-weight="700" fill="#C9A24A">.</text>
+  <!-- Marine -->
+  <text x="133" y="32" font-family="Georgia,'Times New Roman',serif" font-size="22" font-weight="700" fill="#0B2545" letter-spacing="-0.3">Marine</text>
+</svg>
