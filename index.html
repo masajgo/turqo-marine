@@ -1252,7 +1252,7 @@ footer a:hover { color: var(--accent); }
 
     async function load() {
       try {
-        const res = await fetch('/.netlify/functions/market-data');
+        const res = await fetch('/api/market-data');
         if (!res.ok) throw new Error('HTTP ' + res.status);
         const data = await res.json();
         if (data.error || !data.countries || !data.countries.length) throw new Error(data.error || 'no data');

@@ -1,8 +1,11 @@
 const SOURCE = 'https://www.go-shipping.net/demolition-market';
 
-exports.handler = async function () {
+module.exports = async function handler(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Cache-Control', 'public, s-maxage=14400, max-age=3600');
+
   try {
-    const res = await fetch(SOURCE, {
+    const upstream = await fetch(SOURCE, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (compatible; TurqoMarine/1.0; +https://turqomarine.com)',
         'Accept': 'text/html,application/xhtml+xml',
@@ -11,8 +14,8 @@ exports.handler = async function () {
       signal: AbortSignal.timeout(10000),
     });
 
-    if (!res.ok) throw new Error('upstream ' + res.status);
-    const html = await res.text();
+    if (!upstream.ok) throw new Error('upstream ' + upstream.status);
+    const html = await upstream.text();
 
     const countries = [];
     const rx = /<div class="section-newscnt__price-level__title">([^<]+)<\/div>\s*<p class="section-newscnt__price-level__descr">([\s\S]*?)<\/p>/g;
@@ -27,7 +30,8 @@ exports.handler = async function () {
         .filter(Boolean);
 
       const entry = { name: name, wet: '', dry: '', container: '', sentiment: '' };
-      for (const line of lines) {
+      for (var i = 0; i < lines.length; i++) {
+        var line = lines[i];
         if (/^Wet/i.test(line))
           entry.wet = line.replace(/Wet\s*-\s*USD\$\s*/i, '').replace(/\s*per LDT/i, '').trim();
         else if (/^Dry/i.test(line))
@@ -43,20 +47,8 @@ exports.handler = async function () {
     const dateMatch = html.match(/Last update:\s*(\d+\s+[A-Za-z]+\s+\d{4})/);
     const lastUpdate = dateMatch ? dateMatch[1].trim() : null;
 
-    return {
-      statusCode: 200,
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Cache-Control': 'public, s-maxage=14400, max-age=3600',
-      },
-      body: JSON.stringify({ countries: countries, lastUpdate: lastUpdate, fetchedAt: new Date().toISOString() }),
-    };
+    res.status(200).json({ countries: countries, lastUpdate: lastUpdate, fetchedAt: new Date().toISOString() });
   } catch (err) {
-    return {
-      statusCode: 502,
-      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ error: err.message }),
-    };
+    res.status(502).json({ error: err.message });
   }
 };
