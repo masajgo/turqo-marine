@@ -511,6 +511,83 @@ footer a:hover { color: var(--accent); }
   .quote-break { height: 200px; }
   .quote-break-text p { font-size: 1rem; }
 }
+
+/* ============================================================
+   DEMOLITION MARKET
+   ============================================================ */
+.market { padding: var(--section) 0; background: var(--bg); }
+.market-top {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 3rem; gap: 1rem; flex-wrap: wrap;
+}
+.market-meta {
+  font-size: .76rem; color: var(--muted); text-align: right; line-height: 1.6;
+}
+.market-meta a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+
+/* Country cards */
+.market-cards {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem; margin-bottom: 2.5rem;
+}
+.mcard {
+  background: var(--bg-alt); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 1.65rem 1.45rem;
+  transition: transform .25s, box-shadow .25s;
+}
+.mcard:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(11,37,69,.07); }
+.mcard--turkey {
+  border-color: var(--accent); border-width: 2px;
+  background: linear-gradient(135deg, #fffdf5 0%, var(--bg-alt) 100%);
+}
+.mcard-flag { font-size: 1.55rem; margin-bottom: .55rem; line-height: 1; }
+.mcard-country {
+  font-size: .67rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .17em; color: var(--muted); margin-bottom: 1rem;
+}
+.mcard--turkey .mcard-country { color: var(--accent); }
+.mcard-prices { display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1.1rem; }
+.mcard-row { display: flex; justify-content: space-between; align-items: baseline; gap: .5rem; }
+.mcard-type {
+  font-size: .7rem; color: var(--muted); letter-spacing: .04em;
+  white-space: nowrap; flex-shrink: 0;
+}
+.mcard-val { font-size: .88rem; font-weight: 600; color: var(--navy); font-variant-numeric: tabular-nums; }
+.mcard-divider { height: 1px; background: var(--line); margin: .6rem 0; }
+.mcard-sentiment {
+  display: inline-block; padding: .22rem .62rem;
+  border-radius: 2px; font-size: .63rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+}
+.mcard-sentiment--steady { background: rgba(71,85,105,.1); color: #475569; }
+.mcard-sentiment--up    { background: rgba(26,107,74,.1);  color: #1a6b4a; }
+.mcard-sentiment--down  { background: rgba(192,57,43,.1);  color: #C0392B; }
+
+/* Chart panel */
+.market-chart-panel {
+  background: var(--bg-alt); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 2rem 2rem 1.5rem;
+}
+.market-chart-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 1.5rem; gap: 1rem; flex-wrap: wrap;
+}
+.market-chart-label {
+  font-size: .72rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .14em; color: var(--muted);
+}
+.market-skeleton {
+  display: flex; align-items: flex-end; gap: 1rem; height: 160px;
+  padding: 0 .5rem; animation: pulse 1.4s ease-in-out infinite;
+}
+.market-skeleton span {
+  flex: 1; background: var(--line); border-radius: 2px;
+}
+@keyframes pulse { 0%,100% { opacity: .6; } 50% { opacity: 1; } }
+.market-error { color: #C0392B; font-size: .84rem; padding: 1.5rem 0; }
+
+@media (max-width: 1024px) { .market-cards { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px)  { .market-cards { grid-template-columns: 1fr 1fr; gap: .9rem; } .market-top { flex-direction: column; align-items: flex-start; } .market-meta { text-align: left; } }
 </style>
 </head>
 <body>
@@ -553,6 +630,7 @@ footer a:hover { color: var(--accent); }
       <li><a href="#services">Services</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#sector">Sector</a></li>
+      <li><a href="#market">Market</a></li>
       <li><a href="#approach">Approach</a></li>
       <li><a class="nav-cta" href="#contact">Contact Us</a></li>
     </ul>
@@ -864,6 +942,41 @@ footer a:hover { color: var(--accent); }
 </section>
 
 <!-- ============================================================
+     DEMOLITION MARKET
+     ============================================================ -->
+<section class="market" id="market">
+  <div class="container">
+
+    <div class="market-top reveal">
+      <div>
+        <span class="eyebrow">Live Demolition Market</span>
+        <h2>Weekly scrap prices across key recycling destinations.</h2>
+      </div>
+      <div class="market-meta" id="marketMeta">Loading market data…</div>
+    </div>
+
+    <!-- Country cards -->
+    <div class="market-cards" id="marketCards">
+      <!-- skeleton placeholders while loading -->
+      <div class="mcard" style="opacity:.4"><div class="market-skeleton"><span style="height:60%"></span><span style="height:80%"></span><span style="height:50%"></span></div></div>
+      <div class="mcard" style="opacity:.4"><div class="market-skeleton"><span style="height:70%"></span><span style="height:90%"></span><span style="height:65%"></span></div></div>
+      <div class="mcard" style="opacity:.4"><div class="market-skeleton"><span style="height:55%"></span><span style="height:75%"></span><span style="height:60%"></span></div></div>
+      <div class="mcard" style="opacity:.4"><div class="market-skeleton"><span style="height:35%"></span><span style="height:45%"></span><span style="height:38%"></span></div></div>
+    </div>
+
+    <!-- Bar chart -->
+    <div class="market-chart-panel reveal">
+      <div class="market-chart-header">
+        <span class="market-chart-label">Price comparison — USD / LDT</span>
+        <span class="market-chart-label" id="chartSubtitle" style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)"></span>
+      </div>
+      <canvas id="marketChart" height="110"></canvas>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
      APPROACH
      ============================================================ -->
 <section class="approach" id="approach">
@@ -1027,6 +1140,7 @@ footer a:hover { color: var(--accent); }
 <!-- ============================================================
      SCRIPTS
      ============================================================ -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script>
   /* Intersection observer — reveal on scroll */
   const observer = new IntersectionObserver((entries) => {
@@ -1053,6 +1167,124 @@ footer a:hover { color: var(--accent); }
     document.getElementById('siteNav').style.boxShadow =
       window.scrollY > 8 ? '0 2px 20px rgba(11,37,69,.1)' : 'none';
   }, { passive: true });
+
+  /* ---- Demolition Market ---- */
+  (function initMarket() {
+    const FLAGS = { Bangladesh: '🇧🇩', Pakistan: '🇵🇰', India: '🇮🇳', Turkey: '🇹🇷' };
+    let chartInstance = null;
+
+    function midpoint(range) {
+      if (!range) return 0;
+      const parts = String(range).split('/').map(Number);
+      return parts.length === 2 ? (parts[0] + parts[1]) / 2 : parts[0];
+    }
+
+    function sentimentClass(s) {
+      if (!s) return 'steady';
+      const l = s.toLowerCase();
+      if (l.includes('up') || l.includes('firm') || l.includes('improving')) return 'up';
+      if (l.includes('down') || l.includes('soft') || l.includes('weak')) return 'down';
+      return 'steady';
+    }
+
+    function buildCard(c) {
+      const isTurkey = c.name === 'Turkey';
+      const sc = sentimentClass(c.sentiment);
+      return `
+        <div class="mcard${isTurkey ? ' mcard--turkey' : ''} reveal">
+          <div class="mcard-flag">${FLAGS[c.name] || '🌍'}</div>
+          <div class="mcard-country">${c.name}</div>
+          <div class="mcard-prices">
+            <div class="mcard-row"><span class="mcard-type">Wet</span><span class="mcard-val">$${c.wet}</span></div>
+            <div class="mcard-row"><span class="mcard-type">Dry</span><span class="mcard-val">$${c.dry}</span></div>
+            <div class="mcard-row"><span class="mcard-type">Container</span><span class="mcard-val">$${c.container}</span></div>
+          </div>
+          <div class="mcard-divider"></div>
+          <span class="mcard-sentiment mcard-sentiment--${sc}">${c.sentiment || 'N/A'}</span>
+        </div>`;
+    }
+
+    function renderChart(countries) {
+      const canvas = document.getElementById('marketChart');
+      if (!canvas || typeof Chart === 'undefined') return;
+      if (chartInstance) chartInstance.destroy();
+
+      const labels  = countries.map(c => c.name);
+      const wetData = countries.map(c => midpoint(c.wet));
+      const dryData = countries.map(c => midpoint(c.dry));
+      const ctData  = countries.map(c => midpoint(c.container));
+
+      chartInstance = new Chart(canvas, {
+        type: 'bar',
+        data: {
+          labels,
+          datasets: [
+            { label: 'Wet',       data: wetData, backgroundColor: 'rgba(11,37,69,.78)',   borderRadius: 3 },
+            { label: 'Dry',       data: dryData, backgroundColor: 'rgba(201,162,74,.70)', borderRadius: 3 },
+            { label: 'Container', data: ctData,  backgroundColor: 'rgba(100,116,139,.45)', borderRadius: 3 },
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'top',
+              labels: { font: { family: 'Inter, sans-serif', size: 11 }, color: '#475569', boxWidth: 12, padding: 16 }
+            },
+            tooltip: {
+              callbacks: { label: ctx => ` $${ctx.parsed.y.toFixed(0)} / LDT` }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: false,
+              grid: { color: 'rgba(0,0,0,.05)' },
+              ticks: { callback: v => '$' + v, font: { family: 'Inter, sans-serif', size: 11 }, color: '#64748B' }
+            },
+            x: {
+              grid: { display: false },
+              ticks: { font: { family: 'Inter, sans-serif', size: 12, weight: '500' }, color: '#0F172A' }
+            }
+          }
+        }
+      });
+    }
+
+    async function load() {
+      try {
+        const res = await fetch('/api/market-data');
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        if (data.error || !data.countries || !data.countries.length) throw new Error(data.error || 'no data');
+
+        // Cards
+        const grid = document.getElementById('marketCards');
+        grid.innerHTML = data.countries.map(buildCard).join('');
+        grid.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Meta
+        const meta = document.getElementById('marketMeta');
+        if (data.lastUpdate) {
+          meta.innerHTML = `Updated: <strong>${data.lastUpdate}</strong>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="https://www.go-shipping.net/demolition-market" target="_blank" rel="noopener noreferrer">Source: go-shipping.net ↗</a>`;
+        } else {
+          meta.innerHTML = `<a href="https://www.go-shipping.net/demolition-market" target="_blank" rel="noopener noreferrer">Source: go-shipping.net ↗</a>`;
+        }
+
+        // Chart subtitle
+        const sub = document.getElementById('chartSubtitle');
+        if (sub && data.lastUpdate) sub.textContent = 'As of ' + data.lastUpdate;
+
+        renderChart(data.countries);
+      } catch (err) {
+        const grid = document.getElementById('marketCards');
+        grid.innerHTML = `<div class="market-error" style="grid-column:1/-1">Market data temporarily unavailable. <a href="https://www.go-shipping.net/demolition-market" target="_blank" rel="noopener">View on go-shipping.net ↗</a></div>`;
+        document.getElementById('marketMeta').textContent = '';
+        console.warn('market-data:', err.message);
+      }
+    }
+
+    load();
+  })();
 
   /* Contact form */
   document.getElementById('contactForm').addEventListener('submit', function(e) {
