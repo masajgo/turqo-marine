@@ -1265,9 +1265,9 @@ footer a:hover { color: var(--accent); }
         // Meta
         const meta = document.getElementById('marketMeta');
         if (data.lastUpdate) {
-          meta.innerHTML = `Updated: <strong>${data.lastUpdate}</strong>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="https://www.go-shipping.net/demolition-market" target="_blank" rel="noopener noreferrer">Source: go-shipping.net ↗</a>`;
+          meta.innerHTML = `Updated: <strong>${data.lastUpdate}</strong>`;
         } else {
-          meta.innerHTML = `<a href="https://www.go-shipping.net/demolition-market" target="_blank" rel="noopener noreferrer">Source: go-shipping.net ↗</a>`;
+          meta.innerHTML = '';
         }
 
         // Chart subtitle
@@ -1277,7 +1277,7 @@ footer a:hover { color: var(--accent); }
         renderChart(data.countries);
       } catch (err) {
         const grid = document.getElementById('marketCards');
-        grid.innerHTML = `<div class="market-error" style="grid-column:1/-1">Market data temporarily unavailable. <a href="https://www.go-shipping.net/demolition-market" target="_blank" rel="noopener">View on go-shipping.net ↗</a></div>`;
+        grid.innerHTML = `<div class="market-error" style="grid-column:1/-1">Market data temporarily unavailable. Please check back shortly.</div>`;
         document.getElementById('marketMeta').textContent = '';
         console.warn('market-data:', err.message);
       }
