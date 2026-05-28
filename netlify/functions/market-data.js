@@ -1,7 +1,6 @@
 const SOURCE = 'https://www.go-shipping.net/demolition-market';
-const TIMEOUT = 10_000;
 
-export default async () => {
+exports.handler = async function () {
   try {
     const res = await fetch(SOURCE, {
       headers: {
@@ -9,13 +8,12 @@ export default async () => {
         'Accept': 'text/html,application/xhtml+xml',
         'Accept-Language': 'en-US,en;q=0.9',
       },
-      signal: AbortSignal.timeout(TIMEOUT),
+      signal: AbortSignal.timeout(10000),
     });
 
-    if (!res.ok) throw new Error(`upstream ${res.status}`);
+    if (!res.ok) throw new Error('upstream ' + res.status);
     const html = await res.text();
 
-    // Parse country blocks
     const countries = [];
     const rx = /<div class="section-newscnt__price-level__title">([^<]+)<\/div>\s*<p class="section-newscnt__price-level__descr">([\s\S]*?)<\/p>/g;
     let m;
@@ -25,10 +23,10 @@ export default async () => {
         .replace(/<br\s*\/?>/gi, '\n')
         .replace(/<[^>]+>/g, '')
         .split('\n')
-        .map(l => l.trim())
+        .map(function (l) { return l.trim(); })
         .filter(Boolean);
 
-      const entry = { name, wet: '', dry: '', container: '', sentiment: '' };
+      const entry = { name: name, wet: '', dry: '', container: '', sentiment: '' };
       for (const line of lines) {
         if (/^Wet/i.test(line))
           entry.wet = line.replace(/Wet\s*-\s*USD\$\s*/i, '').replace(/\s*per LDT/i, '').trim();
@@ -42,32 +40,23 @@ export default async () => {
       if (entry.wet) countries.push(entry);
     }
 
-    // Parse last update date
     const dateMatch = html.match(/Last update:\s*(\d+\s+[A-Za-z]+\s+\d{4})/);
     const lastUpdate = dateMatch ? dateMatch[1].trim() : null;
 
-    const payload = {
-      countries,
-      lastUpdate,
-      fetchedAt: new Date().toISOString(),
-    };
-
-    return new Response(JSON.stringify(payload), {
+    return {
+      statusCode: 200,
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
         'Cache-Control': 'public, s-maxage=14400, max-age=3600',
       },
-    });
+      body: JSON.stringify({ countries: countries, lastUpdate: lastUpdate, fetchedAt: new Date().toISOString() }),
+    };
   } catch (err) {
-    return new Response(JSON.stringify({ error: err.message }), {
-      status: 502,
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      },
-    });
+    return {
+      statusCode: 502,
+      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+      body: JSON.stringify({ error: err.message }),
+    };
   }
 };
-
-export const config = { path: '/api/market-data' };
