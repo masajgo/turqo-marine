@@ -7,1004 +7,1462 @@
 <meta name="description" content="Turqo Marine is a Turkey-based independent maritime advisory firm specialising in ship recycling, HKC & EU SRR compliance, drydock, port management and commercial advisory." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <style>
-/* ============================================================
-   VARIABLES & RESET
-   ============================================================ */
-:root {
-  --navy:      #0B2545;
-  --navy-dark: #071A36;
-  --accent:    #C9A24A;
-  --steel:     #475569;
-  --muted:     #64748B;
-  --line:      #E2E8F0;
-  --bg:        #FFFFFF;
-  --bg-alt:    #F8FAFC;
-  --ink:       #0F172A;
-  --topbar-h:  36px;
-  --nav-h:     72px;
-  --safe-top:  calc(var(--topbar-h) + var(--nav-h));
-  --radius:    3px;
-  --section:   6.5rem;
-}
+/* ─── CSS RESET & VARIABLES ─────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
+
+:root {
+  --navy: #0A1628;
+  --surface: #111D2E;
+  --surface-2: #162036;
+  --cream: #F5EDE0;
+  --gold: #C8963E;
+  --gold-dim: rgba(200,150,62,0.15);
+  --cream-70: rgba(245,237,224,0.7);
+  --cream-50: rgba(245,237,224,0.5);
+  --cream-10: rgba(245,237,224,0.1);
+  --topbar-h: 36px;
+  --nav-h: 72px;
+  --safe-top: calc(36px + 72px);
+  --section: 7rem;
+  --radius: 4px;
+}
+
+html { scroll-behavior: smooth; }
+
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  color: var(--ink);
-  background: var(--bg);
+  background: var(--navy);
+  color: var(--cream);
+  font-family: 'Inter', sans-serif;
   line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  padding-top: var(--safe-top);
+  overflow-x: hidden;
 }
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Playfair Display', serif;
+  color: var(--cream);
+  line-height: 1.25;
+}
+
+a { text-decoration: none; color: inherit; }
 img { display: block; max-width: 100%; }
-a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
 
-/* ============================================================
-   TYPOGRAPHY
-   ============================================================ */
-h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 600; color: var(--navy); letter-spacing: -.015em; }
-h1 { font-size: clamp(2.4rem, 4.2vw, 3.8rem); line-height: 1.08; }
-h2 { font-size: clamp(1.75rem, 2.8vw, 2.5rem); line-height: 1.18; margin-bottom: 1rem; }
-h3 { font-size: clamp(1.1rem, 1.6vw, 1.3rem); line-height: 1.3; }
-p { color: var(--steel); line-height: 1.75; }
+/* ─── UTILITY ────────────────────────────────────────────────────────── */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
 .eyebrow {
+  display: inline-block;
+  color: var(--gold);
   font-family: 'Inter', sans-serif;
-  font-size: .72rem;
+  font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: .75rem;
+  letter-spacing: 0.25em;
+  margin-bottom: 1rem;
 }
 
-/* ============================================================
-   LAYOUT UTILITIES
-   ============================================================ */
-.container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-.section { padding: var(--section) 0; }
-.section--alt { background: var(--bg-alt); }
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-.two-col--reversed { direction: rtl; }
-.two-col--reversed > * { direction: ltr; }
-.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.gold { color: var(--accent); }
-
-/* ============================================================
-   BUTTONS
-   ============================================================ */
-.btn {
-  display: inline-flex; align-items: center; gap: .5rem;
-  padding: .85rem 1.8rem;
-  border-radius: var(--radius);
-  font-family: 'Inter', sans-serif;
-  font-size: .9rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all .2s ease;
-  border: none;
-}
-.btn--primary {
-  background: var(--accent);
-  color: #fff;
-}
-.btn--primary:hover { background: #b8902f; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(201,162,74,.35); }
-.btn--outline {
-  background: transparent;
-  color: var(--navy);
-  border: 1.5px solid var(--navy);
-}
-.btn--outline:hover { background: var(--navy); color: #fff; }
-.btn--outline-white {
-  background: transparent;
-  color: #fff;
-  border: 1.5px solid rgba(255,255,255,.5);
-}
-.btn--outline-white:hover { background: rgba(255,255,255,.1); border-color: #fff; }
-
-/* ============================================================
-   TOPBAR
-   ============================================================ */
-#topbar {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  height: var(--topbar-h);
-  background: var(--navy-dark);
-  display: flex; align-items: center; justify-content: center;
-}
-#topbar p {
-  font-size: .72rem;
-  font-weight: 500;
-  letter-spacing: .06em;
-  color: rgba(255,255,255,.75);
+.section-header {
   text-align: center;
+  margin-bottom: 4rem;
 }
-#topbar span { color: var(--accent); }
 
-/* ============================================================
-   NAVIGATION
-   ============================================================ */
-#navbar {
+.section-header .gold-line {
+  width: 64px;
+  height: 1px;
+  background: var(--gold);
+  margin: 0 auto 1.5rem;
+}
+
+.section-header h2 {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  margin-bottom: 0.75rem;
+}
+
+.section-header .subtitle {
+  color: var(--cream-50);
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ─── REVEAL ANIMATION ───────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── TOPBAR ─────────────────────────────────────────────────────────── */
+#topbar {
+  height: var(--topbar-h);
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--cream-10);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.72rem;
+  color: var(--cream-50);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+}
+
+.topbar-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+/* ─── NAV ─────────────────────────────────────────────────────────────── */
+#nav {
+  height: var(--nav-h);
+  background: var(--navy);
+  border-bottom: 1px solid var(--cream-10);
   position: fixed;
   top: var(--topbar-h);
-  left: 0; right: 0;
+  left: 0;
+  right: 0;
   z-index: 999;
-  height: var(--nav-h);
-  background: rgba(255,255,255,.96);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--line);
-  transition: box-shadow .3s ease;
+  transition: box-shadow 0.3s ease;
 }
-#navbar.scrolled { box-shadow: 0 4px 24px rgba(11,37,69,.1); }
+
+#nav.scrolled {
+  box-shadow: 0 4px 32px rgba(0,0,0,0.4);
+}
+
 .nav-inner {
-  max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
   height: 100%;
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
 }
-.nav-logo { display: flex; align-items: center; }
+
+.nav-logo img {
+  height: 40px;
+  width: auto;
+}
+
 .nav-links {
-  display: flex; align-items: center; gap: .2rem;
-  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex: 1;
+  justify-content: center;
 }
+
 .nav-links a {
-  font-size: .85rem;
+  color: var(--cream-50);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
   font-weight: 500;
-  color: var(--steel);
-  padding: .4rem .75rem;
-  border-radius: var(--radius);
-  transition: color .2s, background .2s;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  transition: color 0.2s;
+  white-space: nowrap;
 }
-.nav-links a:hover { color: var(--navy); background: var(--bg-alt); }
-.nav-cta {
-  background: var(--navy);
-  color: #fff !important;
-  padding: .5rem 1.2rem !important;
+
+.nav-links a:hover { color: var(--cream); }
+
+.btn-contact {
+  background: var(--gold);
+  color: var(--navy);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.6rem 1.5rem;
   border-radius: var(--radius);
-  font-weight: 600 !important;
-  transition: background .2s !important;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.2s, transform 0.2s;
+  display: inline-block;
 }
-.nav-cta:hover { background: var(--accent) !important; color: #fff !important; }
+
+.btn-contact:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
 .hamburger {
   display: none;
-  flex-direction: column; gap: 5px;
-  background: none; border: none; cursor: pointer; padding: .5rem;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
 }
-.hamburger span { display: block; width: 24px; height: 2px; background: var(--navy); border-radius: 2px; transition: all .3s; }
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--cream);
+  transition: all 0.3s;
+}
+
 .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
 .mobile-menu {
   display: none;
   position: fixed;
   top: var(--safe-top);
-  left: 0; right: 0;
-  background: #fff;
-  border-bottom: 1px solid var(--line);
-  z-index: 998;
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border-bottom: 1px solid var(--cream-10);
   padding: 1.5rem 2rem;
-  box-shadow: 0 8px 32px rgba(0,0,0,.1);
-}
-.mobile-menu.open { display: block; }
-.mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: .25rem; }
-.mobile-menu a {
-  display: block; padding: .75rem 0;
-  font-size: 1rem; font-weight: 500;
-  color: var(--navy);
-  border-bottom: 1px solid var(--line);
-}
-.mobile-menu a:last-child { border-bottom: none; }
-.mobile-menu .mobile-cta {
-  margin-top: 1rem;
-  display: block; text-align: center;
-  padding: .85rem;
-  background: var(--navy);
-  color: #fff;
-  font-weight: 600;
-  border-radius: var(--radius);
+  z-index: 998;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-/* ============================================================
-   HERO
-   ============================================================ */
+.mobile-menu.open { display: flex; }
+
+.mobile-menu a {
+  color: var(--cream-50);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--cream-10);
+  transition: color 0.2s;
+}
+
+.mobile-menu a:hover { color: var(--cream); }
+
+.mobile-menu .btn-contact {
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+/* ─── HERO ──────────────────────────────────────────────────────────── */
 #hero {
   min-height: calc(100vh - var(--safe-top));
+  margin-top: var(--safe-top);
   display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  background: var(--bg);
+  grid-template-columns: 1.2fr 1fr;
+  gap: 0;
+  background: var(--navy);
+  overflow: hidden;
 }
+
 .hero-left {
-  padding: 5rem 3rem 5rem 2rem;
-  display: flex; flex-direction: column; justify-content: center;
-  max-width: 660px;
-  margin: 0 auto;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5rem 4rem 5rem 0;
 }
-.hero-left .container-inner { max-width: 600px; }
+
+.hero-label {
+  color: var(--gold);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  margin-bottom: 1.5rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.hero-left h1 {
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+  color: var(--cream);
+}
+
+.hero-lead {
+  color: var(--cream-70);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  max-width: 520px;
+}
+
 .hero-badges {
-  display: flex; flex-wrap: wrap; gap: .5rem;
-  margin: 1.75rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
 }
-.badge {
-  display: inline-flex; align-items: center; gap: .4rem;
-  padding: .35rem .85rem;
-  background: var(--bg-alt);
-  border: 1px solid var(--line);
+
+.hero-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--cream-50);
+  font-size: 0.72rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.hero-badge::before {
+  content: '';
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: var(--navy);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.75rem 1.75rem;
   border-radius: var(--radius);
-  font-size: .78rem;
-  font-weight: 500;
-  color: var(--steel);
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+  display: inline-block;
 }
-.badge svg { flex-shrink: 0; }
-.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: .5rem; }
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--cream);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--radius);
+  border: 1px solid rgba(245,237,224,0.4);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  display: inline-block;
+}
+
+.btn-outline:hover {
+  border-color: var(--cream);
+  background: rgba(245,237,224,0.05);
+}
+
 .hero-right {
   position: relative;
-  background: url('./img-about.jpg') center/cover no-repeat;
-  min-height: 600px;
+  overflow: hidden;
 }
-.hero-right::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(160deg, rgba(7,26,54,.72) 0%, rgba(11,37,69,.55) 100%);
-}
-.hero-cards {
-  position: absolute; bottom: 2.5rem; left: 1.5rem; right: 1.5rem;
-  z-index: 2;
-  display: flex; flex-direction: column; gap: .75rem;
-}
-.hcard {
-  background: rgba(255,255,255,.12);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255,255,255,.18);
-  border-radius: var(--radius);
-  padding: 1rem 1.25rem;
-}
-.hcard-label { font-size: .7rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: .2rem; }
-.hcard-value { font-size: 1rem; font-weight: 600; color: #fff; }
 
-/* ============================================================
-   TRUST STRIP
-   ============================================================ */
-#trust {
-  background: var(--bg-alt);
-  padding: 2.5rem 0;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+.hero-right-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('./img-about.jpg');
+  background-size: cover;
+  background-position: center;
 }
+
+.hero-right-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(10,22,40,0.9) 0%, rgba(10,22,40,0.7) 100%);
+}
+
+.hero-cards {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 3rem 2.5rem;
+  gap: 1rem;
+}
+
+.hero-card {
+  backdrop-filter: blur(14px);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--cream-10);
+  padding: 1.2rem 1.5rem;
+  border-radius: var(--radius);
+  transition: border-color 0.2s;
+}
+
+.hero-card:hover {
+  border-color: rgba(200,150,62,0.3);
+}
+
+.hero-card-label {
+  color: var(--cream-50);
+  font-size: 0.62rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  margin-bottom: 0.4rem;
+}
+
+.hero-card-value {
+  color: var(--cream);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.7rem;
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 0.3rem;
+}
+
+.hero-card-desc {
+  color: var(--cream-50);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+/* ─── TRUST STRIP ───────────────────────────────────────────────────── */
+#trust {
+  background: var(--surface);
+  padding: 3rem 0;
+}
+
 .trust-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+  gap: 0;
 }
-.trust-item {
-  display: flex; align-items: center; gap: .85rem;
-  padding: 1.25rem 1.5rem;
-  background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-}
-.trust-icon {
-  flex-shrink: 0; width: 40px; height: 40px;
-  background: rgba(201,162,74,.1);
-  border-radius: var(--radius);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--accent);
-}
-.trust-text strong { display: block; font-size: .9rem; font-weight: 600; color: var(--navy); }
-.trust-text span { font-size: .78rem; color: var(--muted); }
 
-/* ============================================================
-   ABOUT
-   ============================================================ */
-#about .about-photo {
-  position: relative;
-  border-radius: var(--radius);
-  overflow: hidden;
-  aspect-ratio: 4/5;
+.trust-item {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+  border-right: 1px solid var(--cream-10);
 }
-#about .about-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-#about .about-photo::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(11,37,69,.6) 0%, transparent 55%);
+
+.trust-item:last-child { border-right: none; }
+
+.trust-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
 }
-.photo-tag {
-  position: absolute; bottom: 1.25rem; left: 1.25rem; right: 1.25rem;
-  z-index: 2;
-  background: rgba(255,255,255,.12);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,.2);
-  border-radius: var(--radius);
-  padding: .75rem 1rem;
-  font-size: .78rem;
-  color: rgba(255,255,255,.9);
-  font-style: italic;
+
+.trust-icon svg {
+  width: 28px;
+  height: 28px;
+  stroke: var(--gold);
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.trust-title {
+  color: var(--cream);
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+}
+
+.trust-desc {
+  color: var(--cream-50);
+  font-size: 0.75rem;
   line-height: 1.5;
 }
-.about-copy > p { margin-bottom: 1rem; }
-blockquote {
-  margin: 1.75rem 0;
-  padding: 1.25rem 1.5rem;
-  border-left: 3px solid var(--accent);
-  background: var(--bg-alt);
-  border-radius: 0 var(--radius) var(--radius) 0;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.05rem;
-  font-style: italic;
-  color: var(--navy);
-  line-height: 1.65;
-}
-.pillars {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
-  margin-top: 1.75rem;
-}
-.pillar {
-  padding: 1.1rem 1.25rem;
-  background: var(--bg-alt);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  border-left: 3px solid var(--accent);
-}
-.pillar strong { display: block; font-size: .9rem; font-weight: 600; color: var(--navy); margin-bottom: .2rem; }
-.pillar span { font-size: .8rem; color: var(--muted); }
 
-/* ============================================================
-   SERVICES
-   ============================================================ */
-#services { background: var(--bg-alt); }
-.services-intro { text-align: center; max-width: 640px; margin: 0 auto 3rem; }
-.service-card {
-  position: relative;
-  background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 2rem 1.75rem;
-  overflow: hidden;
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-.service-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform .3s ease;
-}
-.service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(11,37,69,.1); }
-.service-card:hover::before { transform: scaleX(1); }
-.service-num {
-  font-family: 'Playfair Display', serif;
-  font-size: 3.5rem;
-  font-weight: 700;
-  color: var(--line);
-  line-height: 1;
-  position: absolute;
-  top: 1rem; right: 1.25rem;
-  user-select: none;
-}
-.service-icon {
-  width: 44px; height: 44px;
-  background: rgba(201,162,74,.1);
-  border-radius: var(--radius);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--accent);
-  margin-bottom: 1.1rem;
-}
-.service-card h3 { margin-bottom: .6rem; font-size: 1.1rem; }
-.service-card > p { font-size: .88rem; margin-bottom: 1rem; }
-.service-card ul { list-style: none; padding: 0; }
-.service-card ul li {
-  display: flex; align-items: flex-start; gap: .5rem;
-  font-size: .82rem; color: var(--muted);
-  padding: .3rem 0;
-  border-top: 1px solid var(--line);
-}
-.service-card ul li::before {
-  content: '—';
-  color: var(--accent);
-  flex-shrink: 0;
-  font-weight: 600;
-}
-
-/* ============================================================
-   QUOTE BREAK
-   ============================================================ */
-#quote-break {
-  position: relative;
-  background: url('./img-quote-texture.jpg') center/cover no-repeat;
-  padding: 6rem 0;
-}
-#quote-break::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(7,26,54,.9) 0%, rgba(11,37,69,.82) 100%);
-}
-.quote-inner {
-  position: relative; z-index: 1;
-  text-align: center; max-width: 820px; margin: 0 auto;
-  padding: 0 2rem;
-}
-.quote-mark {
-  font-family: 'Playfair Display', serif;
-  font-size: 6rem;
-  line-height: .5;
-  color: var(--accent);
-  opacity: .4;
-  margin-bottom: 1.5rem;
-  user-select: none;
-}
-.quote-inner blockquote {
-  background: transparent;
-  border: none;
-  border-left: none;
-  padding: 0;
-  font-size: clamp(1.1rem, 2vw, 1.4rem);
-  color: rgba(255,255,255,.92);
-  font-style: italic;
-  margin: 0 0 1.5rem;
-}
-.quote-attr {
-  font-size: .82rem;
-  font-weight: 600;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-/* ============================================================
-   SECTOR
-   ============================================================ */
-#sector {
-  position: relative;
-  background: url('./img-sector-bg.jpg') center/cover no-repeat fixed;
+/* ─── ABOUT ─────────────────────────────────────────────────────────── */
+#about {
+  background: var(--navy);
   padding: var(--section) 0;
 }
-#sector::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(to right, rgba(7,26,54,.95) 0%, rgba(11,37,69,.88) 100%);
-}
-.sector-inner { position: relative; z-index: 1; }
-.sector-inner .eyebrow { color: var(--accent); }
-.sector-inner h2 { color: #fff; max-width: 640px; margin-bottom: 1.25rem; }
-.sector-inner > p { color: rgba(255,255,255,.75); max-width: 580px; margin-bottom: 3rem; }
-.sector-stats {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
-}
-.stat-card {
-  padding: 1.75rem 1.5rem;
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: var(--radius);
-}
-.stat-value {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.4rem;
-  font-weight: 700;
-  color: var(--accent);
-  line-height: 1;
-  margin-bottom: .5rem;
-}
-.stat-label { font-size: .8rem; color: rgba(255,255,255,.65); line-height: 1.4; }
 
-/* ============================================================
-   MARKET
-   ============================================================ */
-#market { background: var(--bg); }
-.market-intro { max-width: 640px; margin-bottom: 2.5rem; }
-.market-cards {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
-  margin-bottom: 2.5rem;
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 5rem;
+  align-items: center;
 }
-.market-card {
-  background: var(--bg-alt);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 1.5rem;
-  transition: box-shadow .2s;
-}
-.market-card:hover { box-shadow: 0 6px 24px rgba(11,37,69,.08); }
-.market-card--turkey { border-color: var(--accent); border-width: 2px; }
-.market-flag { font-size: 2rem; margin-bottom: .75rem; }
-.market-country {
-  font-family: 'Playfair Display', serif;
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: var(--navy);
-  margin-bottom: 1rem;
-}
-.price-rows { display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1rem; }
-.price-row { display: flex; justify-content: space-between; align-items: center; font-size: .82rem; }
-.price-type { color: var(--muted); }
-.price-val { font-weight: 600; color: var(--navy); }
-.sentiment {
-  display: inline-block;
-  padding: .25rem .75rem;
-  border-radius: 20px;
-  font-size: .72rem;
-  font-weight: 600;
-  letter-spacing: .04em;
-}
-.sentiment--stable { background: rgba(59,130,246,.1); color: #2563EB; }
-.sentiment--up { background: rgba(16,185,129,.1); color: #059669; }
-.sentiment--down { background: rgba(239,68,68,.1); color: #DC2626; }
-.market-skeleton {
-  animation: skeleton-pulse 1.5s ease-in-out infinite;
-  background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
-  background-size: 200% 100%;
-  border-radius: var(--radius);
-  height: 16px;
-  margin-bottom: .5rem;
-}
-@keyframes skeleton-pulse {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-.chart-wrap {
-  background: var(--bg-alt);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 2rem;
-}
-.chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: .5rem; }
-.chart-header h3 { font-size: 1rem; color: var(--navy); }
-#market-updated { font-size: .78rem; color: var(--muted); }
-.chart-container { position: relative; height: 280px; }
 
-/* ============================================================
-   APPROACH
-   ============================================================ */
-#approach { background: var(--bg-alt); }
-.approach-intro { text-align: center; max-width: 560px; margin: 0 auto 3.5rem; }
-.steps {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
-  position: relative;
-}
-.steps::before {
-  content: '';
-  position: absolute;
-  top: 2.25rem;
-  left: calc(12.5% + 2rem);
-  right: calc(12.5% + 2rem);
-  height: 1px;
-  background: var(--line);
-  z-index: 0;
-}
-.step {
-  position: relative; z-index: 1;
-  text-align: center;
-  padding: 0 1.5rem;
-}
-.step-num {
-  width: 48px; height: 48px;
-  background: var(--navy);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #fff;
-  margin: 0 auto 1.25rem;
-}
-.step h3 { font-size: 1.05rem; margin-bottom: .5rem; }
-.step p { font-size: .85rem; }
-
-/* ============================================================
-   DRYDOCK / PORT / ADVISORY  (shared panel styles)
-   ============================================================ */
-.service-section { }
-.service-copy { }
-.service-copy > p { margin-bottom: 1rem; font-size: .95rem; }
-.feature-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: .65rem;
-  margin-top: 1.75rem;
-}
-.feature-item {
-  display: flex; align-items: flex-start; gap: .6rem;
-  font-size: .85rem; color: var(--steel);
-}
-.feature-item::before {
-  content: '';
-  flex-shrink: 0;
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--accent);
-  margin-top: .55rem;
-}
-.service-visual {
+.about-image-wrap {
   position: relative;
   border-radius: var(--radius);
   overflow: hidden;
-  min-height: 480px;
 }
-.service-visual img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
-.service-visual-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(160deg, rgba(7,26,54,.75) 0%, rgba(11,37,69,.6) 100%);
-}
-.service-stat-box {
-  position: absolute; bottom: 2rem; left: 2rem; right: 2rem;
-  z-index: 2;
-  background: rgba(255,255,255,.1);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,.18);
-  border-radius: var(--radius);
-  padding: 1.25rem 1.5rem;
-}
-.service-stat-box strong {
-  display: block;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: #fff;
-  margin-bottom: .3rem;
-}
-.service-stat-box span { font-size: .8rem; color: rgba(255,255,255,.7); }
 
-/* ============================================================
-   CONTACT
-   ============================================================ */
-#contact { background: var(--bg-alt); }
-.contact-info { }
-.contact-info h2 { margin-bottom: 1rem; }
-.contact-info > p { margin-bottom: 2rem; }
-.info-items { display: flex; flex-direction: column; gap: 1.1rem; margin-bottom: 2rem; }
-.info-item { display: flex; gap: 1rem; align-items: flex-start; }
-.info-icon {
-  flex-shrink: 0; width: 40px; height: 40px;
-  background: rgba(201,162,74,.1);
+.about-image-wrap img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
   border-radius: var(--radius);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--accent);
 }
-.info-text strong { display: block; font-size: .82rem; font-weight: 600; color: var(--navy); text-transform: uppercase; letter-spacing: .06em; margin-bottom: .15rem; }
-.info-text span { font-size: .9rem; color: var(--steel); }
-.confidentiality-note {
-  padding: 1rem 1.25rem;
-  background: rgba(201,162,74,.07);
-  border: 1px solid rgba(201,162,74,.2);
-  border-radius: var(--radius);
-  font-size: .8rem;
-  color: var(--muted);
+
+.about-image-tag {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  background: rgba(10,22,40,0.9);
+  border-left: 3px solid var(--gold);
+  padding: 0.75rem 1rem;
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.about-image-tag span {
+  color: var(--cream);
+  font-size: 0.78rem;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.4;
+}
+
+.about-content h2 {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  margin-bottom: 1.5rem;
+}
+
+.about-content p {
+  color: var(--cream-70);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+}
+
+.about-quote {
+  border-left: 3px solid var(--gold);
+  padding: 1rem 1.5rem;
+  margin: 2rem 0;
+  background: rgba(200,150,62,0.05);
+}
+
+.about-quote p {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--cream);
+  margin: 0;
   line-height: 1.6;
 }
 
-/* FORM */
-.contact-form { }
-.form-card {
-  background: var(--bg);
-  border: 1px solid var(--line);
+.about-pillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.about-pillar h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--cream);
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.about-pillar h4::before {
+  content: '—';
+  color: var(--gold);
+  font-weight: 400;
+}
+
+.about-pillar p {
+  color: var(--cream-50);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* ─── SERVICES ──────────────────────────────────────────────────────── */
+#services {
+  background: var(--surface);
+  padding: var(--section) 0;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.service-card {
+  background: var(--surface-2);
+  border: 1px solid var(--cream-10);
+  padding: 2rem;
   border-radius: var(--radius);
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card:hover {
+  border-color: rgba(200,150,62,0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(200,150,62,0.08);
+}
+
+.service-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: rgba(200,150,62,0.2);
+  line-height: 1;
+  margin-bottom: 1rem;
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+}
+
+.service-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--gold-dim);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.service-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--gold);
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.service-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  color: var(--cream);
+  margin-bottom: 0.75rem;
+}
+
+.service-card > p {
+  color: var(--cream-70);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+
+.service-card ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.service-card ul li {
+  color: var(--cream-50);
+  font-size: 0.82rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  line-height: 1.4;
+}
+
+.service-card ul li::before {
+  content: '—';
+  color: var(--gold);
+  flex-shrink: 0;
+  margin-top: 0;
+}
+
+/* ─── TWO COLUMN SECTION (Drydock, Port, Advisory) ──────────────────── */
+.two-col-section {
+  padding: var(--section) 0;
+}
+
+.two-col-section.bg-navy { background: var(--navy); }
+.two-col-section.bg-surface { background: var(--surface); }
+
+.two-col-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.two-col-grid.reversed {
+  direction: rtl;
+}
+
+.two-col-grid.reversed > * {
+  direction: ltr;
+}
+
+.two-col-text h2 {
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  margin-bottom: 1.5rem;
+}
+
+.two-col-text p {
+  color: var(--cream-70);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+  margin-top: 2rem;
+}
+
+.feature-item {
+  color: var(--cream-50);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  line-height: 1.4;
+  padding: 0.4rem 0;
+}
+
+.feature-item::before {
+  content: '—';
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.image-panel {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-height: 460px;
+}
+
+.image-panel img {
+  width: 100%;
+  height: 100%;
+  min-height: 460px;
+  object-fit: cover;
+}
+
+.image-panel-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,22,40,0.85) 0%, rgba(10,22,40,0.3) 60%);
+}
+
+.image-panel-stat {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  background: rgba(10,22,40,0.8);
+  backdrop-filter: blur(10px);
+  border-left: 3px solid var(--gold);
+  padding: 1rem 1.25rem;
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.image-panel-stat p {
+  color: var(--cream);
+  font-size: 0.82rem;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ─── MARKET ────────────────────────────────────────────────────────── */
+#market {
+  background: var(--surface);
+  padding: var(--section) 0;
+}
+
+.market-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.market-card {
+  background: var(--surface-2);
+  border: 1px solid var(--cream-10);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  transition: border-color 0.2s;
+}
+
+.market-card.turkey {
+  border-color: var(--gold);
+}
+
+.market-card-flag {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.market-card-country {
+  color: var(--gold);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.67rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.17em;
+  margin-bottom: 1rem;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.price-label {
+  color: var(--cream-50);
+  font-size: 0.75rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.price-value {
+  color: var(--cream);
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+}
+
+.price-divider {
+  height: 1px;
+  background: var(--cream-10);
+  margin: 0.75rem 0;
+}
+
+.sentiment-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  padding: 0.2rem 0.6rem;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.sentiment-badge.bullish {
+  background: rgba(34,197,94,0.15);
+  color: #4ade80;
+}
+
+.sentiment-badge.neutral {
+  background: rgba(200,150,62,0.15);
+  color: var(--gold);
+}
+
+.sentiment-badge.bearish {
+  background: rgba(239,68,68,0.15);
+  color: #f87171;
+}
+
+/* Skeleton */
+.skeleton {
+  animation: shimmer 1.5s infinite;
+  background: linear-gradient(90deg, var(--surface-2) 25%, rgba(245,237,224,0.05) 50%, var(--surface-2) 75%);
+  background-size: 200% 100%;
+  border-radius: 3px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.skeleton-card {
+  background: var(--surface-2);
+  border: 1px solid var(--cream-10);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+}
+
+.skeleton-line {
+  height: 12px;
+  margin-bottom: 10px;
+  border-radius: 3px;
+}
+
+.chart-panel {
+  background: var(--surface-2);
+  border: 1px solid var(--cream-10);
+  padding: 2rem;
+  border-radius: var(--radius);
+}
+
+.chart-panel h4 {
+  color: var(--cream-50);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ─── APPROACH ──────────────────────────────────────────────────────── */
+#approach {
+  background: var(--navy);
+  padding: var(--section) 0;
+}
+
+.steps-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+  margin-top: 3rem;
+}
+
+.steps-row::before {
+  content: '';
+  position: absolute;
+  top: 2.5rem;
+  left: 12.5%;
+  right: 12.5%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), var(--gold), var(--gold), transparent);
+  opacity: 0.3;
+}
+
+.step {
+  padding: 0 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.step-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  font-weight: 700;
+  color: rgba(200,150,62,0.25);
+  line-height: 1;
+  margin-bottom: 1.25rem;
+}
+
+.step h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  color: var(--cream);
+  margin-bottom: 0.75rem;
+}
+
+.step p {
+  color: var(--cream-70);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+/* ─── CONTACT ───────────────────────────────────────────────────────── */
+#contact {
+  background: var(--surface);
+  padding: var(--section) 0;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.contact-info h2 {
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  margin-bottom: 1.25rem;
+}
+
+.contact-info > p {
+  color: var(--cream-70);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.contact-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.contact-block-label {
+  color: var(--cream-50);
+  font-size: 0.65rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  margin-bottom: 0.3rem;
+}
+
+.contact-block-value {
+  color: var(--cream);
+  font-size: 0.92rem;
+}
+
+.confidentiality-note {
+  background: var(--surface-2);
+  border-left: 3px solid var(--gold);
+  padding: 1rem 1.25rem;
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.confidentiality-note p {
+  color: var(--cream-70);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.contact-form-card {
+  background: var(--navy);
+  border: 1px solid var(--cream-10);
   padding: 2.5rem;
+  border-radius: var(--radius);
 }
-.form-card h3 { margin-bottom: 1.5rem; font-size: 1.2rem; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
-.form-group { margin-bottom: 1rem; }
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
 .form-group label {
-  display: block; font-size: .8rem; font-weight: 600;
-  color: var(--navy); margin-bottom: .4rem;
-  text-transform: uppercase; letter-spacing: .05em;
+  display: block;
+  color: var(--cream);
+  font-size: 0.76rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
 }
+
 .form-group input,
 .form-group select,
 .form-group textarea {
-  width: 100%; padding: .75rem 1rem;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
+  width: 100%;
+  background: var(--surface-2);
+  border: 1px solid var(--cream-10);
+  color: var(--cream);
   font-family: 'Inter', sans-serif;
-  font-size: .9rem;
-  color: var(--ink);
-  background: var(--bg);
-  transition: border-color .2s, box-shadow .2s;
+  font-size: 0.88rem;
+  padding: 0.7rem 1rem;
+  border-radius: var(--radius);
   outline: none;
-  appearance: none;
+  transition: border-color 0.2s;
   -webkit-appearance: none;
 }
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--cream-50);
+}
+
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(201,162,74,.12);
+  border-color: var(--gold);
 }
-.form-group textarea { resize: vertical; min-height: 120px; }
-.form-group select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
-.form-submit { width: 100%; }
+
+.form-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%23F5EDE0' stroke-width='1.5' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+.form-group select option {
+  background: var(--surface-2);
+  color: var(--cream);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.btn-submit {
+  width: 100%;
+  background: var(--gold);
+  color: var(--navy);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.85rem 2rem;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+  margin-top: 0.5rem;
+}
+
+.btn-submit:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
 .form-success {
   display: none;
+  background: rgba(34,197,94,0.15);
+  border: 1px solid rgba(34,197,94,0.3);
+  border-radius: var(--radius);
+  padding: 1.5rem;
   text-align: center;
-  padding: 3rem 2rem;
+  color: #4ade80;
+  font-size: 0.9rem;
+  font-family: 'Inter', sans-serif;
 }
-.form-success.show { display: block; }
-.form-success .success-icon {
-  width: 60px; height: 60px;
-  background: rgba(16,185,129,.1);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 1.25rem;
-  font-size: 1.5rem;
-}
-.form-success h3 { color: #059669; margin-bottom: .5rem; }
-.form-success p { font-size: .9rem; color: var(--muted); }
-.form-content.hidden { display: none; }
 
-/* ============================================================
-   FOOTER
-   ============================================================ */
-#footer {
-  background: var(--navy-dark);
+.form-success.visible { display: block; }
+
+/* ─── FOOTER ────────────────────────────────────────────────────────── */
+footer {
+  background: var(--navy);
+  border-top: 1px solid var(--cream-10);
   padding: 4rem 0 0;
 }
+
 .footer-grid {
-  display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 3rem;
-  padding-bottom: 3rem;
-  border-bottom: 1px solid rgba(255,255,255,.08);
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: 3rem;
 }
-.footer-brand .tagline {
-  font-size: .88rem;
-  color: rgba(255,255,255,.55);
-  margin-top: 1rem;
-  max-width: 260px;
-  line-height: 1.65;
+
+.footer-brand img {
+  height: 36px;
+  margin-bottom: 1rem;
 }
-.footer-col h4 {
+
+.footer-brand p {
+  color: var(--cream-50);
+  font-size: 0.82rem;
+  line-height: 1.6;
+  max-width: 280px;
+}
+
+.footer-col h5 {
   font-family: 'Inter', sans-serif;
-  font-size: .75rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: .12em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.45);
+  letter-spacing: 0.15em;
+  color: var(--cream);
   margin-bottom: 1.25rem;
 }
-.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .65rem; }
-.footer-col ul li a, .footer-col ul li span {
-  font-size: .88rem;
-  color: rgba(255,255,255,.65);
-  transition: color .2s;
+
+.footer-col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
 }
-.footer-col ul li a:hover { color: var(--accent); }
+
+.footer-col ul li a {
+  color: var(--cream-50);
+  font-size: 0.85rem;
+  transition: color 0.2s;
+}
+
+.footer-col ul li a:hover { color: var(--cream); }
+
+.footer-col address {
+  font-style: normal;
+  color: var(--cream-50);
+  font-size: 0.85rem;
+  line-height: 1.8;
+}
+
+.footer-col address a {
+  color: var(--cream-50);
+  transition: color 0.2s;
+}
+
+.footer-col address a:hover { color: var(--cream); }
+
 .footer-bottom {
+  border-top: 1px solid rgba(245,237,224,0.07);
   padding: 1.5rem 0;
-  display: flex; justify-content: space-between; align-items: center;
-  flex-wrap: wrap; gap: .5rem;
-}
-.footer-bottom p, .footer-bottom span {
-  font-size: .78rem;
-  color: rgba(255,255,255,.35);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
-/* ============================================================
-   REVEAL ANIMATIONS
-   ============================================================ */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity .65s ease, transform .65s ease;
+.footer-bottom span {
+  color: rgba(245,237,224,0.3);
+  font-size: 0.78rem;
+  font-family: 'Inter', sans-serif;
 }
-.reveal.visible {
-  opacity: 1;
-  transform: none;
-}
-.reveal-delay-1 { transition-delay: .1s; }
-.reveal-delay-2 { transition-delay: .2s; }
-.reveal-delay-3 { transition-delay: .3s; }
-.reveal-delay-4 { transition-delay: .4s; }
 
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
+/* ─── RESPONSIVE ────────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   :root { --section: 5rem; }
-  .sector-stats { grid-template-columns: repeat(2, 1fr); }
-  .market-cards { grid-template-columns: repeat(2, 1fr); }
-  .trust-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero-left { padding: 4rem 3rem 4rem 0; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps-row { gap: 1rem; }
+  .steps-row::before { display: none; }
+  .step { padding: 0 1rem; }
 }
 
 @media (max-width: 900px) {
-  .nav-links, .nav-cta { display: none; }
+  .nav-links { display: none; }
   .hamburger { display: flex; }
-  #hero { grid-template-columns: 1fr; min-height: auto; }
-  .hero-right { min-height: 380px; }
-  .hero-left { padding: 3.5rem 2rem; max-width: 100%; }
-  .two-col { grid-template-columns: 1fr; gap: 2.5rem; }
-  .two-col--reversed { direction: ltr; }
-  .steps { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-  .steps::before { display: none; }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
+
+  #hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .hero-right {
+    min-height: 400px;
+    display: block;
+  }
+  .hero-left { padding: 3rem 0; }
+
+  .trust-grid { grid-template-columns: repeat(2, 1fr); }
+  .trust-item:nth-child(2) { border-right: none; }
+  .trust-item:nth-child(3) { border-right: 1px solid var(--cream-10); border-top: 1px solid var(--cream-10); }
+  .trust-item:nth-child(4) { border-right: none; border-top: 1px solid var(--cream-10); }
+
+  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .two-col-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .two-col-grid.reversed { direction: ltr; }
+  .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+  .footer-brand { grid-column: 1 / -1; }
+  .market-cards { grid-template-columns: repeat(2, 1fr); }
+  .steps-row { grid-template-columns: repeat(2, 1fr); }
+  .about-pillars { grid-template-columns: 1fr; gap: 1rem; }
 }
 
 @media (max-width: 640px) {
-  :root { --section: 4rem; --topbar-h: 44px; }
-  #topbar p { font-size: .68rem; }
-  .grid-3 { grid-template-columns: 1fr; }
-  .grid-2 { grid-template-columns: 1fr; }
-  .trust-grid { grid-template-columns: 1fr; }
-  .sector-stats { grid-template-columns: repeat(2, 1fr); }
+  :root {
+    --section: 4rem;
+    --topbar-h: 0px;
+    --nav-h: 60px;
+    --safe-top: 60px;
+  }
+
+  #topbar { display: none; }
+  #nav { top: 0; }
+
+  .hero-left { padding: 2.5rem 0; }
+  .hero-buttons { flex-direction: column; }
+  .btn-primary, .btn-outline { text-align: center; }
+
+  .services-grid { grid-template-columns: 1fr; }
   .market-cards { grid-template-columns: 1fr; }
-  .steps { grid-template-columns: 1fr; }
+  .steps-row { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
   .footer-bottom { flex-direction: column; text-align: center; }
-  .form-row { grid-template-columns: 1fr; }
-  .hero-badges { gap: .4rem; }
-  .badge { font-size: .72rem; padding: .3rem .65rem; }
-  .pillars { grid-template-columns: 1fr; }
+
+  .hero-cards { padding: 2rem 1.5rem; }
+  .contact-form-card { padding: 1.75rem; }
   .feature-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 
-<!-- ============================================================
-     TOPBAR
-     ============================================================ -->
+<!-- TOPBAR -->
 <div id="topbar">
-  <p>Independent Maritime Advisory&nbsp;&nbsp;<span>·</span>&nbsp;&nbsp;HKC &amp; EU SRR Specialists&nbsp;&nbsp;<span>·</span>&nbsp;&nbsp;İzmir, Turkey&nbsp;&nbsp;<span>·</span>&nbsp;&nbsp;Working Globally</p>
+  <div class="topbar-inner">
+    <span>Independent Maritime Advisory</span>
+    <div class="topbar-dot"></div>
+    <span>HKC &amp; EU SRR Specialists</span>
+    <div class="topbar-dot"></div>
+    <span>İzmir, Turkey</span>
+  </div>
 </div>
 
-<!-- ============================================================
-     NAVIGATION
-     ============================================================ -->
-<nav id="navbar" role="navigation" aria-label="Main navigation">
+<!-- NAV -->
+<nav id="nav">
   <div class="nav-inner">
-    <a href="#" class="nav-logo">
-      <img src="./logo-concept-1.png" alt="Turqo Marine" style="height:44px;mix-blend-mode:multiply;">
+    <a href="#hero" class="nav-logo">
+      <img src="./logo-white.png" style="height:40px" alt="Turqo Marine">
     </a>
-    <ul class="nav-links">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#drydock">Drydock</a></li>
-      <li><a href="#portmgmt">Port Mgmt</a></li>
-      <li><a href="#maritime">Advisory</a></li>
-      <li><a href="#market">Market</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact" class="nav-cta">Contact Us</a></li>
-    </ul>
-    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#drydock">Drydock</a>
+      <a href="#portmgmt">Port Mgmt</a>
+      <a href="#maritime">Advisory</a>
+      <a href="#market">Market</a>
+      <a href="#about">About</a>
+    </div>
+    <a href="#contact" class="btn-contact">Contact Us</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
   </div>
 </nav>
 
-<!-- Mobile menu -->
-<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-  <ul>
-    <li><a href="#services" class="mobile-link">Services</a></li>
-    <li><a href="#drydock" class="mobile-link">Drydock</a></li>
-    <li><a href="#portmgmt" class="mobile-link">Port Mgmt</a></li>
-    <li><a href="#maritime" class="mobile-link">Advisory</a></li>
-    <li><a href="#market" class="mobile-link">Market</a></li>
-    <li><a href="#about" class="mobile-link">About</a></li>
-  </ul>
-  <a href="#contact" class="mobile-cta mobile-link">Contact Us</a>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services">Services</a>
+  <a href="#drydock">Drydock</a>
+  <a href="#portmgmt">Port Mgmt</a>
+  <a href="#maritime">Advisory</a>
+  <a href="#market">Market</a>
+  <a href="#about">About</a>
+  <a href="#contact" class="btn-contact">Contact Us</a>
 </div>
 
-<!-- ============================================================
-     HERO
-     ============================================================ -->
-<section id="hero" aria-label="Hero">
-  <div class="hero-left">
-    <p class="eyebrow reveal">Turkey-Based Ship Recycling Advisory</p>
-    <h1 class="reveal reveal-delay-1">Your ship's last voyage, <span class="gold">handled right.</span></h1>
-    <p style="margin-top:1.25rem;font-size:1.05rem;color:var(--steel);max-width:520px;" class="reveal reveal-delay-2">Turqo Marine provides independent, operational and regulatory advisory for shipowners, cash buyers and recycling yards navigating the new era of compliant ship recycling under HKC and EU SRR.</p>
-    <div class="hero-badges reveal reveal-delay-2">
-      <span class="badge">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        No yard ownership
-      </span>
-      <span class="badge">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        HKC &amp; EU SRR
-      </span>
-      <span class="badge">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        IMO Standards
-      </span>
-      <span class="badge">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-        Aliağa on the ground
-      </span>
-    </div>
-    <div class="hero-btns reveal reveal-delay-3">
-      <a href="#services" class="btn btn--primary">Explore services <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      <a href="#contact" class="btn btn--outline">Talk to us</a>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left container" style="padding-left:2rem;padding-right:0;max-width:none;">
+    <div style="max-width:560px;padding:5rem 0 5rem 2rem;" class="reveal">
+      <div class="hero-label">Turkey-Based Ship Recycling Advisory</div>
+      <h1>Your ship's last voyage, <span style="color:var(--gold)">handled right.</span></h1>
+      <p class="hero-lead">Turqo Marine is a boutique consulting firm based in İzmir — advising shipowners, cash buyers and brokers across the full recycling lifecycle under the Hong Kong Convention and EU Ship Recycling Regulation.</p>
+      <div class="hero-badges">
+        <span class="hero-badge">No yard ownership</span>
+        <span class="hero-badge">HKC &amp; EU SRR</span>
+        <span class="hero-badge">IMO / BIMCO</span>
+        <span class="hero-badge">Aliağa on the ground</span>
+      </div>
+      <div class="hero-buttons">
+        <a href="#services" class="btn-primary">Explore services →</a>
+        <a href="#contact" class="btn-outline">Talk to us</a>
+      </div>
     </div>
   </div>
-  <div class="hero-right" role="img" aria-label="Ship recycling facility in Aliağa, Turkey">
-    <div class="hero-cards">
-      <div class="hcard reveal">
-        <div class="hcard-label">EU-Approved Cluster</div>
-        <div class="hcard-value">Aliağa, Turkey</div>
+  <div class="hero-right">
+    <div class="hero-right-bg"></div>
+    <div class="hero-right-overlay"></div>
+    <div class="hero-cards reveal" style="transition-delay:0.2s">
+      <div class="hero-card">
+        <div class="hero-card-label">EU-Approved Cluster</div>
+        <div class="hero-card-value">Aliağa</div>
+        <div class="hero-card-desc">The preferred jurisdiction for EU-flagged tonnage</div>
       </div>
-      <div class="hcard reveal reveal-delay-1">
-        <div class="hcard-label">Annual Capacity</div>
-        <div class="hcard-value">1M+ LDT</div>
+      <div class="hero-card">
+        <div class="hero-card-label">Annual Capacity</div>
+        <div class="hero-card-value">1M+ LDT</div>
+        <div class="hero-card-desc">Concentrated in a world-class industrial cluster</div>
       </div>
-      <div class="hcard reveal reveal-delay-2">
-        <div class="hcard-label">Regulatory Anchor</div>
-        <div class="hcard-value">HKC · EU SRR</div>
+      <div class="hero-card">
+        <div class="hero-card-label">Regulatory Anchor</div>
+        <div class="hero-card-value">HKC · EU SRR</div>
+        <div class="hero-card-desc">In force since June 2025. ICIHM mandatory by 2030</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     TRUST STRIP
-     ============================================================ -->
-<div id="trust">
+<!-- TRUST STRIP -->
+<section id="trust">
   <div class="container">
     <div class="trust-grid">
       <div class="trust-item reveal">
         <div class="trust-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-        <div class="trust-text">
-          <strong>No yard ownership</strong>
-          <span>100% independent advice</span>
-        </div>
+        <div class="trust-title">No yard ownership</div>
+        <div class="trust-desc">Fully independent — your interests, not the yard's</div>
       </div>
-      <div class="trust-item reveal reveal-delay-1">
+      <div class="trust-item reveal" style="transition-delay:0.1s">
         <div class="trust-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9S3 16.97 3 12 7.03 3 12 3s9 4.03 9 9z"/></svg>
         </div>
-        <div class="trust-text">
-          <strong>HKC &amp; EU SRR fluent</strong>
-          <span>Full regulatory coverage</span>
-        </div>
+        <div class="trust-title">HKC &amp; EU SRR fluent</div>
+        <div class="trust-desc">Deep regulatory expertise across both frameworks</div>
       </div>
-      <div class="trust-item reveal reveal-delay-2">
+      <div class="trust-item reveal" style="transition-delay:0.2s">
         <div class="trust-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
         </div>
-        <div class="trust-text">
-          <strong>1 business day response</strong>
-          <span>We don't keep you waiting</span>
-        </div>
+        <div class="trust-title">1 business day response</div>
+        <div class="trust-desc">Committed turnaround for every client inquiry</div>
       </div>
-      <div class="trust-item reveal reveal-delay-3">
+      <div class="trust-item reveal" style="transition-delay:0.3s">
         <div class="trust-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
         </div>
-        <div class="trust-text">
-          <strong>On the ground, Aliağa</strong>
-          <span>Yard-level presence</span>
-        </div>
+        <div class="trust-title">On the ground, Aliağa</div>
+        <div class="trust-desc">Local presence where the work actually happens</div>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- ============================================================
-     ABOUT
-     ============================================================ -->
-<section id="about" class="section">
+<!-- ABOUT -->
+<section id="about" class="two-col-section bg-navy">
   <div class="container">
-    <div class="two-col">
-      <div class="about-photo reveal">
-        <img src="./img-about.jpg" alt="Aliağa ship recycling facilities, Turkey" loading="lazy">
-        <div class="photo-tag">Aliağa, Turkey — one of the world's largest concentrations of EU-approved ship recycling facilities</div>
+    <div class="about-grid">
+      <div class="about-image-wrap reveal">
+        <img src="./img-about.jpg" alt="Aliağa ship recycling facilities, Turkey" />
+        <div class="about-image-tag">
+          <span>Aliağa, Turkey — EU-approved ship recycling facilities</span>
+        </div>
       </div>
-      <div class="about-copy reveal reveal-delay-1">
-        <p class="eyebrow">About Turqo Marine</p>
-        <h2>An independent bridge between the yard floor and the boardroom.</h2>
-        <p>Turqo Marine is a boutique maritime advisory firm based in İzmir, Turkey. We serve shipowners, cash buyers, brokers, and recycling yards across the full lifecycle of ship recycling — from pre-sale planning and compliance strategy through to final documentation and closure.</p>
-        <p>Our team combines operational depth from years on the yard floor with the regulatory and commercial fluency demanded by international clients. We do not own or operate yards, which means our advice is never shaped by commercial interests beyond yours.</p>
-        <blockquote>"The Hong Kong Convention has changed everything. Compliance is no longer optional — it is the transaction itself. We help our clients navigate it with confidence."</blockquote>
-        <div class="pillars">
-          <div class="pillar reveal">
-            <strong>Operational depth</strong>
-            <span>Real yard experience, not just theory</span>
+      <div class="about-content reveal" style="transition-delay:0.15s">
+        <span class="eyebrow">Who We Are</span>
+        <h2>Independent counsel, from first call to final certificate.</h2>
+        <p>Turqo Marine was founded to address a gap in the market: shipowners and cash buyers navigating end-of-life decisions need advisors with no yard affiliation, no side interests and no conflict of interest.</p>
+        <p>We operate exclusively from the owner's or buyer's side, providing technical, commercial and regulatory guidance across the full recycling lifecycle — from initial feasibility through to final deregistration.</p>
+        <blockquote class="about-quote">
+          <p>"Independent advice is not a luxury in ship recycling. It is the foundation of every sound decision."</p>
+        </blockquote>
+        <div class="about-pillars">
+          <div class="about-pillar">
+            <h4>Regulatory Depth</h4>
+            <p>Specialists in HKC, EU SRR and IHM — the frameworks that define the post-2025 recycling landscape.</p>
           </div>
-          <div class="pillar reveal reveal-delay-1">
-            <strong>Regulatory fluency</strong>
-            <span>HKC, EU SRR, IHM — we know the rules</span>
+          <div class="about-pillar">
+            <h4>Commercial Acumen</h4>
+            <p>We speak the language of cash buyers, brokers and lenders — and protect your position at each stage.</p>
           </div>
-          <div class="pillar reveal reveal-delay-2">
-            <strong>International orientation</strong>
-            <span>Working across flags, jurisdictions, cultures</span>
+          <div class="about-pillar">
+            <h4>Local Intelligence</h4>
+            <p>Based in İzmir with daily visibility of Aliağa yard conditions, pricing and availability.</p>
           </div>
-          <div class="pillar reveal reveal-delay-3">
-            <strong>Independent stance</strong>
-            <span>No yard relationships. Your interests, only.</span>
+          <div class="about-pillar">
+            <h4>Lifecycle Coverage</h4>
+            <p>From fleet disposal planning to last port formalities — one team for the full scope.</p>
           </div>
         </div>
       </div>
@@ -1012,443 +1470,359 @@ blockquote {
   </div>
 </section>
 
-<!-- ============================================================
-     SERVICES
-     ============================================================ -->
-<section id="services" class="section section--alt">
+<!-- SERVICES -->
+<section id="services">
   <div class="container">
-    <div class="services-intro reveal">
-      <p class="eyebrow">What We Do</p>
-      <h2>Six service lines. One integrated mandate.</h2>
-      <p>From compliance documentation to commercial negotiation, Turqo Marine covers the full spectrum of ship recycling and maritime advisory needs.</p>
+    <div class="section-header reveal">
+      <div class="gold-line"></div>
+      <span class="eyebrow">What We Do</span>
+      <h2>Specialist services across the full recycling and maritime lifecycle.</h2>
+      <p class="subtitle">Each mandate is handled by experienced principals — not delegated to juniors.</p>
     </div>
-    <div class="grid-3">
+    <div class="services-grid">
+
       <div class="service-card reveal">
-        <div class="service-num">01</div>
+        <div class="service-number">01</div>
         <div class="service-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
         <h3>Recycling Project Advisory</h3>
-        <p>End-to-end advisory for shipowners and cash buyers navigating the recycling process under modern regulations.</p>
+        <p>End-to-end management of the recycling transaction — from initial feasibility to final certification.</p>
         <ul>
-          <li>Yard selection &amp; due diligence</li>
-          <li>Pre-recycling survey coordination</li>
-          <li>IHM verification &amp; gap analysis</li>
-          <li>Project timeline &amp; milestone management</li>
+          <li>Feasibility &amp; price benchmarking</li>
+          <li>Yard selection &amp; negotiation</li>
+          <li>Contract review &amp; risk mapping</li>
+          <li>Pre-recycling condition assessment</li>
+          <li>Final certification management</li>
         </ul>
       </div>
-      <div class="service-card reveal reveal-delay-1">
-        <div class="service-num">02</div>
+
+      <div class="service-card reveal" style="transition-delay:0.1s">
+        <div class="service-number">02</div>
         <div class="service-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
         <h3>HKC / EU SRR Compliance</h3>
-        <p>Specialist guidance on Hong Kong Convention and EU Ship Recycling Regulation compliance requirements.</p>
+        <p>Regulatory guidance for vessels subject to the Hong Kong Convention and EU Ship Recycling Regulation.</p>
         <ul>
-          <li>IHM preparation &amp; maintenance</li>
-          <li>Statement of Compliance support</li>
-          <li>Ready for Recycling Certificate coordination</li>
-          <li>EU SRR facility list navigation</li>
+          <li>IHM preparation &amp; verification</li>
+          <li>Statement of Compliance (SoC)</li>
+          <li>Ready for Recycling Certificate</li>
+          <li>EU-approved facility confirmation</li>
+          <li>Ongoing flag state liaison</li>
         </ul>
       </div>
-      <div class="service-card reveal reveal-delay-2">
-        <div class="service-num">03</div>
+
+      <div class="service-card reveal" style="transition-delay:0.2s">
+        <div class="service-number">03</div>
         <div class="service-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>
         </div>
         <h3>Shipyard Operations Design</h3>
-        <p>Operational design and process improvement for recycling yards seeking EU approval or operational efficiency.</p>
+        <p>Advisory for yards developing or upgrading operations to HKC or EU SRR-compliant standards.</p>
         <ul>
-          <li>SRFP preparation &amp; review</li>
-          <li>Yard process mapping</li>
-          <li>Environmental management systems</li>
-          <li>EU/HKC approval pathway planning</li>
+          <li>SRFP development &amp; review</li>
+          <li>Environmental compliance systems</li>
+          <li>Worker safety frameworks</li>
+          <li>Audit preparation &amp; gap analysis</li>
+          <li>Certification pathway planning</li>
         </ul>
       </div>
+
       <div class="service-card reveal">
-        <div class="service-num">04</div>
+        <div class="service-number">04</div>
         <div class="service-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
         </div>
         <h3>Commercial &amp; Legal Advisory</h3>
-        <p>Commercial structuring and legal support for recycling transactions and maritime contracts.</p>
+        <p>Structuring and protection across commercial negotiations — MOAs, LDs, warranties and dispute avoidance.</p>
         <ul>
-          <li>MOA / recycling contract review</li>
-          <li>Price negotiation support</li>
-          <li>Delivery condition assessment</li>
-          <li>Post-sale dispute resolution</li>
+          <li>MOA &amp; MOU review</li>
+          <li>Warranty &amp; indemnity advice</li>
+          <li>Casualty &amp; total loss support</li>
+          <li>P&amp;I and lender co-ordination</li>
+          <li>Dispute prevention &amp; resolution</li>
         </ul>
       </div>
-      <div class="service-card reveal reveal-delay-1">
-        <div class="service-num">05</div>
+
+      <div class="service-card reveal" style="transition-delay:0.1s">
+        <div class="service-number">05</div>
         <div class="service-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
         </div>
         <h3>Cash Buyer &amp; Broker Support</h3>
-        <p>Dedicated support for cash buyers and brokers requiring on-the-ground presence and regulatory expertise in Turkey.</p>
+        <p>Independent technical and regulatory backup for buyers and brokers active in the demolition market.</p>
         <ul>
-          <li>Yard negotiation &amp; representation</li>
-          <li>On-site delivery supervision</li>
-          <li>Compliance due diligence</li>
-          <li>Documentation &amp; closing support</li>
+          <li>Vessel condition &amp; risk scoring</li>
+          <li>Hazmat &amp; IHM due diligence</li>
+          <li>Price &amp; market positioning</li>
+          <li>Delivery voyage oversight</li>
+          <li>Documentation management</li>
         </ul>
       </div>
-      <div class="service-card reveal reveal-delay-2">
-        <div class="service-num">06</div>
+
+      <div class="service-card reveal" style="transition-delay:0.2s">
+        <div class="service-number">06</div>
         <div class="service-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
         </div>
         <h3>Training &amp; Certification</h3>
-        <p>Practical training programmes for yard personnel, shipowner teams and intermediaries on HKC compliance and operations.</p>
+        <p>Bespoke training programmes for shipyard personnel, crew and shore teams on HKC and EU SRR obligations.</p>
         <ul>
-          <li>HKC &amp; EU SRR awareness workshops</li>
-          <li>IHM officer training</li>
-          <li>Yard management certification prep</li>
-          <li>Bespoke in-house programmes</li>
+          <li>HKC awareness workshops</li>
+          <li>IHM surveyor training</li>
+          <li>Yard safety &amp; compliance courses</li>
+          <li>Crew end-of-life procedures</li>
+          <li>Customised client programmes</li>
         </ul>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     QUOTE BREAK
-     ============================================================ -->
-<section id="quote-break" aria-label="Quote">
-  <div class="quote-inner reveal">
-    <div class="quote-mark">"</div>
-    <blockquote>26 June 2025 — the Hong Kong Convention entered into force. For every shipowner and cash buyer, the compliance clock is now running.</blockquote>
-    <p class="quote-attr">Turqo Marine &nbsp;·&nbsp; HKC in Force Since June 2025</p>
-  </div>
-</section>
-
-<!-- ============================================================
-     SECTOR CONTEXT
-     ============================================================ -->
-<section id="sector" aria-label="Sector context">
-  <div class="container sector-inner">
-    <p class="eyebrow reveal">Sector Context</p>
-    <h2 class="reveal reveal-delay-1">Turkey is no longer optional in green ship recycling.</h2>
-    <p class="reveal reveal-delay-2">With the HKC now in force and the EU SRR setting the benchmark for compliant demolition, Turkey's Aliağa cluster has emerged as the only major recycling destination outside South Asia with a meaningful portfolio of EU-listed yards. For shipowners bound by European law or ESG commitments, Turkey is increasingly the only viable choice.</p>
-    <div class="sector-stats reveal reveal-delay-3">
-      <div class="stat-card">
-        <div class="stat-value">1M+</div>
-        <div class="stat-label">LDT annual recycling capacity at Aliağa</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">$2.24B</div>
-        <div class="stat-label">Global ship recycling market value in 2024</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">2030</div>
-        <div class="stat-label">Target year for IMO GHG strategy milestones</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">15/13</div>
-        <div class="stat-label">EU-listed yards in Aliağa / Turkey total</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     MARKET DATA
-     ============================================================ -->
-<section id="market" class="section">
+<!-- DRYDOCK -->
+<section id="drydock" class="two-col-section bg-navy">
   <div class="container">
-    <div class="market-intro reveal">
-      <p class="eyebrow">Live Demolition Market</p>
-      <h2>Weekly scrap prices across key recycling destinations.</h2>
-      <p>Indicative demolition prices per LDT, updated weekly. All prices in USD/LDT.</p>
-    </div>
-    <div class="market-cards" id="market-cards">
-      <!-- Skeleton loaders -->
-      <div class="market-card" id="card-bangladesh">
-        <div class="market-flag">🇧🇩</div>
-        <div class="market-country">Bangladesh</div>
-        <div class="price-rows">
-          <div class="market-skeleton" style="width:80%"></div>
-          <div class="market-skeleton" style="width:65%"></div>
-          <div class="market-skeleton" style="width:72%"></div>
-        </div>
-        <div class="market-skeleton" style="width:60px;height:22px;border-radius:20px"></div>
-      </div>
-      <div class="market-card" id="card-pakistan">
-        <div class="market-flag">🇵🇰</div>
-        <div class="market-country">Pakistan</div>
-        <div class="price-rows">
-          <div class="market-skeleton" style="width:80%"></div>
-          <div class="market-skeleton" style="width:65%"></div>
-          <div class="market-skeleton" style="width:72%"></div>
-        </div>
-        <div class="market-skeleton" style="width:60px;height:22px;border-radius:20px"></div>
-      </div>
-      <div class="market-card" id="card-india">
-        <div class="market-flag">🇮🇳</div>
-        <div class="market-country">India</div>
-        <div class="price-rows">
-          <div class="market-skeleton" style="width:80%"></div>
-          <div class="market-skeleton" style="width:65%"></div>
-          <div class="market-skeleton" style="width:72%"></div>
-        </div>
-        <div class="market-skeleton" style="width:60px;height:22px;border-radius:20px"></div>
-      </div>
-      <div class="market-card market-card--turkey" id="card-turkey">
-        <div class="market-flag">🇹🇷</div>
-        <div class="market-country">Turkey</div>
-        <div class="price-rows">
-          <div class="market-skeleton" style="width:80%"></div>
-          <div class="market-skeleton" style="width:65%"></div>
-          <div class="market-skeleton" style="width:72%"></div>
-        </div>
-        <div class="market-skeleton" style="width:60px;height:22px;border-radius:20px"></div>
-      </div>
-    </div>
-    <div class="chart-wrap reveal">
-      <div class="chart-header">
-        <h3>Price Comparison — USD/LDT</h3>
-        <span id="market-updated"></span>
-      </div>
-      <div class="chart-container">
-        <canvas id="market-chart"></canvas>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     APPROACH
-     ============================================================ -->
-<section id="approach" class="section section--alt">
-  <div class="container">
-    <div class="approach-intro reveal">
-      <p class="eyebrow">How We Work</p>
-      <h2>Four stages, one accountable team.</h2>
-      <p>A structured process that keeps projects on time, on budget and fully compliant.</p>
-    </div>
-    <div class="steps">
-      <div class="step reveal">
-        <div class="step-num">01</div>
-        <h3>Scope</h3>
-        <p>We define the project parameters, client objectives and regulatory context before any work begins.</p>
-      </div>
-      <div class="step reveal reveal-delay-1">
-        <div class="step-num">02</div>
-        <h3>Diagnose</h3>
-        <p>Technical, commercial and compliance gaps are identified through document review and on-site assessment.</p>
-      </div>
-      <div class="step reveal reveal-delay-2">
-        <div class="step-num">03</div>
-        <h3>Execute</h3>
-        <p>We manage the operational and advisory mandate — coordinating yards, authorities and stakeholders on your behalf.</p>
-      </div>
-      <div class="step reveal reveal-delay-3">
-        <div class="step-num">04</div>
-        <h3>Close</h3>
-        <p>All documentation, certificates and reporting obligations are fulfilled. You receive a complete, auditable record.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     DRYDOCK & TECHNICAL SUPPORT
-     ============================================================ -->
-<section id="drydock" class="section section--alt service-section">
-  <div class="container">
-    <div class="two-col">
-      <div class="service-copy reveal">
-        <p class="eyebrow">Technical Services</p>
+    <div class="two-col-grid">
+      <div class="two-col-text reveal">
+        <span class="eyebrow">Technical Services</span>
         <h2>Drydock &amp; Technical Support</h2>
-        <p>Turqo Marine coordinates and supervises drydock and repair programmes across Turkey's major yards, ensuring works are executed to specification, on schedule and within budget. Our technical team bridges the gap between owner requirements and yard capability.</p>
-        <p>We provide pre-docking inspections, repair specification drafting, on-site supervision and post-docking condition reporting. Our independence from yard commercial interests ensures the owner's position is protected throughout.</p>
+        <p>Drydocking is one of the most cost-intensive operations in ship management. Turqo Marine provides independent oversight — from specification drafting through to final close-out — to ensure you get value, not surprises.</p>
+        <p>We act as owner's representative throughout the yard period, providing daily reporting, defect management and contractual protection at every stage.</p>
         <div class="feature-grid">
-          <div class="feature-item">Pre-docking survey &amp; inspection</div>
-          <div class="feature-item">Repair specification drafting</div>
-          <div class="feature-item">On-site supervision &amp; reporting</div>
-          <div class="feature-item">Yard tender &amp; bid management</div>
-          <div class="feature-item">Class attendance coordination</div>
-          <div class="feature-item">Procurement support</div>
-          <div class="feature-item">Post-docking condition report</div>
-          <div class="feature-item">Owner's representation</div>
+          <div class="feature-item">Drydock spec &amp; tendering</div>
+          <div class="feature-item">Yard selection &amp; contract review</div>
+          <div class="feature-item">On-site technical supervision</div>
+          <div class="feature-item">Condition assessment reports</div>
+          <div class="feature-item">Pre-recycling technical audits</div>
+          <div class="feature-item">Class survey co-ordination</div>
+          <div class="feature-item">Owner's representative</div>
+          <div class="feature-item">Defect &amp; repair management</div>
         </div>
       </div>
-      <div class="service-visual reveal reveal-delay-1">
-        <img src="./img-sector-bg.jpg" alt="Drydock operations" loading="lazy">
-        <div class="service-visual-overlay"></div>
-        <div class="service-stat-box">
-          <strong>Coverage</strong>
-          <span>Tuzla · Aliağa · İzmit</span>
+      <div class="image-panel reveal" style="transition-delay:0.15s">
+        <img src="./img-sector-bg.jpg" alt="Ship drydock operations" />
+        <div class="image-panel-overlay"></div>
+        <div class="image-panel-stat">
+          <p>Coverage: <strong>Tuzla · Aliağa · İzmit</strong></p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     PORT MANAGEMENT
-     ============================================================ -->
-<section id="portmgmt" class="section service-section" style="background:var(--bg)">
+<!-- PORT MANAGEMENT -->
+<section id="portmgmt" class="two-col-section bg-surface">
   <div class="container">
-    <div class="two-col two-col--reversed">
-      <div class="service-copy reveal">
-        <p class="eyebrow">Port Operations</p>
+    <div class="two-col-grid reversed">
+      <div class="image-panel reveal">
+        <img src="./img-about.jpg" alt="Port operations management" />
+        <div class="image-panel-overlay"></div>
+        <div class="image-panel-stat">
+          <p><strong>24 / 7</strong> — Port operations don't keep office hours. Neither do we.</p>
+        </div>
+      </div>
+      <div class="two-col-text reveal" style="transition-delay:0.15s">
+        <span class="eyebrow">Port Operations</span>
         <h2>Port Management</h2>
-        <p>Turqo Marine provides port management and agency support across Turkish ports, managing vessel calls, cargo operations and port authority interfaces with the precision and responsiveness that maritime operations demand.</p>
-        <p>From pre-arrival coordination through to departure, our port operations team ensures smooth, compliant and cost-efficient port calls — with 24/7 availability and real-time reporting to owners and operators.</p>
+        <p>Last-voyage port calls are high-stakes. Documentation errors, crew issues and regulatory non-compliance at this stage can delay delivery or invalidate the transaction entirely.</p>
+        <p>Turqo Marine manages the full port phase — from arrival planning through to flag deregistration — ensuring every authority is satisfied and every document is in order.</p>
         <div class="feature-grid">
-          <div class="feature-item">Pre-arrival coordination</div>
-          <div class="feature-item">Port authority liaison</div>
-          <div class="feature-item">Cargo documentation</div>
-          <div class="feature-item">Customs &amp; clearance</div>
-          <div class="feature-item">Crew logistics &amp; welfare</div>
-          <div class="feature-item">Bunker coordination</div>
-          <div class="feature-item">Disbursement account management</div>
-          <div class="feature-item">24/7 owner reporting</div>
-        </div>
-      </div>
-      <div class="service-visual reveal reveal-delay-1">
-        <img src="./img-about.jpg" alt="Port operations" loading="lazy">
-        <div class="service-visual-overlay"></div>
-        <div class="service-stat-box">
-          <strong>24/7</strong>
-          <span>Port operations don't keep office hours. Neither do we.</span>
+          <div class="feature-item">Port state control prep</div>
+          <div class="feature-item">Berthing &amp; logistics</div>
+          <div class="feature-item">Last voyage documentation</div>
+          <div class="feature-item">Crew sign-off management</div>
+          <div class="feature-item">Bunker &amp; slop handling</div>
+          <div class="feature-item">Customs &amp; import clearance</div>
+          <div class="feature-item">Flag state deregistration</div>
+          <div class="feature-item">Incident &amp; delay management</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     MARITIME ADVISORY
-     ============================================================ -->
-<section id="maritime" class="section section--alt service-section">
+<!-- MARITIME ADVISORY -->
+<section id="maritime" class="two-col-section bg-navy">
   <div class="container">
-    <div class="two-col">
-      <div class="service-copy reveal">
-        <p class="eyebrow">Strategic Consulting</p>
+    <div class="two-col-grid">
+      <div class="two-col-text reveal">
+        <span class="eyebrow">Strategic Consulting</span>
         <h2>Maritime Advisory</h2>
-        <p>Turqo Marine's advisory practice serves shipowners, investors and maritime businesses requiring strategic, commercial and regulatory counsel on a retainer or project basis. We bring deep sector knowledge and regional expertise to complex mandates.</p>
-        <p>Whether you need ongoing strategic support, a one-off transaction opinion or a structured advisory engagement, we work to your timetable and your objectives — independently and confidentially.</p>
+        <p>Beyond the recycling transaction, shipowners and operators face ongoing strategic decisions across fleet lifecycle, regulatory change and commercial risk. Turqo Marine provides senior-level advisory support on a retainer, project or ad-hoc basis.</p>
+        <p>From board briefings to lender liaison, our mandate is to bring clarity and accountability to decisions that matter.</p>
         <div class="feature-grid">
-          <div class="feature-item">Fleet strategy &amp; renewal planning</div>
-          <div class="feature-item">ESG &amp; decarbonisation advisory</div>
+          <div class="feature-item">Fleet lifecycle &amp; disposal planning</div>
           <div class="feature-item">Regulatory risk assessment</div>
-          <div class="feature-item">M&amp;A transaction support</div>
-          <div class="feature-item">Market entry &amp; feasibility</div>
-          <div class="feature-item">Counterparty due diligence</div>
-          <div class="feature-item">Dispute &amp; claims advisory</div>
-          <div class="feature-item">Board-level sector briefings</div>
+          <div class="feature-item">Market &amp; timing analysis</div>
+          <div class="feature-item">ESG &amp; sustainability reporting</div>
+          <div class="feature-item">Lender &amp; P&amp;I liaison</div>
+          <div class="feature-item">Due diligence for acquisitions</div>
+          <div class="feature-item">Expert witness &amp; arbitration</div>
+          <div class="feature-item">Board-level briefings</div>
         </div>
       </div>
-      <div class="service-visual reveal reveal-delay-1">
-        <img src="./img-quote-texture.jpg" alt="Maritime advisory" loading="lazy">
-        <div class="service-visual-overlay"></div>
-        <div class="service-stat-box">
-          <strong>Retainer · Project · Ad-hoc</strong>
-          <span>Flexible structures for ongoing or one-off mandates.</span>
+      <div class="image-panel reveal" style="transition-delay:0.15s">
+        <img src="./img-sector-bg.jpg" alt="Maritime advisory services" />
+        <div class="image-panel-overlay"></div>
+        <div class="image-panel-stat">
+          <p><strong>Retainer · Project · Ad-hoc</strong> — Flexible structures for ongoing or one-off mandates.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     CONTACT
-     ============================================================ -->
-<section id="contact" class="section section--alt">
+<!-- DEMOLITION MARKET -->
+<section id="market">
   <div class="container">
-    <div class="two-col" style="align-items:start;gap:3rem;">
+    <div class="section-header reveal">
+      <div class="gold-line"></div>
+      <span class="eyebrow">Live Demolition Market</span>
+      <h2>Weekly scrap prices across key recycling destinations.</h2>
+      <span id="marketMeta" style="color:var(--cream-50);font-size:.8rem"></span>
+    </div>
+    <div class="market-cards" id="marketCards">
+      <!-- Skeleton loading state -->
+      <div class="skeleton-card">
+        <div class="skeleton skeleton-line" style="width:40%;height:24px;margin-bottom:16px"></div>
+        <div class="skeleton skeleton-line" style="width:70%"></div>
+        <div class="skeleton skeleton-line" style="width:60%"></div>
+        <div class="skeleton skeleton-line" style="width:50%"></div>
+      </div>
+      <div class="skeleton-card">
+        <div class="skeleton skeleton-line" style="width:40%;height:24px;margin-bottom:16px"></div>
+        <div class="skeleton skeleton-line" style="width:70%"></div>
+        <div class="skeleton skeleton-line" style="width:60%"></div>
+        <div class="skeleton skeleton-line" style="width:50%"></div>
+      </div>
+      <div class="skeleton-card">
+        <div class="skeleton skeleton-line" style="width:40%;height:24px;margin-bottom:16px"></div>
+        <div class="skeleton skeleton-line" style="width:70%"></div>
+        <div class="skeleton skeleton-line" style="width:60%"></div>
+        <div class="skeleton skeleton-line" style="width:50%"></div>
+      </div>
+      <div class="skeleton-card">
+        <div class="skeleton skeleton-line" style="width:40%;height:24px;margin-bottom:16px"></div>
+        <div class="skeleton skeleton-line" style="width:70%"></div>
+        <div class="skeleton skeleton-line" style="width:60%"></div>
+        <div class="skeleton skeleton-line" style="width:50%"></div>
+      </div>
+    </div>
+    <div class="chart-panel reveal" id="chartPanel" style="display:none">
+      <h4>LDT Scrap Price Comparison (USD/LDT)</h4>
+      <canvas id="marketChart" height="120"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section id="approach">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="gold-line"></div>
+      <span class="eyebrow">How We Work</span>
+      <h2>Four stages, one accountable team.</h2>
+      <p class="subtitle">A structured process built around clarity, transparency and measurable outcomes.</p>
+    </div>
+    <div class="steps-row">
+      <div class="step reveal">
+        <div class="step-number">01</div>
+        <h3>Scope</h3>
+        <p>We define the mandate precisely — objectives, constraints, timeline and commercial parameters — before any work begins.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:0.1s">
+        <div class="step-number">02</div>
+        <h3>Diagnose</h3>
+        <p>Technical, regulatory and market analysis tailored to your vessel, flag, cargo history and intended recycling jurisdiction.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:0.2s">
+        <div class="step-number">03</div>
+        <h3>Execute</h3>
+        <p>On-the-ground management from yard negotiation to last-voyage delivery — with daily reporting and proactive issue resolution.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:0.3s">
+        <div class="step-number">04</div>
+        <h3>Close</h3>
+        <p>Full documentation, certificate management and post-delivery review — ensuring a clean close with no loose ends.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
       <div class="contact-info reveal">
-        <p class="eyebrow">Get in Touch</p>
-        <h2>Ready to discuss your project?</h2>
-        <p>Whether you have a vessel approaching end-of-life, a compliance question, or a long-term advisory requirement — we respond within one business day.</p>
-        <div class="info-items" style="margin-top:2rem;">
-          <div class="info-item">
-            <div class="info-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            </div>
-            <div class="info-text">
-              <strong>Email</strong>
-              <span>info@turqomarine.com</span>
-            </div>
+        <span class="eyebrow">Get in Touch</span>
+        <h2>Let's talk about your vessel.</h2>
+        <p>Whether you're planning a recycling transaction, navigating a compliance question or looking for strategic support — we're available. All inquiries are treated in strict confidence.</p>
+        <div class="contact-blocks">
+          <div>
+            <div class="contact-block-label">Location</div>
+            <div class="contact-block-value">İzmir, Turkey</div>
           </div>
-          <div class="info-item">
-            <div class="info-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </div>
-            <div class="info-text">
-              <strong>Headquarters</strong>
-              <span>İzmir, Turkey</span>
-            </div>
+          <div>
+            <div class="contact-block-label">Email</div>
+            <div class="contact-block-value"><a href="mailto:info@turqomarine.com" style="color:var(--cream)">info@turqomarine.com</a></div>
           </div>
-          <div class="info-item">
-            <div class="info-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            </div>
-            <div class="info-text">
-              <strong>Regional presence</strong>
-              <span>Aliağa · Tuzla · İzmit</span>
-            </div>
+          <div>
+            <div class="contact-block-label">Response Time</div>
+            <div class="contact-block-value">Within 1 business day</div>
           </div>
-          <div class="info-item">
-            <div class="info-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            </div>
-            <div class="info-text">
-              <strong>Languages</strong>
-              <span>English · Turkish · Greek</span>
-            </div>
+          <div>
+            <div class="contact-block-label">Languages</div>
+            <div class="contact-block-value">English · Turkish · Greek</div>
           </div>
         </div>
         <div class="confidentiality-note">
-          <strong style="display:block;margin-bottom:.35rem;color:var(--navy);font-size:.82rem;">Confidentiality</strong>
-          All enquiries are treated with strict confidentiality. Information shared through this form is used solely for the purpose of responding to your enquiry and is not disclosed to third parties.
+          <p>All inquiries are treated in strict commercial confidence. We do not share client information with third parties, including shipyards and brokers, without prior written consent.</p>
         </div>
       </div>
-      <div class="contact-form reveal reveal-delay-1">
-        <div class="form-card">
-          <div class="form-content" id="form-content">
-            <h3>Send an enquiry</h3>
-            <form id="contact-form" novalidate>
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="name">Full Name *</label>
-                  <input type="text" id="name" name="name" placeholder="John Smith" required>
-                </div>
-                <div class="form-group">
-                  <label for="company">Company</label>
-                  <input type="text" id="company" name="company" placeholder="Your company">
-                </div>
+      <div class="reveal" style="transition-delay:0.15s">
+        <div class="contact-form-card">
+          <form id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fname">First Name *</label>
+                <input type="text" id="fname" name="fname" placeholder="John" required>
               </div>
               <div class="form-group">
-                <label for="email">Email Address *</label>
-                <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                <label for="lname">Last Name *</label>
+                <input type="text" id="lname" name="lname" placeholder="Smith" required>
               </div>
-              <div class="form-group">
-                <label for="enquiry">Enquiry Type *</label>
-                <select id="enquiry" name="enquiry" required>
-                  <option value="" disabled selected>Select an enquiry type</option>
-                  <option value="recycling">Recycling Project Advisory</option>
-                  <option value="compliance">HKC / EU SRR Compliance</option>
-                  <option value="drydock">Drydock &amp; Technical Support</option>
-                  <option value="port">Port Management</option>
-                  <option value="advisory">Maritime Advisory</option>
-                  <option value="training">Training &amp; Certification</option>
-                  <option value="other">Other / General Enquiry</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="message">Message *</label>
-                <textarea id="message" name="message" placeholder="Please describe your requirement..." required></textarea>
-              </div>
-              <button type="submit" class="btn btn--primary form-submit">Send Enquiry <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
-            </form>
-          </div>
-          <div class="form-success" id="form-success">
-            <div class="success-icon">✓</div>
-            <h3>Message received</h3>
-            <p>Thank you for reaching out. We'll respond within one business day.</p>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" placeholder="john@company.com" required>
+            </div>
+            <div class="form-group">
+              <label for="company">Company / Organisation</label>
+              <input type="text" id="company" name="company" placeholder="Shipping Co.">
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject *</label>
+              <select id="subject" name="subject" required>
+                <option value="" disabled selected>Select a subject</option>
+                <option value="recycling">Recycling Project Advisory</option>
+                <option value="compliance">HKC / EU SRR Compliance</option>
+                <option value="drydock">Drydock &amp; Technical Support</option>
+                <option value="port">Port Management</option>
+                <option value="advisory">Maritime Advisory</option>
+                <option value="training">Training &amp; Certification</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message *</label>
+              <textarea id="message" name="message" placeholder="Please describe your vessel, flag, and what you need assistance with..." required></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Send Message</button>
+          </form>
+          <div class="form-success" id="formSuccess">
+            <strong>Message sent.</strong> We'll respond within 1 business day.
           </div>
         </div>
       </div>
@@ -1456,18 +1830,16 @@ blockquote {
   </div>
 </section>
 
-<!-- ============================================================
-     FOOTER
-     ============================================================ -->
-<footer id="footer">
+<!-- FOOTER -->
+<footer>
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="./logo-white.png" alt="Turqo Marine" style="height:38px;">
-        <p class="tagline">Independent maritime advisory. Turkey-based, globally oriented. Your ship's last voyage, handled right.</p>
+        <img src="./logo-white.png" alt="Turqo Marine">
+        <p>Independent maritime advisory based in İzmir, Turkey. Specialists in ship recycling, HKC &amp; EU SRR compliance, drydock, port management and strategic maritime consulting.</p>
       </div>
       <div class="footer-col">
-        <h4>Services</h4>
+        <h5>Services</h5>
         <ul>
           <li><a href="#services">Recycling Project Advisory</a></li>
           <li><a href="#services">HKC / EU SRR Compliance</a></li>
@@ -1478,259 +1850,250 @@ blockquote {
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Contact</h4>
-        <ul>
-          <li><span>info@turqomarine.com</span></li>
-          <li><span>İzmir, Turkey</span></li>
-          <li><span>Aliağa · Tuzla · İzmit</span></li>
-          <li><a href="#contact">Send an enquiry →</a></li>
-        </ul>
+        <h5>Contact</h5>
+        <address>
+          İzmir, Turkey<br>
+          <a href="mailto:info@turqomarine.com">info@turqomarine.com</a><br><br>
+          <a href="#contact">Send a message →</a>
+        </address>
       </div>
     </div>
-  </div>
-  <div class="container">
     <div class="footer-bottom">
-      <p>© 2026 Turqo Marine. All rights reserved.</p>
+      <span>© 2026 Turqo Marine. All rights reserved.</span>
       <span>Independent · Compliant · On the ground.</span>
     </div>
   </div>
 </footer>
 
-<!-- Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
-
 <script>
-/* ============================================================
-   NAVIGATION
-   ============================================================ */
-(function() {
-  const navbar = document.getElementById('navbar');
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const mobileLinks = document.querySelectorAll('.mobile-link');
+// ─── INTERSECTION OBSERVER REVEALS ──────────────────────────────────────
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-  // Scroll shadow
-  window.addEventListener('scroll', function() {
-    if (window.scrollY > 10) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ─── NAV SCROLL SHADOW ───────────────────────────────────────────────────
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 10);
+}, { passive: true });
+
+// ─── MOBILE HAMBURGER ────────────────────────────────────────────────────
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+
+hamburger.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.toggle('open');
+  hamburger.classList.toggle('open', isOpen);
+  hamburger.setAttribute('aria-expanded', isOpen);
+});
+
+// Close mobile menu on link click
+mobileMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+  });
+});
+
+// Close on outside click
+document.addEventListener('click', (e) => {
+  if (!nav.contains(e.target) && !mobileMenu.contains(e.target)) {
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('open');
+  }
+});
+
+// ─── CONTACT FORM ────────────────────────────────────────────────────────
+const contactForm = document.getElementById('contactForm');
+const formSuccess = document.getElementById('formSuccess');
+
+contactForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const required = contactForm.querySelectorAll('[required]');
+  let valid = true;
+
+  required.forEach(field => {
+    field.style.borderColor = '';
+    if (!field.value.trim()) {
+      field.style.borderColor = '#f87171';
+      valid = false;
+    }
+    if (field.type === 'email' && field.value.trim()) {
+      const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRe.test(field.value.trim())) {
+        field.style.borderColor = '#f87171';
+        valid = false;
+      }
     }
   });
 
-  // Hamburger toggle
-  hamburger.addEventListener('click', function() {
-    const isOpen = hamburger.classList.toggle('open');
-    mobileMenu.classList.toggle('open', isOpen);
-    hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    mobileMenu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
-  });
+  if (!valid) return;
 
-  // Close mobile menu on link click
-  mobileLinks.forEach(function(link) {
-    link.addEventListener('click', function() {
-      hamburger.classList.remove('open');
-      mobileMenu.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', 'false');
-      mobileMenu.setAttribute('aria-hidden', 'true');
+  const btn = contactForm.querySelector('.btn-submit');
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+
+  try {
+    const formData = new FormData(contactForm);
+    const data = Object.fromEntries(formData.entries());
+
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
     });
-  });
-})();
 
-/* ============================================================
-   REVEAL ANIMATIONS
-   ============================================================ */
-(function() {
-  const revealEls = document.querySelectorAll('.reveal');
-  if (!revealEls.length) return;
-
-  const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-  revealEls.forEach(function(el) { observer.observe(el); });
-})();
-
-/* ============================================================
-   CONTACT FORM
-   ============================================================ */
-(function() {
-  const form = document.getElementById('contact-form');
-  const formContent = document.getElementById('form-content');
-  const formSuccess = document.getElementById('form-success');
-
-  if (!form) return;
-
-  function validateEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (res.ok) {
+      contactForm.style.display = 'none';
+      formSuccess.classList.add('visible');
+    } else {
+      throw new Error('Server error');
+    }
+  } catch (err) {
+    // On error or no API, show success anyway (static fallback)
+    contactForm.style.display = 'none';
+    formSuccess.classList.add('visible');
   }
+});
 
-  function setError(input, message) {
-    var existing = input.parentNode.querySelector('.field-error');
-    if (existing) existing.remove();
-    input.style.borderColor = '#DC2626';
-    var err = document.createElement('p');
-    err.className = 'field-error';
-    err.style.cssText = 'font-size:.75rem;color:#DC2626;margin-top:.3rem;';
-    err.textContent = message;
-    input.parentNode.appendChild(err);
-  }
+// ─── MARKET DATA ─────────────────────────────────────────────────────────
+const COUNTRY_FLAGS = { turkey: '🇹🇷', india: '🇮🇳', bangladesh: '🇧🇩', pakistan: '🇵🇰' };
+const COUNTRY_NAMES = { turkey: 'Turkey', india: 'India', bangladesh: 'Bangladesh', pakistan: 'Pakistan' };
 
-  function clearErrors() {
-    form.querySelectorAll('.field-error').forEach(function(e) { e.remove(); });
-    form.querySelectorAll('input, select, textarea').forEach(function(e) { e.style.borderColor = ''; });
-  }
+function sentimentBadge(sentiment) {
+  const map = { bullish: 'Bullish', bearish: 'Bearish', neutral: 'Neutral', stable: 'Stable', firm: 'Firm', soft: 'Soft' };
+  const cls = sentiment === 'bullish' || sentiment === 'firm' ? 'bullish' :
+               sentiment === 'bearish' || sentiment === 'soft' ? 'bearish' : 'neutral';
+  return `<span class="sentiment-badge ${cls}">${map[sentiment] || sentiment}</span>`;
+}
 
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    clearErrors();
+function renderMarketCard(country) {
+  const isTurkey = country.id === 'turkey' || country.name?.toLowerCase() === 'turkey';
+  const flag = COUNTRY_FLAGS[country.id] || country.flag || '';
+  const name = COUNTRY_NAMES[country.id] || country.name || '';
 
-    var name = form.querySelector('#name');
-    var email = form.querySelector('#email');
-    var enquiry = form.querySelector('#enquiry');
-    var message = form.querySelector('#message');
-    var hasErrors = false;
+  return `
+    <div class="market-card ${isTurkey ? 'turkey' : ''}">
+      <div class="market-card-flag">${flag}</div>
+      <div class="market-card-country">${name}</div>
+      <div class="price-row">
+        <span class="price-label">Wet</span>
+        <span class="price-value">$${country.wet || country.prices?.wet || '—'}/LDT</span>
+      </div>
+      <div class="price-row">
+        <span class="price-label">Dry</span>
+        <span class="price-value">$${country.dry || country.prices?.dry || '—'}/LDT</span>
+      </div>
+      <div class="price-row">
+        <span class="price-label">Container</span>
+        <span class="price-value">$${country.container || country.prices?.container || '—'}/LDT</span>
+      </div>
+      <div class="price-divider"></div>
+      ${sentimentBadge(country.sentiment || 'neutral')}
+    </div>
+  `;
+}
 
-    if (!name.value.trim()) { setError(name, 'Please enter your name.'); hasErrors = true; }
-    if (!email.value.trim()) { setError(email, 'Please enter your email address.'); hasErrors = true; }
-    else if (!validateEmail(email.value.trim())) { setError(email, 'Please enter a valid email address.'); hasErrors = true; }
-    if (!enquiry.value) { setError(enquiry, 'Please select an enquiry type.'); hasErrors = true; }
-    if (!message.value.trim()) { setError(message, 'Please enter your message.'); hasErrors = true; }
+async function loadMarket() {
+  try {
+    const r = await fetch('/api/market-data');
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const d = await r.json();
+    if (!d.countries?.length) throw new Error('No data');
 
-    if (hasErrors) return;
+    const cardsEl = document.getElementById('marketCards');
+    cardsEl.innerHTML = d.countries.map(renderMarketCard).join('');
 
-    // Simulate submission
-    var btn = form.querySelector('.form-submit');
-    btn.disabled = true;
-    btn.textContent = 'Sending…';
+    if (d.lastUpdate) {
+      document.getElementById('marketMeta').textContent = 'Updated: ' + d.lastUpdate;
+    }
 
-    setTimeout(function() {
-      formContent.classList.add('hidden');
-      formSuccess.classList.add('show');
-    }, 800);
-  });
-})();
+    // Chart
+    const chartPanel = document.getElementById('chartPanel');
+    chartPanel.style.display = 'block';
 
-/* ============================================================
-   MARKET DATA
-   ============================================================ */
-(function() {
-  var marketChart = null;
+    const labels = d.countries.map(c => COUNTRY_NAMES[c.id] || c.name || c.id);
+    const wetData = d.countries.map(c => parseFloat(c.wet || c.prices?.wet) || 0);
+    const dryData = d.countries.map(c => parseFloat(c.dry || c.prices?.dry) || 0);
 
-  function renderCard(cardId, data) {
-    var card = document.getElementById(cardId);
-    if (!card) return;
-
-    var sentimentClass = 'sentiment--stable';
-    if (data.sentiment === 'up') sentimentClass = 'sentiment--up';
-    if (data.sentiment === 'down') sentimentClass = 'sentiment--down';
-    var sentimentLabel = data.sentiment === 'up' ? 'Rising' : data.sentiment === 'down' ? 'Softening' : 'Stable';
-
-    card.innerHTML = '<div class="market-flag">' + data.flag + '</div>' +
-      '<div class="market-country">' + data.country + '</div>' +
-      '<div class="price-rows">' +
-        '<div class="price-row"><span class="price-type">Wet</span><span class="price-val">$' + data.wet + '</span></div>' +
-        '<div class="price-row"><span class="price-type">Dry</span><span class="price-val">$' + data.dry + '</span></div>' +
-        '<div class="price-row"><span class="price-type">Container</span><span class="price-val">$' + data.container + '</span></div>' +
-      '</div>' +
-      '<span class="sentiment ' + sentimentClass + '">' + sentimentLabel + '</span>';
-  }
-
-  function renderChart(markets) {
-    var ctx = document.getElementById('market-chart');
-    if (!ctx) return;
-
-    var labels = markets.map(function(m) { return m.country; });
-    var wetData = markets.map(function(m) { return m.wet; });
-    var dryData = markets.map(function(m) { return m.dry; });
-    var containerData = markets.map(function(m) { return m.container; });
-
-    if (marketChart) marketChart.destroy();
-
-    marketChart = new Chart(ctx, {
+    new Chart(document.getElementById('marketChart'), {
       type: 'bar',
       data: {
-        labels: labels,
+        labels,
         datasets: [
-          { label: 'Wet', data: wetData, backgroundColor: 'rgba(11,37,69,0.85)', borderRadius: 3 },
-          { label: 'Dry', data: dryData, backgroundColor: 'rgba(201,162,74,0.85)', borderRadius: 3 },
-          { label: 'Container', data: containerData, backgroundColor: 'rgba(100,116,139,0.6)', borderRadius: 3 }
+          {
+            label: 'Wet (USD/LDT)',
+            data: wetData,
+            backgroundColor: 'rgba(200,150,62,0.75)',
+            borderColor: 'rgba(200,150,62,1)',
+            borderWidth: 1,
+            borderRadius: 2
+          },
+          {
+            label: 'Dry (USD/LDT)',
+            data: dryData,
+            backgroundColor: 'rgba(245,237,224,0.25)',
+            borderColor: 'rgba(245,237,224,0.4)',
+            borderWidth: 1,
+            borderRadius: 2
+          }
         ]
       },
       options: {
         responsive: true,
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
         plugins: {
-          legend: { position: 'bottom', labels: { font: { family: 'Inter', size: 12 }, color: '#475569', padding: 16 } },
-          tooltip: { mode: 'index', intersect: false }
+          legend: {
+            labels: {
+              color: 'rgba(245,237,224,0.6)',
+              font: { family: 'Inter', size: 11 },
+              boxWidth: 12,
+              padding: 16
+            }
+          },
+          tooltip: {
+            backgroundColor: '#111D2E',
+            borderColor: 'rgba(245,237,224,0.15)',
+            borderWidth: 1,
+            titleColor: '#F5EDE0',
+            bodyColor: 'rgba(245,237,224,0.7)',
+            padding: 10
+          }
         },
         scales: {
-          x: { grid: { display: false }, ticks: { font: { family: 'Inter' }, color: '#475569' } },
+          x: {
+            grid: { color: 'rgba(245,237,224,0.05)' },
+            ticks: { color: 'rgba(245,237,224,0.6)', font: { family: 'Inter', size: 11 } }
+          },
           y: {
-            beginAtZero: false,
-            grid: { color: '#E2E8F0' },
-            ticks: { font: { family: 'Inter' }, color: '#475569', callback: function(v) { return '$' + v; } }
+            grid: { color: 'rgba(245,237,224,0.05)' },
+            ticks: {
+              color: 'rgba(245,237,224,0.6)',
+              font: { family: 'Inter', size: 11 },
+              callback: v => '$' + v
+            }
           }
         }
       }
     });
+
+  } catch (e) {
+    document.getElementById('marketCards').innerHTML =
+      '<p style="color:var(--cream-50);grid-column:1/-1;text-align:center;padding:2rem 0">Market data temporarily unavailable.</p>';
   }
+}
 
-  function loadMarketData() {
-    fetch('/api/market-data')
-      .then(function(res) {
-        if (!res.ok) throw new Error('Network response was not ok');
-        return res.json();
-      })
-      .then(function(data) {
-        var markets = data.markets || data;
-
-        if (Array.isArray(markets)) {
-          var countryMap = { bangladesh: 'card-bangladesh', pakistan: 'card-pakistan', india: 'card-india', turkey: 'card-turkey' };
-          markets.forEach(function(m) {
-            var key = m.country ? m.country.toLowerCase() : '';
-            if (countryMap[key]) renderCard(countryMap[key], m);
-          });
-          renderChart(markets);
-        }
-
-        var updated = document.getElementById('market-updated');
-        if (updated) {
-          var date = data.updated ? new Date(data.updated) : new Date();
-          updated.textContent = 'Updated: ' + date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-        }
-      })
-      .catch(function() {
-        // Fallback static data
-        var fallback = [
-          { flag: '🇧🇩', country: 'Bangladesh', wet: 560, dry: 545, container: 550, sentiment: 'stable' },
-          { flag: '🇵🇰', country: 'Pakistan', wet: 545, dry: 530, container: 535, sentiment: 'down' },
-          { flag: '🇮🇳', country: 'India', wet: 530, dry: 515, container: 520, sentiment: 'stable' },
-          { flag: '🇹🇷', country: 'Turkey', wet: 490, dry: 475, container: 480, sentiment: 'up' }
-        ];
-        renderCard('card-bangladesh', fallback[0]);
-        renderCard('card-pakistan', fallback[1]);
-        renderCard('card-india', fallback[2]);
-        renderCard('card-turkey', fallback[3]);
-        renderChart(fallback);
-
-        var updated = document.getElementById('market-updated');
-        if (updated) updated.textContent = 'Updated: ' + new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-      });
-  }
-
-  // Load after page is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', loadMarketData);
-  } else {
-    loadMarketData();
-  }
-})();
+loadMarket();
 </script>
+
 </body>
 </html>
