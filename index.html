@@ -461,6 +461,66 @@ footer a:hover { color: var(--accent); }
 /* ============================================================
    RESPONSIVE
    ============================================================ */
+/* ============================================================
+   SPECIALTY SECTIONS (Drydock / Port / Maritime)
+   ============================================================ */
+.specialty { padding: var(--section) 0; }
+.specialty--alt { background: var(--bg-alt); }
+.specialty-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+}
+.specialty-grid--rev { direction: rtl; }
+.specialty-grid--rev > * { direction: ltr; }
+.specialty-icon-row {
+  display: flex; align-items: center; gap: 1rem; margin-bottom: 1.6rem;
+}
+.specialty-icon {
+  width: 52px; height: 52px; border-radius: var(--radius);
+  background: var(--navy); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.specialty-icon svg { width: 24px; height: 24px; fill: none; stroke: #fff; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.specialty-tag { font-size: .68rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); }
+.specialty-copy h2 { margin-bottom: 1.2rem; }
+.specialty-copy p { margin-bottom: 1.1rem; }
+.specialty-features {
+  display: grid; grid-template-columns: 1fr 1fr; gap: .9rem 2rem; margin-top: 2rem;
+}
+.specialty-feature { display: flex; align-items: flex-start; gap: .6rem; }
+.specialty-feature::before {
+  content: ''; width: 16px; height: 1.5px; background: var(--accent);
+  flex-shrink: 0; margin-top: .55rem;
+}
+.specialty-feature span { font-size: .86rem; color: var(--steel); line-height: 1.5; }
+.specialty-visual {
+  position: relative; border-radius: 4px; overflow: hidden; min-height: 420px;
+  background: var(--navy-dark);
+  display: flex; align-items: flex-end; padding: 2rem;
+}
+.specialty-visual-bg {
+  position: absolute; inset: 0;
+  background: center / cover no-repeat;
+}
+.specialty-visual-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(165deg, rgba(7,26,54,.82) 0%, rgba(11,37,69,.6) 100%);
+}
+.specialty-stat-box {
+  position: relative; z-index: 1;
+  background: rgba(255,255,255,.08); backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,.15); border-left: 3px solid var(--accent);
+  padding: 1.2rem 1.5rem; border-radius: 0 var(--radius) var(--radius) 0;
+}
+.specialty-stat-label { font-size: .62rem; text-transform: uppercase; letter-spacing: .18em; color: rgba(255,255,255,.52); margin-bottom: .25rem; }
+.specialty-stat-value { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; color: #fff; line-height: 1.2; }
+.specialty-stat-desc { font-size: .76rem; color: rgba(255,255,255,.6); margin-top: .2rem; }
+
+@media (max-width: 900px) {
+  .specialty-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .specialty-grid--rev { direction: ltr; }
+  .specialty-visual { min-height: 260px; }
+  .specialty-features { grid-template-columns: 1fr; }
+}
+
 @media (max-width: 1024px) {
   :root { --section: 5rem; }
   .hero-grid { gap: 2.5rem; }
@@ -628,10 +688,11 @@ footer a:hover { color: var(--accent); }
 
     <ul class="nav-links" id="navLinks">
       <li><a href="#services">Services</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#sector">Sector</a></li>
+      <li><a href="#drydock">Drydock</a></li>
+      <li><a href="#portmgmt">Port Mgmt</a></li>
+      <li><a href="#maritime">Advisory</a></li>
       <li><a href="#market">Market</a></li>
-      <li><a href="#approach">Approach</a></li>
+      <li><a href="#about">About</a></li>
       <li><a class="nav-cta" href="#contact">Contact Us</a></li>
     </ul>
 
@@ -798,6 +859,7 @@ footer a:hover { color: var(--accent); }
       <h2>Six advisory tracks across the recycling lifecycle.</h2>
       <p>From the first letter of intent to the Statement of Completion of Ship Recycling, our practice covers commercial, regulatory and operational decisions in equal measure.</p>
     </div>
+
     <div class="services-grid">
 
       <div class="service-card reveal">
@@ -887,51 +949,6 @@ footer a:hover { color: var(--accent); }
           <li>OHS &amp; asbestos handling</li>
           <li>ICIHM management training</li>
           <li>Certificate of participation</li>
-        </ul>
-      </div>
-
-      <div class="service-card reveal">
-        <div class="service-num">07</div>
-        <div class="service-icon-wrap">
-          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 17h18M5 17V9a2 2 0 012-2h10a2 2 0 012 2v8"/><path d="M9 7V5a2 2 0 012-2h2a2 2 0 012 2v2"/><line x1="12" y1="11" x2="12" y2="15"/></svg>
-        </div>
-        <h3>Drydock / Technical Support</h3>
-        <p>End-to-end coordination of drydocking operations and technical oversight for vessels undergoing major maintenance or pre-recycling surveys.</p>
-        <ul>
-          <li>Drydock scheduling &amp; supervision</li>
-          <li>Condition assessment reports</li>
-          <li>Pre-recycling technical audits</li>
-          <li>Class survey coordination</li>
-        </ul>
-      </div>
-
-      <div class="service-card reveal">
-        <div class="service-num">08</div>
-        <div class="service-icon-wrap">
-          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>
-        </div>
-        <h3>Port Management</h3>
-        <p>Operational support for port entry, berthing coordination, and last-port-of-call management for vessels bound for recycling.</p>
-        <ul>
-          <li>Port state control preparation</li>
-          <li>Berthing &amp; logistics coordination</li>
-          <li>Last voyage documentation</li>
-          <li>Customs &amp; clearance support</li>
-        </ul>
-      </div>
-
-      <div class="service-card reveal">
-        <div class="service-num">09</div>
-        <div class="service-icon-wrap">
-          <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
-        </div>
-        <h3>Maritime Advisory</h3>
-        <p>Strategic consulting for shipowners navigating complex regulatory environments, asset disposal timing, and market positioning.</p>
-        <ul>
-          <li>Fleet lifecycle planning</li>
-          <li>Regulatory risk assessment</li>
-          <li>Market timing analysis</li>
-          <li>Stakeholder reporting</li>
         </ul>
       </div>
 
@@ -1052,6 +1069,135 @@ footer a:hover { color: var(--accent); }
         <h3>Close</h3>
         <p>Final Survey, Statement of Completion, document archive and a post-project lessons-learned report for future reference.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     DRYDOCK / TECHNICAL SUPPORT
+     ============================================================ -->
+<section class="specialty specialty--alt" id="drydock">
+  <div class="container">
+    <div class="specialty-grid">
+
+      <div class="specialty-copy reveal">
+        <div class="specialty-icon-row">
+          <div class="specialty-icon">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M2 20h20M6 20V10M18 20V10M12 20V4M2 10h20"/><path d="M6 10V7l6-3 6 3v3"/></svg>
+          </div>
+          <span class="specialty-tag">Technical Services</span>
+        </div>
+        <h2>Drydock &amp; Technical Support</h2>
+        <p>Coordinating a drydock or major repair programme demands precise scheduling, class alignment, and supplier oversight simultaneously. Turqo Marine provides independent technical supervision from yard selection through to undocking — without conflict of interest.</p>
+        <p>We operate across Turkey's principal drydock facilities in Tuzla, Aliağa, and İzmit, with established working relationships with all major classification societies.</p>
+        <div class="specialty-features">
+          <div class="specialty-feature"><span>Drydock specification &amp; tendering</span></div>
+          <div class="specialty-feature"><span>Yard selection &amp; contract review</span></div>
+          <div class="specialty-feature"><span>On-site technical supervision</span></div>
+          <div class="specialty-feature"><span>Condition assessment reports</span></div>
+          <div class="specialty-feature"><span>Pre-recycling technical audits</span></div>
+          <div class="specialty-feature"><span>Class survey coordination</span></div>
+          <div class="specialty-feature"><span>Owner's representative services</span></div>
+          <div class="specialty-feature"><span>Defect &amp; repair management</span></div>
+        </div>
+      </div>
+
+      <div class="specialty-visual reveal">
+        <div class="specialty-visual-bg" style="background-image:url('./img-sector-bg.jpg')"></div>
+        <div class="specialty-visual-overlay"></div>
+        <div class="specialty-stat-box">
+          <div class="specialty-stat-label">Coverage</div>
+          <div class="specialty-stat-value">Tuzla · Aliağa · İzmit</div>
+          <div class="specialty-stat-desc">All major Turkish drydock clusters, on the ground.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PORT MANAGEMENT
+     ============================================================ -->
+<section class="specialty" id="portmgmt">
+  <div class="container">
+    <div class="specialty-grid specialty-grid--rev">
+
+      <div class="specialty-copy reveal">
+        <div class="specialty-icon-row">
+          <div class="specialty-icon">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/><path d="M12 2v5"/></svg>
+          </div>
+          <span class="specialty-tag">Port Operations</span>
+        </div>
+        <h2>Port Management</h2>
+        <p>The final port of call before a vessel enters recycling is one of the highest-risk moments in the entire transaction. Port state control inspections, last-minute documentation gaps, and berthing logistics can derail a carefully planned recycling schedule.</p>
+        <p>Turqo Marine manages last-voyage port calls end-to-end — from PSC preparation to customs clearance — so your vessel arrives at the recycling berth on time and in order.</p>
+        <div class="specialty-features">
+          <div class="specialty-feature"><span>Port state control preparation</span></div>
+          <div class="specialty-feature"><span>Berthing &amp; logistics coordination</span></div>
+          <div class="specialty-feature"><span>Last-voyage documentation</span></div>
+          <div class="specialty-feature"><span>Crew sign-off management</span></div>
+          <div class="specialty-feature"><span>Bunker &amp; slop handling</span></div>
+          <div class="specialty-feature"><span>Customs &amp; import clearance</span></div>
+          <div class="specialty-feature"><span>Flag state deregistration support</span></div>
+          <div class="specialty-feature"><span>Incident &amp; delay management</span></div>
+        </div>
+      </div>
+
+      <div class="specialty-visual reveal">
+        <div class="specialty-visual-bg" style="background-image:url('./img-about.jpg')"></div>
+        <div class="specialty-visual-overlay"></div>
+        <div class="specialty-stat-box">
+          <div class="specialty-stat-label">Response Time</div>
+          <div class="specialty-stat-value">24 / 7</div>
+          <div class="specialty-stat-desc">Port operations don't keep office hours. Neither do we.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MARITIME ADVISORY
+     ============================================================ -->
+<section class="specialty specialty--alt" id="maritime">
+  <div class="container">
+    <div class="specialty-grid">
+
+      <div class="specialty-copy reveal">
+        <div class="specialty-icon-row">
+          <div class="specialty-icon">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><path d="M12 12l3-3"/></svg>
+          </div>
+          <span class="specialty-tag">Strategic Consulting</span>
+        </div>
+        <h2>Maritime Advisory</h2>
+        <p>Beyond recycling transactions, shipowners and fleet managers face a continuous stream of regulatory, commercial, and reputational decisions. Turqo Marine provides strategic advisory on the full spectrum of maritime compliance and asset lifecycle challenges.</p>
+        <p>We work with owners, managers, financiers and insurers who need independent, commercially literate counsel — not template answers.</p>
+        <div class="specialty-features">
+          <div class="specialty-feature"><span>Fleet lifecycle &amp; disposal planning</span></div>
+          <div class="specialty-feature"><span>Regulatory risk assessment</span></div>
+          <div class="specialty-feature"><span>Market &amp; timing analysis</span></div>
+          <div class="specialty-feature"><span>ESG &amp; sustainability reporting</span></div>
+          <div class="specialty-feature"><span>Lender &amp; P&amp;I liaison</span></div>
+          <div class="specialty-feature"><span>Due diligence for acquisitions</span></div>
+          <div class="specialty-feature"><span>Expert witness &amp; arbitration support</span></div>
+          <div class="specialty-feature"><span>Board-level briefings</span></div>
+        </div>
+      </div>
+
+      <div class="specialty-visual reveal">
+        <div class="specialty-visual-bg" style="background-image:url('./img-quote-texture.jpg')"></div>
+        <div class="specialty-visual-overlay"></div>
+        <div class="specialty-stat-box">
+          <div class="specialty-stat-label">Engagement Model</div>
+          <div class="specialty-stat-value">Retainer · Project · Ad-hoc</div>
+          <div class="specialty-stat-desc">Flexible structures for ongoing or one-off mandates.</div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
