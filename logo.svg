@@ -1,25 +1,45 @@
-<svg width="220" height="48" viewBox="0 0 220 48" xmlns="http://www.w3.org/2000/svg">
-  <!-- Logo mark — navy square -->
-  <rect width="48" height="48" rx="4" fill="#0B2545"/>
-  <!-- Anchor icon -->
-  <g fill="none" stroke="#ffffff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-    <!-- Ring -->
-    <circle cx="24" cy="12" r="4"/>
-    <!-- Stock (horizontal bar through ring) -->
-    <line x1="17" y1="12" x2="31" y2="12"/>
-    <!-- Shaft -->
-    <line x1="24" y1="16" x2="24" y2="38"/>
-    <!-- Crossbar -->
-    <line x1="16" y1="25" x2="32" y2="25"/>
-    <!-- Left fluke -->
-    <path d="M16 38 C12 36 12 31.5 16 30"/>
-    <!-- Right fluke -->
-    <path d="M32 38 C36 36 36 31.5 32 30"/>
-  </g>
-  <!-- Wordmark — Turqo -->
-  <text x="60" y="32" font-family="Georgia,'Times New Roman',serif" font-size="22" font-weight="700" fill="#0B2545" letter-spacing="-0.3">Turqo</text>
-  <!-- Gold dot -->
-  <text x="125" y="32" font-family="Georgia,'Times New Roman',serif" font-size="22" font-weight="700" fill="#C9A24A">.</text>
-  <!-- Marine -->
-  <text x="133" y="32" font-family="Georgia,'Times New Roman',serif" font-size="22" font-weight="700" fill="#0B2545" letter-spacing="-0.3">Marine</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 280" width="360" height="280">
+  <defs>
+    <style>
+      .sc { fill: none; stroke: #C9A24A; stroke-linecap: round; stroke-linejoin: round; }
+      .hu { fill: none; stroke: #0B2545; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <!-- ── BALANCE SCALE (gold) ── -->
+  <circle cx="180" cy="44" r="7.5" fill="#C9A24A"/>
+  <line class="sc" x1="180" y1="51.5" x2="180" y2="92" stroke-width="3.2"/>
+  <line class="sc" x1="96" y1="92" x2="264" y2="92" stroke-width="3.2"/>
+
+  <!-- Left pan suspension -->
+  <line class="sc" x1="96"  y1="92" x2="78"  y2="136" stroke-width="2.2"/>
+  <line class="sc" x1="96"  y1="92" x2="114" y2="136" stroke-width="2.2"/>
+
+  <!-- Right pan suspension -->
+  <line class="sc" x1="264" y1="92" x2="246" y2="136" stroke-width="2.2"/>
+  <line class="sc" x1="264" y1="92" x2="282" y2="136" stroke-width="2.2"/>
+
+  <!-- Left pan -->
+  <path class="sc" d="M72 136 Q96 152 120 136" stroke-width="2.8"/>
+
+  <!-- Right pan -->
+  <path class="sc" d="M240 136 Q264 152 288 136" stroke-width="2.8"/>
+
+  <!-- ── SHIP HULL ARC (navy) ── -->
+  <line class="hu" x1="122" y1="152" x2="122" y2="175" stroke-width="3"/>
+  <line class="hu" x1="238" y1="152" x2="238" y2="175" stroke-width="3"/>
+  <path class="hu" d="M122 175 Q180 214 238 175" stroke-width="3"/>
+  <line class="hu" x1="122" y1="162" x2="238" y2="162" stroke-width="2"/>
+  <path class="hu" d="M126 175 Q180 207 234 175" stroke-width="1.6"/>
+
+  <!-- ── WORDMARK ── -->
+  <text
+    x="180" y="248"
+    text-anchor="middle"
+    font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+    font-size="30"
+    font-weight="700"
+    letter-spacing="5"
+    fill="#0B2545"
+  >TURQO · MARINE</text>
 </svg>
