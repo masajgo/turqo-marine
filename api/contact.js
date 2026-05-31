@@ -62,8 +62,8 @@ module.exports = async function handler(req, res) {
 </body></html>`;
 
     const payload = {
-      from: 'Turqo Marine <noreply@turqomarine.com>',
-      to: ['info@turqomarine.com'],
+      from: 'Turqo Marine <onboarding@resend.dev>',
+      to: ['seansgo@proton.me'],
       reply_to: email,
       subject: `[Turqo Marine] ${subjectLabel} — ${fname} ${lname}`,
       html,
