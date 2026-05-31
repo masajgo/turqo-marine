@@ -1347,6 +1347,26 @@ ul { list-style: none; }
 
 .form-success.visible { display: block; }
 
+.form-error {
+  display: none;
+  background: rgba(248,113,113,0.1);
+  border: 1px solid rgba(248,113,113,0.3);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  color: #f87171;
+  font-size: 0.85rem;
+  margin-top: 0.75rem;
+}
+.form-error.visible { display: block; }
+
+.mobile-lang {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  border-top: 1px solid var(--cream-10);
+  margin-top: 0.5rem;
+}
+
 /* ─── FOOTER ────────────────────────────────────────────────────────── */
 footer {
   background: var(--navy);
@@ -1557,6 +1577,8 @@ footer {
 @media (max-width: 900px) {
   .nav-links { display: none; }
   .hamburger { display: flex; }
+  .nav-inner .lang-toggle { display: none; }
+  .nav-inner .btn-contact { display: none; }
 
   #hero {
     grid-template-columns: 1fr;
@@ -1662,6 +1684,10 @@ footer {
   <a href="#drydock" data-i18n="nav.drydock">Drydock</a>
   <a href="#about" data-i18n="nav.about">About</a>
   <a href="#contact" class="btn-contact" data-i18n="nav.contact">Contact Us</a>
+  <div class="mobile-lang">
+    <button class="lang-btn active" id="mobileLangEN" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" id="mobileLangTR" onclick="setLang('tr')">TR</button>
+  </div>
 </div>
 
 <!-- HERO -->
@@ -2190,6 +2216,9 @@ footer {
           <div class="form-success" id="formSuccess">
             <strong data-i18n="form.successTitle">Message sent.</strong> <span data-i18n="form.successBody">We'll respond within 1 business day.</span>
           </div>
+          <div class="form-error" id="formError">
+            Something went wrong. Please email us directly at <a href="mailto:info@turqomarine.com" style="color:#f87171">info@turqomarine.com</a>
+          </div>
         </div>
       </div>
     </div>
@@ -2309,8 +2338,8 @@ function setLang(lang) {
     const key = el.dataset.i18n;
     if (t[key] !== undefined) el.innerHTML = t[key];
   });
-  document.getElementById('langEN').classList.toggle('active', lang === 'en');
-  document.getElementById('langTR').classList.toggle('active', lang === 'tr');
+  ['langEN','mobileLangEN'].forEach(id => { const el = document.getElementById(id); if(el) el.classList.toggle('active', lang === 'en'); });
+  ['langTR','mobileLangTR'].forEach(id => { const el = document.getElementById(id); if(el) el.classList.toggle('active', lang === 'tr'); });
   document.documentElement.lang = lang;
   localStorage.setItem('lang', lang);
   calcUpdate();
@@ -2450,8 +2479,9 @@ contactForm.addEventListener('submit', async (e) => {
       throw new Error('Server error');
     }
   } catch (err) {
-    contactForm.style.display = 'none';
-    formSuccess.classList.add('visible');
+    btn.textContent = TRANSLATIONS[currentLang]['form.submit'] || 'Send Message';
+    btn.disabled = false;
+    document.getElementById('formError').classList.add('visible');
   }
 });
 
