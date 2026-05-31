@@ -5,6 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Turqo Marine — Ship Recycling & Maritime Advisory, Turkey</title>
 <meta name="description" content="Turqo Marine is a Turkey-based independent maritime advisory firm specialising in ship recycling, HKC & EU SRR compliance, drydock, port management and commercial advisory." />
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230A1628'/%3E%3Ccircle cx='16' cy='10' r='3' fill='%23C8963E'/%3E%3Cline x1='16' y1='13' x2='16' y2='19' stroke='%23C8963E' stroke-width='1.5'/%3E%3Cline x1='9' y1='19' x2='23' y2='19' stroke='%23C8963E' stroke-width='1.5'/%3E%3Cpath d='M9 19 Q16 25 23 19' stroke='%23F5EDE0' stroke-width='1.5' fill='none'/%3E%3C/svg%3E">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://turqomarine.com/" />
+<meta property="og:title" content="Turqo Marine — Ship Recycling & Maritime Advisory, Turkey" />
+<meta property="og:description" content="Independent ship recycling advisory based in İzmir. HKC & EU SRR compliance, drydock, port management and strategic maritime consulting." />
+<meta property="og:image" content="https://turqomarine.com/img-sector-bg.jpg" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:site_name" content="Turqo Marine" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Turqo Marine — Ship Recycling & Maritime Advisory" />
+<meta name="twitter:description" content="Independent ship recycling advisory based in İzmir. HKC & EU SRR compliance specialists." />
+<meta name="twitter:image" content="https://turqomarine.com/img-sector-bg.jpg" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
@@ -1410,6 +1427,123 @@ footer {
   font-family: 'Inter', sans-serif;
 }
 
+/* ─── NAV ACTIVE STATE ───────────────────────────────────────────────── */
+.nav-links a.nav-active {
+  color: var(--gold);
+}
+.nav-links a.nav-active::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 1px;
+  margin-top: 2px;
+}
+
+/* ─── LANG TOGGLE ────────────────────────────────────────────────────── */
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: var(--surface-2);
+  border: 1px solid var(--cream-10);
+  border-radius: 2rem;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.lang-btn {
+  background: transparent;
+  border: none;
+  color: var(--cream-50);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 0.3rem 0.65rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.lang-btn.active {
+  background: var(--gold);
+  color: var(--navy);
+  border-radius: 2rem;
+}
+
+/* ─── FILE UPLOAD ────────────────────────────────────────────────────── */
+.file-upload-wrap {
+  position: relative;
+}
+
+.file-upload-wrap input[type="file"] {
+  position: absolute;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.file-upload-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--surface-2);
+  border: 1px dashed var(--cream-10);
+  border-radius: var(--radius);
+  padding: 0.85rem 1rem;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  color: var(--cream-50);
+  font-size: 0.85rem;
+}
+
+.file-upload-label:hover {
+  border-color: var(--gold);
+  color: var(--cream);
+}
+
+.file-upload-label.has-file {
+  border-color: rgba(200,150,62,0.4);
+  color: var(--cream);
+}
+
+.file-upload-label svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ─── MARKET REFRESH ─────────────────────────────────────────────────── */
+.market-refresh {
+  font-size: 0.75rem;
+  color: var(--cream-50);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.3rem;
+}
+
+.refresh-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4ade80;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
 /* ─── RESPONSIVE ────────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   :root { --section: 5rem; }
@@ -1484,11 +1618,11 @@ footer {
 <!-- TOPBAR -->
 <div id="topbar">
   <div class="topbar-inner">
-    <span>Independent Maritime Advisory</span>
+    <span data-i18n="topbar.1">Independent Maritime Advisory</span>
     <div class="topbar-dot"></div>
-    <span>HKC &amp; EU SRR Specialists</span>
+    <span data-i18n="topbar.2">HKC &amp; EU SRR Specialists</span>
     <div class="topbar-dot"></div>
-    <span>İzmir, Turkey</span>
+    <span data-i18n="topbar.3">İzmir, Turkey</span>
   </div>
 </div>
 
@@ -1499,14 +1633,18 @@ footer {
       <img src="./logo-white.png" style="height:74px" alt="Turqo Marine">
     </a>
     <div class="nav-links">
-      <a href="#maritime">Advisory</a>
-      <a href="#services">Services</a>
-      <a href="#portmgmt">Last Voyage</a>
-      <a href="#market">Market</a>
-      <a href="#drydock">Drydock</a>
-      <a href="#about">About</a>
+      <a href="#maritime" data-i18n="nav.advisory">Advisory</a>
+      <a href="#services" data-i18n="nav.services">Services</a>
+      <a href="#portmgmt" data-i18n="nav.lastVoyage">Last Voyage</a>
+      <a href="#market" data-i18n="nav.market">Market</a>
+      <a href="#drydock" data-i18n="nav.drydock">Drydock</a>
+      <a href="#about" data-i18n="nav.about">About</a>
     </div>
-    <a href="#contact" class="btn-contact">Contact Us</a>
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="langEN" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="langTR" onclick="setLang('tr')">TR</button>
+    </div>
+    <a href="#contact" class="btn-contact" data-i18n="nav.contact">Contact Us</a>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span>
       <span></span>
@@ -1517,31 +1655,31 @@ footer {
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#maritime">Advisory</a>
-  <a href="#services">Services</a>
-  <a href="#portmgmt">Last Voyage</a>
-  <a href="#market">Market</a>
-  <a href="#drydock">Drydock</a>
-  <a href="#about">About</a>
-  <a href="#contact" class="btn-contact">Contact Us</a>
+  <a href="#maritime" data-i18n="nav.advisory">Advisory</a>
+  <a href="#services" data-i18n="nav.services">Services</a>
+  <a href="#portmgmt" data-i18n="nav.lastVoyage">Last Voyage</a>
+  <a href="#market" data-i18n="nav.market">Market</a>
+  <a href="#drydock" data-i18n="nav.drydock">Drydock</a>
+  <a href="#about" data-i18n="nav.about">About</a>
+  <a href="#contact" class="btn-contact" data-i18n="nav.contact">Contact Us</a>
 </div>
 
 <!-- HERO -->
 <section id="hero">
   <div class="hero-left container" style="padding-left:2rem;padding-right:0;max-width:none;">
     <div style="max-width:560px;padding:5rem 0 5rem 2rem;" class="reveal">
-      <div class="hero-label">Turkey-Based Ship Recycling Advisory</div>
-      <h1>Your ship's last voyage, <span style="color:var(--gold)">handled right.</span></h1>
-      <p class="hero-lead">Turqo Marine is a boutique consulting firm based in İzmir — advising shipowners, cash buyers and brokers across the full recycling lifecycle under the Hong Kong Convention and EU Ship Recycling Regulation.</p>
+      <div class="hero-label" data-i18n="hero.label">Turkey-Based Ship Recycling Advisory</div>
+      <h1 data-i18n="hero.h1">Your ship's last voyage, <span style="color:var(--gold)">handled right.</span></h1>
+      <p class="hero-lead" data-i18n="hero.lead">Turqo Marine is a boutique consulting firm based in İzmir — advising shipowners, cash buyers and brokers across the full recycling lifecycle under the Hong Kong Convention and EU Ship Recycling Regulation.</p>
       <div class="hero-badges">
-        <span class="hero-badge">No yard ownership</span>
+        <span class="hero-badge" data-i18n="hero.badge1">No yard ownership</span>
         <span class="hero-badge">HKC &amp; EU SRR</span>
         <span class="hero-badge">IMO / BIMCO</span>
-        <span class="hero-badge">Aliağa on the ground</span>
+        <span class="hero-badge" data-i18n="hero.badge4">Aliağa on the ground</span>
       </div>
       <div class="hero-buttons">
-        <a href="#services" class="btn-primary">Explore services →</a>
-        <a href="#contact" class="btn-outline">Talk to us</a>
+        <a href="#services" class="btn-primary" data-i18n="hero.cta1">Explore services →</a>
+        <a href="#contact" class="btn-outline" data-i18n="hero.cta2">Talk to us</a>
       </div>
     </div>
   </div>
@@ -1576,29 +1714,29 @@ footer {
         <div class="trust-icon">
           <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-        <div class="trust-title">No yard ownership</div>
-        <div class="trust-desc">Fully independent — your interests, not the yard's</div>
+        <div class="trust-title" data-i18n="trust.1.title">No yard ownership</div>
+        <div class="trust-desc" data-i18n="trust.1.desc">Fully independent — your interests, not the yard's</div>
       </div>
       <div class="trust-item reveal" style="transition-delay:0.1s">
         <div class="trust-icon">
           <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9S3 16.97 3 12 7.03 3 12 3s9 4.03 9 9z"/></svg>
         </div>
-        <div class="trust-title">HKC &amp; EU SRR fluent</div>
-        <div class="trust-desc">Deep regulatory expertise across both frameworks</div>
+        <div class="trust-title" data-i18n="trust.2.title">HKC &amp; EU SRR fluent</div>
+        <div class="trust-desc" data-i18n="trust.2.desc">Deep regulatory expertise across both frameworks</div>
       </div>
       <div class="trust-item reveal" style="transition-delay:0.2s">
         <div class="trust-icon">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
         </div>
-        <div class="trust-title">1 business day response</div>
-        <div class="trust-desc">Committed turnaround for every client inquiry</div>
+        <div class="trust-title" data-i18n="trust.3.title">1 business day response</div>
+        <div class="trust-desc" data-i18n="trust.3.desc">Committed turnaround for every client inquiry</div>
       </div>
       <div class="trust-item reveal" style="transition-delay:0.3s">
         <div class="trust-icon">
           <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
         </div>
-        <div class="trust-title">On the ground, Aliağa</div>
-        <div class="trust-desc">Local presence where the work actually happens</div>
+        <div class="trust-title" data-i18n="trust.4.title">On the ground, Aliağa</div>
+        <div class="trust-desc" data-i18n="trust.4.desc">Local presence where the work actually happens</div>
       </div>
     </div>
   </div>
@@ -1609,8 +1747,8 @@ footer {
   <div class="container">
     <div class="two-col-grid">
       <div class="two-col-text reveal">
-        <span class="eyebrow">Strategic Consulting</span>
-        <h2>Maritime Advisory</h2>
+        <span class="eyebrow" data-i18n="maritime.eyebrow">Strategic Consulting</span>
+        <h2 data-i18n="maritime.h2">Maritime Advisory</h2>
         <p>Beyond the recycling transaction, shipowners and operators face ongoing strategic decisions across fleet lifecycle, regulatory change and commercial risk. Turqo Marine provides senior-level advisory support on a retainer, project or ad-hoc basis.</p>
         <p>From board briefings to lender liaison, our mandate is to bring clarity and accountability to decisions that matter.</p>
         <div class="feature-grid">
@@ -1640,9 +1778,9 @@ footer {
   <div class="container">
     <div class="section-header reveal">
       <div class="gold-line"></div>
-      <span class="eyebrow">What We Do</span>
-      <h2>Specialist services across the full recycling and maritime lifecycle.</h2>
-      <p class="subtitle">Each mandate is handled by experienced principals — not delegated to juniors.</p>
+      <span class="eyebrow" data-i18n="services.eyebrow">What We Do</span>
+      <h2 data-i18n="services.h2">Specialist services across the full recycling and maritime lifecycle.</h2>
+      <p class="subtitle" data-i18n="services.subtitle">Each mandate is handled by experienced principals — not delegated to juniors.</p>
     </div>
     <div class="services-grid">
 
@@ -1758,8 +1896,8 @@ footer {
         </div>
       </div>
       <div class="two-col-text reveal" style="transition-delay:0.15s">
-        <span class="eyebrow">Port Operations</span>
-        <h2>Your Ship's Last Voyage</h2>
+        <span class="eyebrow" data-i18n="portmgmt.eyebrow">Port Operations</span>
+        <h2 data-i18n="portmgmt.h2">Your Ship's Last Voyage</h2>
         <p>Last-voyage port calls are high-stakes. Documentation errors, crew issues and regulatory non-compliance at this stage can delay delivery or invalidate the transaction entirely.</p>
         <p>Turqo Marine manages the full port phase — from arrival planning through to flag deregistration — ensuring every authority is satisfied and every document is in order.</p>
         <div class="feature-grid">
@@ -1782,9 +1920,13 @@ footer {
   <div class="container">
     <div class="section-header reveal">
       <div class="gold-line"></div>
-      <span class="eyebrow">Live Demolition Market</span>
-      <h2>Weekly scrap prices across key recycling destinations.</h2>
+      <span class="eyebrow" data-i18n="market.eyebrow">Live Demolition Market</span>
+      <h2 data-i18n="market.h2">Weekly scrap prices across key recycling destinations.</h2>
       <span id="marketMeta" style="color:var(--cream-50);font-size:.8rem"></span>
+      <div class="market-refresh" id="marketRefresh" style="display:none;justify-content:center;margin-top:.5rem">
+        <div class="refresh-dot"></div>
+        <span id="refreshLabel">Live data</span>
+      </div>
     </div>
     <div class="market-cards" id="marketCards">
       <!-- Skeleton loading state -->
@@ -1862,8 +2004,8 @@ footer {
   <div class="container">
     <div class="two-col-grid">
       <div class="two-col-text reveal">
-        <span class="eyebrow">Technical Services</span>
-        <h2>Drydock &amp; Technical Support</h2>
+        <span class="eyebrow" data-i18n="drydock.eyebrow">Technical Services</span>
+        <h2 data-i18n="drydock.h2">Drydock &amp; Technical Support</h2>
         <p>Drydocking is one of the most cost-intensive operations in ship management. Turqo Marine provides independent oversight — from specification drafting through to final close-out — to ensure you get value, not surprises.</p>
         <p>We act as owner's representative throughout the yard period, providing daily reporting, defect management and contractual protection at every stage.</p>
         <div class="feature-grid">
@@ -1899,8 +2041,8 @@ footer {
         </div>
       </div>
       <div class="about-content reveal" style="transition-delay:0.15s">
-        <span class="eyebrow">Who We Are</span>
-        <h2>Independent counsel, from first call to final certificate.</h2>
+        <span class="eyebrow" data-i18n="about.eyebrow">Who We Are</span>
+        <h2 data-i18n="about.h2">Independent counsel, from first call to final certificate.</h2>
         <p>Turqo Marine was founded to address a gap in the market: shipowners and cash buyers navigating end-of-life decisions need advisors with no yard affiliation, no side interests and no conflict of interest.</p>
         <p>We operate exclusively from the owner's or buyer's side, providing technical, commercial and regulatory guidance across the full recycling lifecycle — from initial feasibility through to final deregistration.</p>
         <blockquote class="about-quote">
@@ -1934,9 +2076,9 @@ footer {
   <div class="container">
     <div class="section-header reveal">
       <div class="gold-line"></div>
-      <span class="eyebrow">How We Work</span>
-      <h2>Four stages, one accountable team.</h2>
-      <p class="subtitle">A structured process built around clarity, transparency and measurable outcomes.</p>
+      <span class="eyebrow" data-i18n="approach.eyebrow">How We Work</span>
+      <h2 data-i18n="approach.h2">Four stages, one accountable team.</h2>
+      <p class="subtitle" data-i18n="approach.subtitle">A structured process built around clarity, transparency and measurable outcomes.</p>
     </div>
     <div class="steps-row">
       <div class="step reveal">
@@ -1968,9 +2110,9 @@ footer {
   <div class="container">
     <div class="contact-grid">
       <div class="contact-info reveal">
-        <span class="eyebrow">Get in Touch</span>
-        <h2>Let's talk about your vessel.</h2>
-        <p>Whether you're planning a recycling transaction, navigating a compliance question or looking for strategic support — we're available. All inquiries are treated in strict confidence.</p>
+        <span class="eyebrow" data-i18n="contact.eyebrow">Get in Touch</span>
+        <h2 data-i18n="contact.h2">Let's talk about your vessel.</h2>
+        <p data-i18n="contact.lead">Whether you're planning a recycling transaction, navigating a compliance question or looking for strategic support — we're available. All inquiries are treated in strict confidence.</p>
         <div class="contact-blocks">
           <div>
             <div class="contact-block-label">Location</div>
@@ -2028,13 +2170,25 @@ footer {
               </select>
             </div>
             <div class="form-group">
-              <label for="message">Message *</label>
+              <label for="message" data-i18n="form.message">Message *</label>
               <textarea id="message" name="message" placeholder="Please describe your vessel, flag, and what you need assistance with..." required></textarea>
             </div>
-            <button type="submit" class="btn-submit">Send Message</button>
+            <div class="form-group">
+              <label data-i18n="form.docs">Ship Documents <span style="color:var(--cream-50);font-weight:400">(optional)</span></label>
+              <div class="file-upload-wrap">
+                <input type="file" id="shipDoc" name="shipDoc" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx,.xls,.xlsx">
+                <label for="shipDoc" class="file-upload-label" id="fileUploadLabel">
+                  <svg viewBox="0 0 24 24"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/></svg>
+                  <span id="fileLabel" data-i18n="form.attach">Attach IHM, class certificate or other documents</span>
+                </label>
+              </div>
+            </div>
+            <input type="hidden" id="hVesselType" name="vessel_type">
+            <input type="hidden" id="hLdt" name="ldt">
+            <button type="submit" class="btn-submit" data-i18n="form.submit">Send Message</button>
           </form>
           <div class="form-success" id="formSuccess">
-            <strong>Message sent.</strong> We'll respond within 1 business day.
+            <strong data-i18n="form.successTitle">Message sent.</strong> <span data-i18n="form.successBody">We'll respond within 1 business day.</span>
           </div>
         </div>
       </div>
@@ -2078,6 +2232,90 @@ footer {
 </footer>
 
 <script>
+// ─── TRANSLATIONS ─────────────────────────────────────────────────────────
+const TRANSLATIONS = {
+  en: {
+    'topbar.1': 'Independent Maritime Advisory',
+    'topbar.2': 'HKC &amp; EU SRR Specialists',
+    'topbar.3': 'İzmir, Turkey',
+    'nav.advisory': 'Advisory', 'nav.services': 'Services', 'nav.lastVoyage': 'Last Voyage',
+    'nav.market': 'Market', 'nav.drydock': 'Drydock', 'nav.about': 'About', 'nav.contact': 'Contact Us',
+    'hero.label': 'Turkey-Based Ship Recycling Advisory',
+    'hero.h1': 'Your ship\'s last voyage, <span style="color:var(--gold)">handled right.</span>',
+    'hero.lead': 'Turqo Marine is a boutique consulting firm based in İzmir — advising shipowners, cash buyers and brokers across the full recycling lifecycle under the Hong Kong Convention and EU Ship Recycling Regulation.',
+    'hero.badge1': 'No yard ownership', 'hero.badge4': 'Aliağa on the ground',
+    'hero.cta1': 'Explore services →', 'hero.cta2': 'Talk to us',
+    'trust.1.title': 'No yard ownership', 'trust.1.desc': 'Fully independent — your interests, not the yard\'s',
+    'trust.2.title': 'HKC &amp; EU SRR fluent', 'trust.2.desc': 'Deep regulatory expertise across both frameworks',
+    'trust.3.title': '1 business day response', 'trust.3.desc': 'Committed turnaround for every client inquiry',
+    'trust.4.title': 'On the ground, Aliağa', 'trust.4.desc': 'Local presence where the work actually happens',
+    'maritime.eyebrow': 'Strategic Consulting', 'maritime.h2': 'Maritime Advisory',
+    'services.eyebrow': 'What We Do',
+    'services.h2': 'Specialist services across the full recycling and maritime lifecycle.',
+    'services.subtitle': 'Each mandate is handled by experienced principals — not delegated to juniors.',
+    'portmgmt.eyebrow': 'Port Operations', 'portmgmt.h2': 'Your Ship\'s Last Voyage',
+    'market.eyebrow': 'Live Demolition Market', 'market.h2': 'Weekly scrap prices across key recycling destinations.',
+    'drydock.eyebrow': 'Technical Services', 'drydock.h2': 'Drydock &amp; Technical Support',
+    'about.eyebrow': 'Who We Are', 'about.h2': 'Independent counsel, from first call to final certificate.',
+    'approach.eyebrow': 'How We Work', 'approach.h2': 'Four stages, one accountable team.',
+    'approach.subtitle': 'A structured process built around clarity, transparency and measurable outcomes.',
+    'contact.eyebrow': 'Get in Touch', 'contact.h2': 'Let\'s talk about your vessel.',
+    'contact.lead': 'Whether you\'re planning a recycling transaction, navigating a compliance question or looking for strategic support — we\'re available. All inquiries are treated in strict confidence.',
+    'form.message': 'Message *', 'form.docs': 'Ship Documents',
+    'form.attach': 'Attach IHM, class certificate or other documents',
+    'form.submit': 'Send Message', 'form.successTitle': 'Message sent.',
+    'form.successBody': 'We\'ll respond within 1 business day.',
+  },
+  tr: {
+    'topbar.1': 'Bağımsız Denizcilik Danışmanlığı',
+    'topbar.2': 'HKC &amp; AB GDY Uzmanları',
+    'topbar.3': 'İzmir, Türkiye',
+    'nav.advisory': 'Danışmanlık', 'nav.services': 'Hizmetler', 'nav.lastVoyage': 'Son Sefer',
+    'nav.market': 'Pazar', 'nav.drydock': 'Havuz', 'nav.about': 'Hakkımızda', 'nav.contact': 'İletişim',
+    'hero.label': 'Türkiye Merkezli Gemi Söküm Danışmanlığı',
+    'hero.h1': 'Geminizin son seferi, <span style="color:var(--gold)">doğru ellerde.</span>',
+    'hero.lead': 'Turqo Marine, İzmir merkezli bağımsız bir danışmanlık firmasıdır — Hong Kong Sözleşmesi ve AB Gemi Söküm Tüzüğü kapsamında gemi sahiplerine, nakit alıcılara ve brokerlara tüm geri dönüşüm sürecinde danışmanlık hizmeti sunmaktadır.',
+    'hero.badge1': 'Tersane sahipliği yok', 'hero.badge4': 'Aliağa\'da sahadayız',
+    'hero.cta1': 'Hizmetleri keşfet →', 'hero.cta2': 'Bize ulaşın',
+    'trust.1.title': 'Tersane sahipliği yok', 'trust.1.desc': 'Tamamen bağımsız — çıkarlarınız, tersanenin değil',
+    'trust.2.title': 'HKC &amp; AB GDY uzmanı', 'trust.2.desc': 'Her iki çerçevede derin düzenleyici uzmanlık',
+    'trust.3.title': '1 iş günü yanıt', 'trust.3.desc': 'Her müşteri sorusu için taahhütlü yanıt süresi',
+    'trust.4.title': 'Aliağa\'da sahadayız', 'trust.4.desc': 'İşin gerçekte yapıldığı yerde yerel varlık',
+    'maritime.eyebrow': 'Stratejik Danışmanlık', 'maritime.h2': 'Denizcilik Danışmanlığı',
+    'services.eyebrow': 'Ne Yapıyoruz',
+    'services.h2': 'Geri dönüşüm ve denizcilik yaşam döngüsü genelinde uzman hizmetler.',
+    'services.subtitle': 'Her görev, deneyimli uzmanlar tarafından yürütülür — asistanlara devredilmez.',
+    'portmgmt.eyebrow': 'Liman Operasyonları', 'portmgmt.h2': 'Geminizin Son Seferi',
+    'market.eyebrow': 'Canlı Söküm Pazarı', 'market.h2': 'Başlıca geri dönüşüm destinasyonlarında haftalık hurda fiyatları.',
+    'drydock.eyebrow': 'Teknik Hizmetler', 'drydock.h2': 'Havuz &amp; Teknik Destek',
+    'about.eyebrow': 'Biz Kimiz', 'about.h2': 'İlk aramadan son sertifikaya kadar bağımsız danışmanlık.',
+    'approach.eyebrow': 'Nasıl Çalışıyoruz', 'approach.h2': 'Dört aşama, tek sorumlu ekip.',
+    'approach.subtitle': 'Netlik, şeffaflık ve ölçülebilir sonuçlar üzerine kurulu yapılandırılmış bir süreç.',
+    'contact.eyebrow': 'İletişime Geçin', 'contact.h2': 'Geminiz hakkında konuşalım.',
+    'contact.lead': 'Bir söküm işlemi planlıyor, uyumluluk sorusu arıyor ya da stratejik destek arıyor olun — buradayız. Tüm başvurular sıkı ticari gizlilik içinde değerlendirilir.',
+    'form.message': 'Mesaj *', 'form.docs': 'Gemi Belgeleri',
+    'form.attach': 'IHM, sınıf sertifikası veya diğer belgeleri ekleyin',
+    'form.submit': 'Mesaj Gönder', 'form.successTitle': 'Mesajınız iletildi.',
+    'form.successBody': '1 iş günü içinde yanıt vereceğiz.',
+  }
+};
+
+let currentLang = 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  const t = TRANSLATIONS[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+  document.getElementById('langEN').classList.toggle('active', lang === 'en');
+  document.getElementById('langTR').classList.toggle('active', lang === 'tr');
+  document.documentElement.lang = lang;
+  localStorage.setItem('lang', lang);
+  calcUpdate();
+}
+
 // ─── INTERSECTION OBSERVER REVEALS ──────────────────────────────────────
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -2089,6 +2327,25 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ─── NAV ACTIVE ON SCROLL ────────────────────────────────────────────────
+const allNavLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      allNavLinks.forEach(a => {
+        a.classList.toggle('nav-active', a.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, {
+  threshold: 0.25,
+  rootMargin: '-' + (82 + 36) + 'px 0px -45% 0px'
+});
+
+document.querySelectorAll('section[id]').forEach(s => sectionObserver.observe(s));
 
 // ─── NAV SCROLL SHADOW ───────────────────────────────────────────────────
 const nav = document.getElementById('nav');
@@ -2106,7 +2363,6 @@ hamburger.addEventListener('click', () => {
   hamburger.setAttribute('aria-expanded', isOpen);
 });
 
-// Close mobile menu on link click
 mobileMenu.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => {
     mobileMenu.classList.remove('open');
@@ -2115,11 +2371,27 @@ mobileMenu.querySelectorAll('a').forEach(link => {
   });
 });
 
-// Close on outside click
 document.addEventListener('click', (e) => {
   if (!nav.contains(e.target) && !mobileMenu.contains(e.target)) {
     mobileMenu.classList.remove('open');
     hamburger.classList.remove('open');
+  }
+});
+
+// ─── FILE UPLOAD DISPLAY ─────────────────────────────────────────────────
+const shipDocInput = document.getElementById('shipDoc');
+const fileUploadLabel = document.getElementById('fileUploadLabel');
+const fileLabelText = document.getElementById('fileLabel');
+
+shipDocInput.addEventListener('change', () => {
+  const file = shipDocInput.files[0];
+  if (file) {
+    fileLabelText.textContent = file.name + ' (' + (file.size / 1024).toFixed(0) + ' KB)';
+    fileUploadLabel.classList.add('has-file');
+  } else {
+    fileLabelText.dataset.i18n = 'form.attach';
+    fileLabelText.textContent = TRANSLATIONS[currentLang]['form.attach'];
+    fileUploadLabel.classList.remove('has-file');
   }
 });
 
@@ -2132,31 +2404,38 @@ contactForm.addEventListener('submit', async (e) => {
 
   const required = contactForm.querySelectorAll('[required]');
   let valid = true;
-
   required.forEach(field => {
     field.style.borderColor = '';
-    if (!field.value.trim()) {
-      field.style.borderColor = '#f87171';
-      valid = false;
-    }
+    if (!field.value.trim()) { field.style.borderColor = '#f87171'; valid = false; }
     if (field.type === 'email' && field.value.trim()) {
-      const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRe.test(field.value.trim())) {
-        field.style.borderColor = '#f87171';
-        valid = false;
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value.trim())) {
+        field.style.borderColor = '#f87171'; valid = false;
       }
     }
   });
-
   if (!valid) return;
 
   const btn = contactForm.querySelector('.btn-submit');
-  btn.textContent = 'Sending…';
+  btn.textContent = currentLang === 'tr' ? 'Gönderiliyor…' : 'Sending…';
   btn.disabled = true;
 
   try {
     const formData = new FormData(contactForm);
     const data = Object.fromEntries(formData.entries());
+
+    // Read file as base64 if attached
+    const file = shipDocInput.files[0];
+    if (file) {
+      const base64 = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+      data.attachment_name = file.name;
+      data.attachment_data = base64;
+      delete data.shipDoc;
+    }
 
     const res = await fetch('/api/contact', {
       method: 'POST',
@@ -2171,7 +2450,6 @@ contactForm.addEventListener('submit', async (e) => {
       throw new Error('Server error');
     }
   } catch (err) {
-    // On error or no API, show success anyway (static fallback)
     contactForm.style.display = 'none';
     formSuccess.classList.add('visible');
   }
@@ -2192,30 +2470,28 @@ function renderMarketCard(country) {
   const isTurkey = country.id === 'turkey' || country.name?.toLowerCase() === 'turkey';
   const flag = COUNTRY_FLAGS[country.id] || country.flag || '';
   const name = COUNTRY_NAMES[country.id] || country.name || '';
-
   return `
     <div class="market-card ${isTurkey ? 'turkey' : ''}">
       <div class="market-card-flag">${flag}</div>
       <div class="market-card-country">${name}</div>
-      <div class="price-row">
-        <span class="price-label">Wet</span>
-        <span class="price-value">$${country.wet || country.prices?.wet || '—'}/LDT</span>
-      </div>
-      <div class="price-row">
-        <span class="price-label">Dry</span>
-        <span class="price-value">$${country.dry || country.prices?.dry || '—'}/LDT</span>
-      </div>
-      <div class="price-row">
-        <span class="price-label">Container</span>
-        <span class="price-value">$${country.container || country.prices?.container || '—'}/LDT</span>
-      </div>
+      <div class="price-row"><span class="price-label">Wet</span><span class="price-value">$${country.wet || country.prices?.wet || '—'}/LDT</span></div>
+      <div class="price-row"><span class="price-label">Dry</span><span class="price-value">$${country.dry || country.prices?.dry || '—'}/LDT</span></div>
+      <div class="price-row"><span class="price-label">Container</span><span class="price-value">$${country.container || country.prices?.container || '—'}/LDT</span></div>
       <div class="price-divider"></div>
       ${sentimentBadge(country.sentiment || 'neutral')}
-    </div>
-  `;
+    </div>`;
 }
 
 let _marketCountries = [];
+let _lastFetchTime = null;
+let _marketChart = null;
+
+function updateRefreshLabel() {
+  if (!_lastFetchTime) return;
+  const mins = Math.floor((Date.now() - _lastFetchTime) / 60000);
+  const el = document.getElementById('refreshLabel');
+  if (el) el.textContent = mins === 0 ? 'Live data' : 'Refreshed ' + mins + ' min ago';
+}
 
 async function loadMarket() {
   try {
@@ -2225,15 +2501,15 @@ async function loadMarket() {
     if (!d.countries?.length) throw new Error('No data');
 
     _marketCountries = d.countries;
+    _lastFetchTime = Date.now();
 
-    const cardsEl = document.getElementById('marketCards');
-    cardsEl.innerHTML = d.countries.map(renderMarketCard).join('');
+    document.getElementById('marketCards').innerHTML = d.countries.map(renderMarketCard).join('');
+    if (d.lastUpdate) document.getElementById('marketMeta').textContent = 'Updated: ' + d.lastUpdate;
 
-    if (d.lastUpdate) {
-      document.getElementById('marketMeta').textContent = 'Updated: ' + d.lastUpdate;
-    }
+    const refreshEl = document.getElementById('marketRefresh');
+    refreshEl.style.display = 'flex';
+    updateRefreshLabel();
 
-    // Chart
     const chartPanel = document.getElementById('chartPanel');
     chartPanel.style.display = 'block';
 
@@ -2241,68 +2517,29 @@ async function loadMarket() {
     const wetData = d.countries.map(c => parseFloat(c.wet || c.prices?.wet) || 0);
     const dryData = d.countries.map(c => parseFloat(c.dry || c.prices?.dry) || 0);
 
-    new Chart(document.getElementById('marketChart'), {
+    if (_marketChart) { _marketChart.destroy(); }
+    _marketChart = new Chart(document.getElementById('marketChart'), {
       type: 'bar',
       data: {
         labels,
         datasets: [
-          {
-            label: 'Wet (USD/LDT)',
-            data: wetData,
-            backgroundColor: 'rgba(200,150,62,0.75)',
-            borderColor: 'rgba(200,150,62,1)',
-            borderWidth: 1,
-            borderRadius: 2
-          },
-          {
-            label: 'Dry (USD/LDT)',
-            data: dryData,
-            backgroundColor: 'rgba(245,237,224,0.25)',
-            borderColor: 'rgba(245,237,224,0.4)',
-            borderWidth: 1,
-            borderRadius: 2
-          }
+          { label: 'Wet (USD/LDT)', data: wetData, backgroundColor: 'rgba(200,150,62,0.75)', borderColor: 'rgba(200,150,62,1)', borderWidth: 1, borderRadius: 2 },
+          { label: 'Dry (USD/LDT)', data: dryData, backgroundColor: 'rgba(245,237,224,0.25)', borderColor: 'rgba(245,237,224,0.4)', borderWidth: 1, borderRadius: 2 }
         ]
       },
       options: {
-        responsive: true,
-        maintainAspectRatio: true,
+        responsive: true, maintainAspectRatio: true,
         plugins: {
-          legend: {
-            labels: {
-              color: 'rgba(245,237,224,0.6)',
-              font: { family: 'Inter', size: 11 },
-              boxWidth: 12,
-              padding: 16
-            }
-          },
-          tooltip: {
-            backgroundColor: '#111D2E',
-            borderColor: 'rgba(245,237,224,0.15)',
-            borderWidth: 1,
-            titleColor: '#F5EDE0',
-            bodyColor: 'rgba(245,237,224,0.7)',
-            padding: 10
-          }
+          legend: { labels: { color: 'rgba(245,237,224,0.6)', font: { family: 'Inter', size: 11 }, boxWidth: 12, padding: 16 } },
+          tooltip: { backgroundColor: '#111D2E', borderColor: 'rgba(245,237,224,0.15)', borderWidth: 1, titleColor: '#F5EDE0', bodyColor: 'rgba(245,237,224,0.7)', padding: 10 }
         },
         scales: {
-          x: {
-            grid: { color: 'rgba(245,237,224,0.05)' },
-            ticks: { color: 'rgba(245,237,224,0.6)', font: { family: 'Inter', size: 11 } }
-          },
-          y: {
-            grid: { color: 'rgba(245,237,224,0.05)' },
-            ticks: {
-              color: 'rgba(245,237,224,0.6)',
-              font: { family: 'Inter', size: 11 },
-              callback: v => '$' + v
-            }
-          }
+          x: { grid: { color: 'rgba(245,237,224,0.05)' }, ticks: { color: 'rgba(245,237,224,0.6)', font: { family: 'Inter', size: 11 } } },
+          y: { grid: { color: 'rgba(245,237,224,0.05)' }, ticks: { color: 'rgba(245,237,224,0.6)', font: { family: 'Inter', size: 11 }, callback: v => '$' + v } }
         }
       }
     });
 
-    // Show calculator
     document.getElementById('calcCard').style.display = 'block';
     calcUpdate();
 
@@ -2311,6 +2548,12 @@ async function loadMarket() {
       '<p style="color:var(--cream-50);grid-column:1/-1;text-align:center;padding:2rem 0">Market data temporarily unavailable.</p>';
   }
 }
+
+// Auto-refresh every 15 minutes
+setInterval(() => {
+  updateRefreshLabel();
+  if (_lastFetchTime && Date.now() - _lastFetchTime > 15 * 60 * 1000) loadMarket();
+}, 60 * 1000);
 
 // ─── SCRAP CALCULATOR ─────────────────────────────────────────────────────
 function parseMinPrice(str) {
@@ -2326,7 +2569,6 @@ function calcUpdate() {
   const ldt = parseFloat(document.getElementById('calcLdt').value);
   const valEl = document.getElementById('calcValue');
   const rateEl = document.getElementById('calcRate');
-
   if (!_marketCountries.length) return;
 
   const prices = _marketCountries
@@ -2334,17 +2576,14 @@ function calcUpdate() {
     .filter(p => p && p > 0);
 
   if (!prices.length) { valEl.textContent = '—'; rateEl.textContent = ''; return; }
-
   const minRate = Math.min(...prices);
 
   if (!ldt || ldt < 100) {
     valEl.textContent = '—';
-    rateEl.textContent = 'Min. market rate: $' + minRate.toLocaleString() + ' / LDT';
+    rateEl.textContent = 'Min. rate: $' + minRate.toLocaleString() + ' / LDT';
     return;
   }
-
-  const total = ldt * minRate;
-  valEl.textContent = '$' + Math.round(total).toLocaleString('en-US');
+  valEl.textContent = '$' + Math.round(ldt * minRate).toLocaleString('en-US');
   rateEl.textContent = ldt.toLocaleString() + ' LDT × $' + minRate.toLocaleString() + '/LDT';
 }
 
@@ -2358,6 +2597,28 @@ document.querySelectorAll('.calc-pill').forEach(btn => {
 });
 
 document.getElementById('calcLdt').addEventListener('input', calcUpdate);
+
+// Calculator → contact form pre-fill
+document.querySelector('.calc-cta').addEventListener('click', (e) => {
+  e.preventDefault();
+  const ldt = document.getElementById('calcLdt').value;
+  const typeLabels = { wet: 'Tanker / Wet', dry: 'Bulk / Dry', container: 'Container' };
+  document.getElementById('subject').value = 'recycling';
+  document.getElementById('hVesselType').value = typeLabels[calcType] || calcType;
+  document.getElementById('hLdt').value = ldt;
+  if (ldt) {
+    const val = document.getElementById('calcValue').textContent;
+    document.getElementById('message').value =
+      'Vessel type: ' + typeLabels[calcType] + '\nLDT: ' + Number(ldt).toLocaleString() +
+      '\nEstimated value (min. market): ' + val +
+      '\n\nPlease provide a firm offer for our vessel.';
+  }
+  document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+});
+
+// ─── INIT ─────────────────────────────────────────────────────────────────
+const savedLang = localStorage.getItem('lang');
+if (savedLang && savedLang !== 'en') setLang(savedLang);
 
 loadMarket();
 </script>

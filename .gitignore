@@ -28,3 +28,4 @@ build_plan_en.js
 check.py
 preview*.jpg
 preview_en*.jpg
+.vercel
