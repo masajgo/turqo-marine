@@ -937,6 +937,180 @@ ul { list-style: none; }
   letter-spacing: 0.1em;
 }
 
+/* ─── SCRAP CALCULATOR ──────────────────────────────────────────────── */
+.calc-card {
+  margin-top: 2.5rem;
+  border: 1px solid var(--gold);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.calc-header {
+  background: linear-gradient(135deg, rgba(200,150,62,0.12) 0%, rgba(200,150,62,0.04) 100%);
+  border-bottom: 1px solid rgba(200,150,62,0.2);
+  padding: 2rem 2.5rem;
+}
+
+.calc-header h3 {
+  font-size: 1.5rem;
+  margin: 0.4rem 0 0.6rem;
+}
+
+.calc-header p {
+  color: var(--cream-50);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.calc-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+@media (max-width: 768px) {
+  .calc-body { grid-template-columns: 1fr; }
+}
+
+.calc-inputs {
+  padding: 2rem 2.5rem;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.calc-field label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--cream-50);
+  margin-bottom: 0.75rem;
+}
+
+.calc-pills {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.calc-pill {
+  background: transparent;
+  border: 1px solid var(--cream-10);
+  color: var(--cream-70);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.calc-pill:hover {
+  border-color: var(--gold);
+  color: var(--cream);
+}
+
+.calc-pill.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--navy);
+  font-weight: 600;
+}
+
+.calc-ldt-wrap {
+  position: relative;
+}
+
+.calc-ldt-wrap input {
+  width: 100%;
+  background: var(--surface-2);
+  border: 1px solid var(--cream-10);
+  border-radius: var(--radius);
+  color: var(--cream);
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  padding: 0.8rem 4rem 0.8rem 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+  -moz-appearance: textfield;
+}
+
+.calc-ldt-wrap input::-webkit-outer-spin-button,
+.calc-ldt-wrap input::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+.calc-ldt-wrap input:focus {
+  border-color: var(--gold);
+}
+
+.calc-ldt-unit {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.75rem;
+  color: var(--cream-50);
+  pointer-events: none;
+}
+
+.calc-result {
+  background: var(--navy);
+  padding: 2rem 2.5rem;
+  display: flex;
+  align-items: center;
+  border-left: 1px solid rgba(200,150,62,0.2);
+}
+
+@media (max-width: 768px) {
+  .calc-result { border-left: none; border-top: 1px solid rgba(200,150,62,0.2); }
+}
+
+.calc-result-inner { width: 100%; }
+
+.calc-result-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+.calc-result-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--cream);
+  line-height: 1.1;
+  margin-bottom: 0.3rem;
+  min-height: 2.6rem;
+}
+
+.calc-result-rate {
+  font-size: 0.82rem;
+  color: var(--cream-50);
+  margin-bottom: 1.25rem;
+  min-height: 1.2rem;
+}
+
+.calc-result-note {
+  font-size: 0.76rem;
+  color: var(--cream-50);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--cream-10);
+}
+
+.calc-cta {
+  display: inline-block;
+  font-size: 0.85rem;
+  padding: 0.65rem 1.25rem;
+}
+
 /* ─── APPROACH ──────────────────────────────────────────────────────── */
 #approach {
   background: var(--navy);
@@ -1643,6 +1817,43 @@ footer {
       <h4>LDT Scrap Price Comparison (USD/LDT)</h4>
       <canvas id="marketChart" height="120"></canvas>
     </div>
+
+    <!-- SCRAP CALCULATOR -->
+    <div class="calc-card reveal" id="calcCard" style="display:none">
+      <div class="calc-header">
+        <span class="eyebrow">Scrap Value Estimator</span>
+        <h3>Get an Instant Price Indication</h3>
+        <p>Based on the lowest current market rate across all recycling destinations. Enter your vessel's LDT to see an estimated scrap value.</p>
+      </div>
+      <div class="calc-body">
+        <div class="calc-inputs">
+          <div class="calc-field">
+            <label>Vessel Type</label>
+            <div class="calc-pills">
+              <button class="calc-pill active" data-type="wet">Tanker / Wet</button>
+              <button class="calc-pill" data-type="dry">Bulk / Dry</button>
+              <button class="calc-pill" data-type="container">Container</button>
+            </div>
+          </div>
+          <div class="calc-field">
+            <label>Light Displacement Tonnage (LDT)</label>
+            <div class="calc-ldt-wrap">
+              <input type="number" id="calcLdt" placeholder="e.g. 8 500" min="100" max="100000" />
+              <span class="calc-ldt-unit">LDT</span>
+            </div>
+          </div>
+        </div>
+        <div class="calc-result">
+          <div class="calc-result-inner">
+            <div class="calc-result-label">Initial Offer Indication</div>
+            <div class="calc-result-value" id="calcValue">—</div>
+            <div class="calc-result-rate" id="calcRate"></div>
+            <div class="calc-result-note">This is an indicative figure based on the lowest published market rate. Final offer is subject to vessel condition, class records, inventory and negotiation. <strong>Send us your ship documents for a firm offer.</strong></div>
+            <a href="#contact" class="btn-primary calc-cta">Request a firm offer →</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -2004,12 +2215,16 @@ function renderMarketCard(country) {
   `;
 }
 
+let _marketCountries = [];
+
 async function loadMarket() {
   try {
     const r = await fetch('/api/market-data');
     if (!r.ok) throw new Error('HTTP ' + r.status);
     const d = await r.json();
     if (!d.countries?.length) throw new Error('No data');
+
+    _marketCountries = d.countries;
 
     const cardsEl = document.getElementById('marketCards');
     cardsEl.innerHTML = d.countries.map(renderMarketCard).join('');
@@ -2087,11 +2302,62 @@ async function loadMarket() {
       }
     });
 
+    // Show calculator
+    document.getElementById('calcCard').style.display = 'block';
+    calcUpdate();
+
   } catch (e) {
     document.getElementById('marketCards').innerHTML =
       '<p style="color:var(--cream-50);grid-column:1/-1;text-align:center;padding:2rem 0">Market data temporarily unavailable.</p>';
   }
 }
+
+// ─── SCRAP CALCULATOR ─────────────────────────────────────────────────────
+function parseMinPrice(str) {
+  if (!str) return null;
+  const nums = String(str).replace(/,/g, '').match(/\d+(?:\.\d+)?/g);
+  if (!nums || !nums.length) return null;
+  return Math.min(...nums.map(Number));
+}
+
+let calcType = 'wet';
+
+function calcUpdate() {
+  const ldt = parseFloat(document.getElementById('calcLdt').value);
+  const valEl = document.getElementById('calcValue');
+  const rateEl = document.getElementById('calcRate');
+
+  if (!_marketCountries.length) return;
+
+  const prices = _marketCountries
+    .map(c => parseMinPrice(c[calcType] || c.prices?.[calcType]))
+    .filter(p => p && p > 0);
+
+  if (!prices.length) { valEl.textContent = '—'; rateEl.textContent = ''; return; }
+
+  const minRate = Math.min(...prices);
+
+  if (!ldt || ldt < 100) {
+    valEl.textContent = '—';
+    rateEl.textContent = 'Min. market rate: $' + minRate.toLocaleString() + ' / LDT';
+    return;
+  }
+
+  const total = ldt * minRate;
+  valEl.textContent = '$' + Math.round(total).toLocaleString('en-US');
+  rateEl.textContent = ldt.toLocaleString() + ' LDT × $' + minRate.toLocaleString() + '/LDT';
+}
+
+document.querySelectorAll('.calc-pill').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.calc-pill').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    calcType = btn.dataset.type;
+    calcUpdate();
+  });
+});
+
+document.getElementById('calcLdt').addEventListener('input', calcUpdate);
 
 loadMarket();
 </script>
